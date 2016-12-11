@@ -4,7 +4,7 @@ angular.module('oneImobiliaria', [
   'ui.router',
   'ui.utils.masks'
 ])
-.run(['$rootScope', '$state', 'RESOURCES', 'UserService', function($rootScope, $state, RESOURCES, UserService) {
+.run(['$rootScope', '$state', 'RESOURCES', function($rootScope, $state, RESOURCES) {
 
   $rootScope.error = false;
   $rootScope.success = false;
