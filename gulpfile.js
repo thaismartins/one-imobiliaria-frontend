@@ -29,7 +29,7 @@ function logError(error) {
 }
 
 gulp.task('styles', function() {
-    gulp.src('./public/css/*.css')
+    gulp.src('./public/css/style.css')
         .pipe(sourcemaps.init())
         .pipe(cleanCSS())
         .on('error', logError)
@@ -40,18 +40,16 @@ gulp.task('styles', function() {
 
 gulp.task('scripts', function() {
     var appScripts = [
-        './app/app.coffee',
-        './app/routes.coffee',
-        './app/services/*.coffee',
-        './app/filters/*.coffee',
-        './app/directives/*.coffee',
-        './app/controllers/*.coffee'
+        './app/app.js',
+        './app/routes.js',
+        './app/services/*.js',
+        './app/filters/*.js',
+        './app/directives/*.js',
+        './app/controllers/*.js'
     ];
 
     gulp.src(appScripts)
         .pipe(sourcemaps.init())
-        .pipe(coffee({bare: true}))
-        .on('error', logError)
         .pipe(concat('app.js'))
         .pipe(uglify())
         .on('error', logError)
