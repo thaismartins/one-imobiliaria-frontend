@@ -1,0 +1,36 @@
+{
+  "name": "xxxxxxx",
+  "version": "1.0.0",
+  "description": "XXX's Admin Panel",
+  "main": "index.html",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/xxxxxxx"
+  },
+  "keywords": [
+    "admin",
+    "painel de controle"
+  ],
+  "author": "Thais Martins <contato@thaismartins.co>",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/xxxxxxx",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.2.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-imagemin": "^3.0.1",
+    "gulp-jshint": "^2.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.3",
+    "gulp.spritesmith": "^6.2.1",
+    "jshint": "^2.9.2"
+  },
+  "dependencies": {
+    "moment": "^2.15.2"
+  }
+}

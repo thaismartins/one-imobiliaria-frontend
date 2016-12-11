@@ -1,0 +1,23 @@
+<div class="header">
+    <div class="mobile">
+        <i class="fa fa-bars"></i>
+    </div>
+    <div class="logo">
+        <img src="public/images/logo-white.png" alt="Vest" title="Vest">
+    </div>
+    <nav class="menu">
+        <ul class="menu-items">
+            <li class="item" ng-repeat="menu in menus">
+                <a ui-sref="{{menu.link}}" ui-sref-active="active">
+                    <span>{{menu.title}}</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="logout">
+        <button class="btn-logout" ng-click="doLogout()">
+            <span>Sair</span>
+            <i class="fa fa-sign-out"></i>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+{
+  "name": "xxxx",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {
+    "angular": "^1.6.0",
+    "bootstrap": "~3.3.7",
+    "fontawesome": "~4.7.0",
+    "jquery": "~3.1.1",
+    "angular-ui-router": "^0.3.2",
+    "angular-input-masks": "^2.5.0"
+  },
+  "devDependencies": {},
+  "appPath": "app",
+  "moduleName": "xxxxx"
+}
