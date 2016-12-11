@@ -6,14 +6,14 @@
         <div ui-view="error"></div>
         <form name="forms.login" class="form-login">
             <div class="form-group" ng-class="{'active': user.username}">
-                <label for="login">usuário</label>
+                <label for="login">Usuário</label>
                 <input type="text" class="form-control" id="login" ng-model="user.username" required>
                 <span class="clean" ng-click="clean('username')" ng-class="{'active': user.username}">
                     <i class="fa fa-times-circle "></i>
                 </span>
             </div>
             <div class="form-group" ng-class="{'active': user.password}">
-                <label for="password">senha</label>
+                <label for="password">Senha</label>
                 <input type="password" class="form-control" id="password" ng-model="user.password" required>
                 <span class="clean" ng-click="clean('password')" ng-class="{'active': user.password}">
                     <i class="fa fa-times-circle "></i>
