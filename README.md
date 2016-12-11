@@ -1,4 +1,4 @@
-XXXXX Admin
+One Imobiliária Admin
 ====================
 
 ##### Application developed with AngularJs.
