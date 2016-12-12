@@ -1,6 +1,34 @@
 body {
 	margin: 0;
 	padding: 0;
-	background-color: red;
-	color:  yellow;
 } 
+
+.content-center {
+	max-width: 100%;
+	width: 990px;
+	margin: auto;
+}
+
+.logo {
+	width: 510px;
+	height: 420px;
+	background-color: #ccab45;
+	border-bottom-right-radius: 7px;
+	border-bottom-left-radius: 7px;
+}
+
+.hello {
+	width: 510px;
+	height: 115px;
+	background-color: #ccab45;
+	border-radius: 7px;
+	padding: 20px 30px;
+	margin-top: 20px;
+	text-align: center;
+}
+	
+.hello p {	
+	font-size: 28px;
+	text-transform: uppercase;
+	color: #fff;
+}
