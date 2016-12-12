@@ -32,3 +32,35 @@ body {
 	text-transform: uppercase;
 	color: #fff;
 }
+
+input.input-login{
+	width: 510px;
+	height: 55px;
+	border: 4px solid #ccab45;
+	border-radius: 7px;
+	background-color: #f0f0ec;
+	margin-top: 20px;
+}	
+
+.button {
+	margin-top: 20px;
+	width: 510px;
+	height: 55px;
+	background-color:  #ccab45;
+	color: #fff;
+	text-transform: uppercase;
+	border-radius: 7px;
+	border-style: none;
+	font-size: 28px;
+}
+
+/*	
+
+.button{
+	padding-left: 90px;
+}
+
+button{
+	margin-left: .5em;
+}
+*/
