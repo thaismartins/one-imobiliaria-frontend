@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Painel Administrativo</title>
 
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,700,900" rel="stylesheet">
 
     <link href="public/css/dependencies.min.css" rel='stylesheet' type='text/css'>
     <link href="public/css/style.min.css" rel='stylesheet' type='text/css'>
@@ -26,7 +27,9 @@
     <![endif]-->
 
 
+    <header ui-view="header" ng-click="toggleMenu()" ng-class="{'active': showMenu}"></header>
     <main ui-view="main"></main>
+    <footer ui-view="footer"></footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 

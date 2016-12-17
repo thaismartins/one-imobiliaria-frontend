@@ -3,21 +3,22 @@
         <i class="fa fa-bars"></i>
     </div>
     <div class="logo">
-        <img src="public/images/logo-white.png" alt="Vest" title="Vest">
+        <img src="public/images/logo.png" alt="{{appTitle}}" title="{{appTitle}}">
     </div>
     <nav class="menu">
         <ul class="menu-items">
-            <li class="item" ng-repeat="menu in menus">
-                <a ui-sref="{{menu.link}}" ui-sref-active="active">
-                    <span>{{menu.title}}</span>
+            <li class="item">
+                <a href="#">
+                    <span></span>
+                    <span class="text">Imóveis</span>
+                </a>
+            </li>
+            <li class="item">
+                <a href="#">
+                    <span></span>
+                    <span class="text">Busca</span>
                 </a>
             </li>
         </ul>
     </nav>
-    <div class="logout">
-        <button class="btn-logout" ng-click="doLogout()">
-            <span>Sair</span>
-            <i class="fa fa-sign-out"></i>
-        </button>
-    </div>
 </div>
