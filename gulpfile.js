@@ -1,11 +1,12 @@
 var gulp = require('gulp'),
+    sass = require('gulp-sass'),
     sourcemaps = require('gulp-sourcemaps'),
     concat = require('gulp-concat'),
     rename = require('gulp-rename'),
     uglify = require('gulp-uglify'),
+    coffee = require('gulp-coffee'),
     imagemin = require('gulp-imagemin'),
-    spritesmith = require('gulp.spritesmith'),
-    cleanCSS = require('gulp-clean-css');
+    spritesmith = require('gulp.spritesmith');
 
 var jsFiles = [
     'bower_components/jquery/dist/jquery.min.js',
@@ -28,28 +29,62 @@ function logError(error) {
     this.emit('end');
 }
 
+// gulp.task('styles', function() {
+//     gulp.src('./public/css/style.css')
+//         .pipe(sourcemaps.init())
+//         .pipe(cleanCSS())
+//         .on('error', logError)
+//         .pipe(rename('style.min.css'))
+//         .pipe(sourcemaps.write('.'))
+//         .pipe(gulp.dest('./public/css'));
+// });
+
 gulp.task('styles', function() {
-    gulp.src('./public/css/style.css')
+    gulp.src('./public/sass/style.sass')
         .pipe(sourcemaps.init())
-        .pipe(cleanCSS())
+        .pipe(sass({
+            outputStyle: 'compressed'
+        }))
         .on('error', logError)
         .pipe(rename('style.min.css'))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('./public/css'));
 });
 
+// gulp.task('scripts', function() {
+//     var appScripts = [
+//         './app/app.js',
+//         './app/routes.js',
+//         './app/services/*.js',
+//         './app/filters/*.js',
+//         './app/directives/*.js',
+//         './app/controllers/*.js'
+//     ];
+//
+//     gulp.src(appScripts)
+//         .pipe(sourcemaps.init())
+//         .pipe(concat('app.js'))
+//         .pipe(uglify())
+//         .on('error', logError)
+//         .pipe(rename('app.min.js'))
+//         .pipe(sourcemaps.write('.'))
+//         .pipe(gulp.dest('./public/js'));
+// });
+
 gulp.task('scripts', function() {
     var appScripts = [
-        './app/app.js',
-        './app/routes.js',
-        './app/services/*.js',
-        './app/filters/*.js',
-        './app/directives/*.js',
-        './app/controllers/*.js'
+        './app/app.coffee',
+        './app/routes.coffee',
+        './app/services/*.coffee',
+        './app/filters/*.coffee',
+        './app/directives/*.coffee',
+        './app/controllers/*.coffee'
     ];
 
     gulp.src(appScripts)
         .pipe(sourcemaps.init())
+        .pipe(coffee({bare: true}))
+        .on('error', logError)
         .pipe(concat('app.js'))
         .pipe(uglify())
         .on('error', logError)
@@ -105,8 +140,8 @@ gulp.task('copy-files', function() {
 });
 
 gulp.task('watch', function() {
-    gulp.watch(['./app/*.js', './app/**/*.js'], ['scripts']);
-    gulp.watch(['./public/css/*.css'], ['styles']);
+    gulp.watch(['./app/*.coffee', './app/**/*.coffee'], ['scripts']);
+    gulp.watch(['./public/sass/*.sass', './public/sass/**/*.sass'], ['styles']);
 });
 
 gulp.task('build', [
