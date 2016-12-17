@@ -1,27 +1,26 @@
 <section class="login">
     <div class="login-box">
         <div class="logo">
-            <img src="public/images/logo-half-white.png" alt="Vest" title="Vest">
+            <img src="public/images/logo.png" alt="{{appTitle}}" title="{{appTitle}}">
         </div>
+
+        <div class="call">
+            <h1>Olá, preencha seus dados para acessar o sistema.</h1>
+        </div>
+
         <div ui-view="error"></div>
-        <form name="forms.login" class="form-login">
+
+        <form name="forms.login">
             <div class="form-group" ng-class="{'active': user.username}">
                 <label for="login">Usuário</label>
-                <input type="text" class="form-control" id="login" ng-model="user.username" required>
-                <span class="clean" ng-click="clean('username')" ng-class="{'active': user.username}">
-                    <i class="fa fa-times-circle "></i>
-                </span>
+                <input type="text" class="form-control" id="login" ng-model="user.username" placeholder="Teste" required>
             </div>
             <div class="form-group" ng-class="{'active': user.password}">
                 <label for="password">Senha</label>
                 <input type="password" class="form-control" id="password" ng-model="user.password" required>
-                <span class="clean" ng-click="clean('password')" ng-class="{'active': user.password}">
-                    <i class="fa fa-times-circle "></i>
-                </span>
-                <a ui-sref="remember" class="forgot">Forgot?</a>
             </div>
-            <button class="btn btn-center btn-lg btn-blue btn-rounded" ng-click="doLogin()">
-                Login
+            <button class="btn btn-full btn-gold btn-rounded" ng-click="doLogin()">
+                Entrar
             </button>
         </form>
     </div>
