@@ -1,0 +1,50 @@
+.alert
+  @include box-sizing()
+  @include border-radius(5px)
+  position: relative
+  width: 100%
+  margin: 0 auto 20px
+  height: 100%
+  color: $color-dark
+  padding: 10px 10px 20px
+  border:
+    bottom: 5px solid $color-gray
+    left: 1px solid lighten($color-gray, 10%)
+    right: 1px solid lighten($color-gray, 10%)
+    top: 1px solid lighten($color-gray, 10%)
+  background:
+    color: $color-soft
+  text:
+    align: center
+  font:
+    size: 1em
+    weight: 700
+
+  .fa
+    width: 40px
+    height: 40px
+    display: block
+    margin: 0 auto 10px
+    font:
+      size: 3em
+
+  .text
+    display: inline-block
+
+    a
+      color: $color-blue
+      text-decoration: none
+      font:
+        weight: 700
+
+  &.alert-error
+    .fa
+      color: $color-red
+
+  &.alert-warning
+    .fa
+      color: $color-orange
+
+  &.alert-success
+    .fa
+      color: $color-green

@@ -1,0 +1,39 @@
+.btn
+  @include transition(all .3s)
+  text:
+    transform: uppercase
+    align: center
+  display: block
+  min-width: 100px
+  padding: 10px 20px
+
+  &:visited,
+  &:focus,
+  &:active,
+  &:focus:active
+    outline: none
+
+  i
+    margin:
+      right: 5px
+
+  &.btn-gold
+    @include create-button($color-gold, $color-soft)
+
+  &.btn-link
+    background:
+      color: transparent
+    border: none
+    font:
+      size: .8em
+
+  &.btn-rounded
+    @include border-radius(5px)
+
+  &.btn-center
+    margin:
+      left: auto
+      right: auto
+
+  &.btn-full
+    width: 100%

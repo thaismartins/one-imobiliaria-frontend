@@ -1,0 +1,56 @@
+.page
+  padding: 30px 20px
+  width: 100%
+  height: calc(100% - 55px)
+
+  @media #{$small-max}
+    padding: 55px 0 15px
+
+  .alert
+    width: calc(100% - 30px)
+    margin: 55px 15px 0
+
+    @media #{$small-max}
+      margin:
+        top: 30px
+
+  .block
+    margin:
+      top: 15px
+
+    @media #{$small}
+      margin:
+        top: 55px
+
+      &:first-child
+        margin:
+          top: 55px
+
+    .content
+      width: 100%
+      margin:
+        bottom: 30px
+      background:
+        color: $color-soft
+
+      .title
+        width: calc(100% - 60px)
+        font:
+          weight: 600
+          size: 1rem
+        margin: 25px 30px
+        display: inline-block
+        text-transform: uppercase
+
+      .subtitle
+        width: calc(100% - 60px)
+        font:
+          weight: 600
+          size: .8rem
+        margin: 0 30px
+        display: inline-block
+        text-transform: uppercase
+
+      .buttons
+        margin: 0 30px 15px
+        overflow: hidden

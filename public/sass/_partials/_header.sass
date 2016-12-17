@@ -1,0 +1,78 @@
+header
+  @include transition(all .4s)
+  width: 100%
+  height: 100px
+  overflow: hidden
+  z-index: 9997
+  background:
+    color: $color-gold
+
+  @media #{$small-max}
+    &.active
+      height: 100%
+
+  .header
+    width: 100%
+    height: 100%
+    overflow: hidden
+
+    .mobile
+      position: absolute
+      z-index: 2
+      top: 0
+      left: 0
+      cursor: pointer
+      font:
+        size: 1.6rem
+      padding: 10px 20px
+      color: darken($color-blue, 16%)
+      display: none
+
+      @media #{$small-max}
+        display: block
+
+    .logo
+      width: 160px
+      margin:
+        right: 100px
+      float: left
+      position: relative
+      height: 55px
+
+      @media #{$small-max}
+        width: 100%
+        margin:
+          right: 0
+
+      img
+        position: absolute
+        top: 0
+        bottom: 0
+        left: 0
+        right: 0
+        margin: auto
+        max-width: 75%
+        max-height: 30px
+
+        @media #{$small-max}
+          max-width: 40%
+
+    .menu
+      float: right
+
+      .menu-items
+        list-style: none
+        font:
+          size: 2em
+
+        .item
+          display: inline-block
+
+          a
+            padding: 30px 20px
+            color: $color-soft
+            display: block
+
+            &:hover
+              background:
+                color: darken($color-gold, 3%)

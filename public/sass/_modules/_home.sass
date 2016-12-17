@@ -1,0 +1,50 @@
+.home
+  width: 100%
+  height: 100%
+  background: url('../images/bg.jpg') no-repeat center center fixed
+  -webkit-background-size: cover
+  -moz-background-size: cover
+  -o-background-size: cover
+  background-size: cover
+  overflow: hidden
+
+  .home-box
+    width: 400px
+    height: 100%
+    margin:
+      top: 100px
+      left: 10%
+
+    @media #{$xsmall-max}
+      margin: 50px auto 20px
+
+    .logo
+      @include border-radius(5px, 'bottom-right')
+      @include border-radius(5px, 'bottom-left')
+      width: 100%
+      text-align: center
+      margin:
+        bottom: 15px
+      background:
+        color: $color-gold
+      padding: 140px 10px 20px
+
+      img
+        width: 60%
+        margin: auto
+        display: block
+
+    .call
+      @include border-radius(5px)
+      width: 100%
+      padding: 10px 20px
+      background-color: $color-gold
+      margin-bottom: 15px
+
+      h1
+        color: $color-soft
+        text-transform: uppercase
+        font-size: 18px
+
+    input
+      border: 1px solid $color-gold

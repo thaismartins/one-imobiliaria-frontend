@@ -1,0 +1,83 @@
+.table
+  width: calc(100% - 60px)
+  margin: 30px
+  max-width: 100%
+
+  @media #{$large-max}
+    table-layout: fixed
+
+  thead
+    background:
+      color: $color-gray
+    font:
+      weight: 900
+      size: .7em
+    text-transform: uppercase
+
+    tr
+      th
+        cursor: pointer
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
+
+        &.center
+          text-align: center
+
+        i
+          margin:
+            left: 5px
+
+  tbody
+    tr
+      &:hover
+        background:
+          color: $color-gray-soft
+
+      &.not-found
+        td
+          padding: 30px 10px
+          text-align: center
+          color: darken($color-gray, 20%)
+          font-style: italic
+
+        &:hover
+          background:
+            color: transparent
+
+      td
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
+        vertical-align: middle
+
+        &.center
+          text-align: center
+
+        input
+          width: calc(100% - 30px)
+          padding: 6px 9px
+          background:
+            color: $color-soft
+          border: 1px solid $color-gray
+          overflow: hidden
+          text-overflow: ellipsis
+          white-space: nowrap
+
+          &:disabled
+            border: none
+            padding: 7px 10px
+            background:
+              color: transparent
+
+        &.cursor
+          cursor: pointer
+
+        .icon
+          @include transition(all .4s)
+          cursor: pointer
+          margin: 0 5px
+
+          &.active,
+          &:hover
+            color: $color-pink

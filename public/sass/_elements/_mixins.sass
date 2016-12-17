@@ -1,0 +1,55 @@
+@mixin border-radius($value, $position: false)
+  @if $position
+    -webkit-border-#{$position}-radius: $value
+    -moz-border-#{$position}-radius: $value
+    border-#{$position}-radius: $value
+  @else
+    -webkit-border-radius: $value
+    -moz-border-radius: $value
+    border-radius: $value
+
+@mixin box-shadow($value, $inset: false)
+  @if $inset
+    -webkit-box-shadow: inset $value
+    -moz-box-shadow: inset $value
+    box-shadow: inset $value
+  @else
+    -webkit-box-shadow: $value
+    -moz-box-shadow: $value
+    box-shadow: $value
+
+@mixin box-sizing($value: border-box)
+  -webkit-box-sizing: $value
+  -moz-box-sizing: $value
+  box-sizing: $value
+
+@mixin transition($valueOne, $valueTwo: false)
+  @if $valueTwo
+    -o-transition: $valueOne, $valueTwo
+    -webkit-transition: $valueOne, $valueTwo
+    -moz-transition: $valueOne, $valueTwo
+    transition: $valueOne, $valueTwo
+  @else
+  -o-transition: $valueOne
+  -webkit-transition: $valueOne
+  -moz-transition: $valueOne
+  transition: $valueOne
+
+@mixin create-button($color-button, $color-font)
+  color: $color-font
+  background:
+    color: $color-button
+
+  &:hover
+    color: $color-font
+    background:
+      color: darken($color-button, 7%)
+
+@mixin create-button-link($color-button)
+  color: $color-button
+  background:
+    color: transparent
+  border: none
+
+  &:hover
+    color: darken($color-button, 10%)
