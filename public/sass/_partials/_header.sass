@@ -63,16 +63,17 @@ header
       .menu-items
         list-style: none
         font:
-          size: 2em
+          size: 1.6em
 
         .item
           display: inline-block
 
           a
-            padding: 30px 20px
+            @include transition(all .4s)
+            padding: 32px 20px
             color: $color-soft
             display: block
 
             &:hover
               background:
-                color: darken($color-gold, 3%)
+                color: darken($color-gold, 5%)

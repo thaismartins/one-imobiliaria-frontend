@@ -22,6 +22,8 @@ angular.module('oneImobiliaria')
       main: {}
       header:
         templateUrl: 'app/views/header.html'
+      footer:
+        templateUrl: 'app/views/footer.html'
     requiredLogin: true
 
   .state 'dashboard.home',
