@@ -1,0 +1,24 @@
+.pagination
+  @include border-radius(0)
+  width: 100%
+  height: 90px
+  background:
+    color: $color-dark
+  color: $color-soft
+  margin: 0 !important
+
+
+  .items
+    text-align: center
+
+    li
+      @include transition(all .4s)
+      display: inline-block
+      opacity: .8
+      cursor: pointer
+      margin: 25px 3px
+      font:
+        size: 1.4em
+
+      &:hover
+        color: $color-gold

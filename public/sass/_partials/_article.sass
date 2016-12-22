@@ -2,12 +2,17 @@
   width: 100%
   overflow: hidden
   display: inline-block
+  border:
+    bottom: 3px solid $color-soft
   margin:
-    top: 20px
+    top: 30px
+  padding:
     bottom: 20px
 
   @media #{$medium-max}
-    padding: 0 15px
+    padding:
+      left: 15px
+      right: 15px
 
   .title
     @include border-radius(5px)
