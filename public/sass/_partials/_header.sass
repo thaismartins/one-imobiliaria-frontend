@@ -1,20 +1,19 @@
 header
-  @include transition(all .4s)
   width: 100%
-  height: 100px
   overflow: hidden
   z-index: 9997
-  background:
-    color: $color-gold
-
-  @media #{$small-max}
-    &.active
-      height: 100%
 
   .header
+    @include transition(all .4s)
     width: 100%
-    height: 100%
     overflow: hidden
+    height: 100px
+    background:
+      color: $color-gold
+
+    @media #{$small-max}
+      &.active
+        height: 100%
 
     .mobile
       position: absolute
