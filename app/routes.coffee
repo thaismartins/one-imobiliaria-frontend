@@ -9,7 +9,7 @@ angular.module('oneImobiliaria')
     url: '/login'
     views:
       main:
-        templateUrl: 'app/views/login.html'
+        templateUrl: 'app/views/login/index.html'
         controller: 'LoginCtrl'
       'error@login':
         templateUrl: 'app/views/error.html'
@@ -30,7 +30,7 @@ angular.module('oneImobiliaria')
     url: '/home'
     views:
       'main@':
-        templateUrl: 'app/views/home.html'
+        templateUrl: 'app/views/home/index.html'
     requiredLogin: true
 
   $urlRouterProvider.otherwise('/login')
