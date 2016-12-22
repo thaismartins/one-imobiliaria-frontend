@@ -10,6 +10,12 @@
         </div>
         <nav class="menu">
             <ul class="menu-items">
+                <li class="item" ng-if="page != 'clients'">
+                    <a ui-sref="dashboard.clients">
+                        <span></span>
+                        <span class="text">Clientes</span>
+                    </a>
+                </li>
                 <li class="item" ng-if="page != 'properties'">
                     <a ui-sref="dashboard.properties">
                         <span></span>
@@ -20,6 +26,12 @@
                     <a href="#">
                         <span></span>
                         <span class="text">Busca</span>
+                    </a>
+                </li>
+                <li class="item" ng-if="page != 'users'">
+                    <a ui-sref="dashboard.users">
+                        <span></span>
+                        <span class="text">Usuários</span>
                     </a>
                 </li>
             </ul>

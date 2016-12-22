@@ -33,6 +33,15 @@ angular.module('oneImobiliaria')
         templateUrl: 'app/views/home/index.html'
     requiredLogin: true
 
+  .state 'dashboard.users',
+    url: '/users'
+    views:
+      'main@':
+        templateUrl: 'app/views/users/index.html'
+      'submenu@dashboard.users':
+        templateUrl: 'app/views/users/submenu.html'
+    requiredLogin: true
+
   .state 'dashboard.properties',
     url: '/properties'
     views:
