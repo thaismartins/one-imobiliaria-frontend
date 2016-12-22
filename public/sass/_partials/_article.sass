@@ -1,0 +1,54 @@
+.article
+  width: 100%
+  overflow: hidden
+  display: inline-block
+  margin:
+    top: 20px
+    bottom: 20px
+
+  @media #{$medium-max}
+    padding: 0 15px
+
+  .title
+    @include border-radius(5px)
+    width: 100%
+    padding: 10px 20px
+    position: relative
+    background:
+      color: $color-gray-dark
+    color: $color-soft
+    text-transform: uppercase
+    margin:
+      bottom: 10px
+
+    &.title-options
+      padding:
+        right: 220px
+
+    .options
+      width: 220px
+      position: absolute
+      top: 0
+      right: 10px
+      opacity: .8
+
+      .btn
+        float: right
+        padding: 10px
+        font:
+          weight: 700
+
+        &:hover
+          color: $color-dark
+
+  .subtitle
+    @include border-radius(5px)
+    padding: 6px 20px
+    display: inline-block
+    background:
+      color: $color-gold
+    color: $color-soft
+    text-transform: uppercase
+    margin:
+      top: 5px
+      bottom: 15px
