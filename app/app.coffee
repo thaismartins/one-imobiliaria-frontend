@@ -22,7 +22,8 @@ angular.module 'oneImobiliaria', [
 
   $rootScope.$on '$stateChangeSuccess', () ->
 
-    $rootScope.page = $state.current.name.replace('dashboard.', '')
+    page = $state.current.name.split('.')
+    $rootScope.page = page[1] || ''
 
     $rootScope.error = false
     $rootScope.success = false

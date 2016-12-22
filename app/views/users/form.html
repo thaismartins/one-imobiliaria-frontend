@@ -1,0 +1,50 @@
+<section class="page">
+    <article class="article article-noborder">
+        <div class="content-center">
+            <div class="title">
+                <span class="text">
+                    <input type="text" ng-model="user.name" ng-disabled="!edit">
+                </span>
+            </div>
+            <div class="content">
+                <div class="item col-xs-12 col-sm-6">
+                    <div class="label label-max">Email</div>
+                    <div class="value value-center">
+                        <input type="text" ng-model="user.email" ng-disabled="!edit">
+                    </div>
+                </div>
+
+                <div class="item col-xs-12 col-sm-6">
+                    <div class="label label-max">Cargo</div>
+                    <div class="value value-center">
+                        <select ng-model="user.group" ng-disabled="!edit">
+                            <option value=""></option>
+                            <option ng-repeat="group in groups" value="{{group.code}}"
+                                ng-selected="user.group == group.code">
+                                {{group.title}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <nav class="pagination">
+        <div class="item">
+            <button class="btn btn-link btn-link-soft">
+                <span class="text">Salvar</span>
+            </button>
+        </div>
+        <div class="item">
+            <a ui-sref="dashboard.users" class="btn btn-link btn-link-soft">
+                <span class="text">Cancelar</span>
+            </a>
+        </div>
+        <div class="item" ng-if="!edit">
+            <button class="btn btn-link btn-link-soft" ng-click="canEdit()">
+                <span class="text">Editar</span>
+            </button>
+        </div>
+    </nav>
+</section>

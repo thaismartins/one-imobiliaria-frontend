@@ -38,8 +38,17 @@ angular.module('oneImobiliaria')
     views:
       'main@':
         templateUrl: 'app/views/users/index.html'
+        controller: 'UsersCtrl'
       'submenu@dashboard.users':
         templateUrl: 'app/views/users/submenu.html'
+    requiredLogin: true
+
+  .state 'dashboard.users.new',
+    url: '/new'
+    views:
+      'main@':
+        templateUrl: 'app/views/users/form.html'
+        controller: 'UsersCtrl'
     requiredLogin: true
 
   .state 'dashboard.properties',
