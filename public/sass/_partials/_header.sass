@@ -1,78 +1,82 @@
-header
+.header
+  @include transition(all .4s)
   width: 100%
+  position: fixed
   overflow: hidden
+  height: 100px
   z-index: 9997
+  top: 0
+  background:
+    color: $color-gold
+  border:
+    bottom: 5px solid $color-soft
 
-  .header
-    @include transition(all .4s)
-    width: 100%
-    overflow: hidden
-    height: 100px
-    background:
-      color: $color-gold
+  &.header-home
+    border:
+      bottom: 5px solid $color-dark
+
+  @media #{$small-max}
+    &.active
+      height: 100%
+
+  .mobile
+    position: absolute
+    z-index: 2
+    top: 0
+    left: 0
+    cursor: pointer
+    font:
+      size: 3rem
+    padding: 25px
+    color: $color-soft
+    display: none
 
     @media #{$small-max}
-      &.active
-        height: 100%
+      display: block
 
-    .mobile
-      position: absolute
-      z-index: 2
-      top: 0
-      left: 0
-      cursor: pointer
-      font:
-        size: 1.6rem
-      padding: 10px 20px
-      color: darken($color-blue, 16%)
-      display: none
+  .logo
+    width: 160px
+    margin:
+      right: 100px
+    float: left
+    position: relative
+    height: 100px
 
-      @media #{$small-max}
-        display: block
-
-    .logo
-      width: 160px
+    @media #{$small-max}
+      width: 100%
       margin:
-        right: 100px
-      float: left
-      position: relative
-      height: 55px
+        right: 0
+
+    img
+      position: absolute
+      top: 0
+      bottom: 0
+      left: 0
+      right: 0
+      margin: auto
+      max-width: 75%
+      max-height: 30px
 
       @media #{$small-max}
-        width: 100%
-        margin:
-          right: 0
+        max-width: 40%
 
-      img
-        position: absolute
-        top: 0
-        bottom: 0
-        left: 0
-        right: 0
-        margin: auto
-        max-width: 75%
-        max-height: 30px
+  .menu
+    float: right
 
-        @media #{$small-max}
-          max-width: 40%
+    .menu-items
+      list-style: none
+      font:
+        size: 1.6em
 
-    .menu
-      float: right
+      .item
+        display: inline-block
 
-      .menu-items
-        list-style: none
-        font:
-          size: 1.6em
+        a
+          @include transition(all .4s)
+          padding: 32px 20px
+          color: $color-soft
+          display: block
 
-        .item
-          display: inline-block
-
-          a
-            @include transition(all .4s)
-            padding: 32px 20px
-            color: $color-soft
-            display: block
-
-            &:hover
-              background:
-                color: darken($color-gold, 5%)
+          &:hover
+            background:
+              color: darken($color-gold, 5%)
