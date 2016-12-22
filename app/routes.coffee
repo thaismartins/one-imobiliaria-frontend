@@ -33,6 +33,15 @@ angular.module('oneImobiliaria')
         templateUrl: 'app/views/home/index.html'
     requiredLogin: true
 
+  .state 'dashboard.properties',
+    url: '/properties'
+    views:
+      'main@':
+        templateUrl: 'app/views/properties/index.html'
+      'submenu@dashboard.properties':
+        templateUrl: 'app/views/properties/submenu.html'
+    requiredLogin: true
+
   $urlRouterProvider.otherwise('/login')
 
   $httpProvider.defaults.useXDomain = true

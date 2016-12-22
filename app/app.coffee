@@ -10,7 +10,7 @@ angular.module 'oneImobiliaria', [
   $rootScope.success = false
   $rootScope.loading = false
 
-  $rootScope.isHome = false
+  $rootScope.page = ''
   $rootScope.showMenu = false
 
   $rootScope.appTitle = 'One Consultoria Imobiliária'
@@ -22,9 +22,7 @@ angular.module 'oneImobiliaria', [
 
   $rootScope.$on '$stateChangeSuccess', () ->
 
-    if $state.current.name.indexOf('home') > -1
-      $rootScope.isHome = true
-    else $rootScope.isHome = false
+    $rootScope.page = $state.current.name.replace('dashboard.', '')
 
     $rootScope.error = false
     $rootScope.success = false

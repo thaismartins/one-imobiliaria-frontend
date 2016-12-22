@@ -1,7 +1,7 @@
 .header
-  @include transition(all .4s)
+  @include transition(height .4s)
   width: 100%
-  position: fixed
+  position: absolute
   overflow: hidden
   height: 100px
   z-index: 9997
@@ -76,9 +76,9 @@
     float: right
 
     .menu-items
-      list-style: none
       font:
         size: 1.6em
+      text-transform: uppercase
 
       .item
         display: inline-block
