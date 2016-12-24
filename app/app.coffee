@@ -48,5 +48,5 @@ angular.module 'oneImobiliaria', [
     $state.go('dashboard.home') if !$state.current.requiredLogin && UserService.isLogged()
 ]
 .constant 'RESOURCES',
-#  'API_URL': 'http://desenv.doisoitosete.com:3000/api'
-  'API_URL': 'http://localhost:3000/api'
+  'API_URL': 'http://desenv.doisoitosete.com:3000/api'
+#  'API_URL': 'http://localhost:3000/api'
