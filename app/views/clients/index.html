@@ -1,0 +1,71 @@
+<section class="page">
+    <div ui-view="submenu"></div>
+
+    <div ui-view="error"></div>
+    <div ui-view="success"></div>
+    <div ui-view="loading"></div>
+
+    <article class="article" ng-if="clients.length == 0">
+        <p class="not-found">Nenhum item encontrado</p>
+    </article>
+
+    <article class="article" ng-repeat="client in clients">
+        <div class="content-center">
+            <div class="title title-options">
+                <span class="text">{{client.name}}</span>
+                <nav class="options">
+                    <ul class="items">
+                        <li>
+                            <button class="btn btn-link btn-link-soft" ng-click="doDelete($index)">
+                                Excluir
+                            </button>
+                        </li>
+                        <li class="item">
+                            <a ui-sref="dashboard.clients.edit({id: client._id})" class="btn btn-link btn-link-soft">
+                                Ver Detalhes
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="content">
+                <div class="item col-xs-12 col-sm-6">
+                    <div class="label label-max">Email</div>
+                    <div class="value value-center">
+                        {{client.email}}
+                    </div>
+                </div>
+                <div class="item col-xs-12 col-sm-6">
+                    <div class="label label-max">Celular</div>
+                    <div class="value value-center">
+                        {{client.phones.cell | phoneBr}}
+                    </div>
+                </div>
+                <div class="item col-xs-12 col-sm-6">
+                    <div class="label label-max">Telefone Residencial</div>
+                    <div class="value value-center">
+                        {{client.phones.home | phoneBr}}
+                    </div>
+                </div>
+                <div class="item col-xs-12 col-sm-6">
+                    <div class="label label-max">Telefone Comercial</div>
+                    <div class="value value-center">
+                        {{client.phones.commercial | phoneBr}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <nav class="pagination" style="display: none;">
+        <ul class="items">
+            <li class="icon icon-hover icon-arrow-left"></li>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li class="icon icon-hover icon-arrow-right"></li>
+        </ul>
+    </nav>
+</section>

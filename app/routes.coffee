@@ -73,6 +73,46 @@ angular.module('oneImobiliaria')
         templateUrl: 'app/views/loading.html'
     requiredLogin: true
 
+  .state 'dashboard.clients',
+    url: '/clients'
+    views:
+      'main@':
+        templateUrl: 'app/views/clients/index.html'
+        controller: 'ClientsCtrl'
+      'submenu@dashboard.clients':
+        templateUrl: 'app/views/clients/submenu.html'
+      'error@dashboard.clients':
+        templateUrl: 'app/views/error.html'
+      'success@dashboard.clients':
+        templateUrl: 'app/views/success.html'
+      'loading@dashboard.clients':
+        templateUrl: 'app/views/loading.html'
+    requiredLogin: true
+
+  .state 'dashboard.clients.new',
+    url: '/new'
+    views:
+      'main@':
+        templateUrl: 'app/views/clients/form.html'
+        controller: 'ClientsCtrl'
+      'error@dashboard.clients.new':
+        templateUrl: 'app/views/error.html'
+      'loading@dashboard.clients.new':
+        templateUrl: 'app/views/loading.html'
+    requiredLogin: true
+
+  .state 'dashboard.clients.edit',
+    url: '/edit/:id'
+    views:
+      'main@':
+        templateUrl: 'app/views/clients/form.html'
+        controller: 'ClientsCtrl'
+      'error@dashboard.clients.edit':
+        templateUrl: 'app/views/error.html'
+      'loading@dashboard.users.edit':
+        templateUrl: 'app/views/loading.html'
+    requiredLogin: true
+
   .state 'dashboard.properties',
     url: '/properties'
     views:

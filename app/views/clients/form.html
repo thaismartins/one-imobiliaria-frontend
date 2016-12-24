@@ -1,0 +1,74 @@
+<section class="page">
+    <article class="article article-noborder">
+        <div class="content-center">
+
+            <div ui-view="error"></div>
+            <div ui-view="loading"></div>
+
+            <div class="title">
+                <span class="text">{{client.name || 'Novo Cliente'}}</span>
+            </div>
+            <div class="content">
+                <form name="forms.client">
+                    <div class="item col-xs-12 col-sm-6">
+                        <div class="label label-max">Nome</div>
+                        <div class="value value-center">
+                            <input type="text" ng-model="client.name" required ng-disabled="!edit">
+                        </div>
+                    </div>
+
+                    <div class="item col-xs-12 col-sm-6">
+                        <div class="label label-max">Email</div>
+                        <div class="value value-center">
+                            <input type="text" ng-model="client.email" required ng-disabled="!edit">
+                        </div>
+                    </div>
+
+                    <div class="item col-xs-12 col-sm-6">
+                        <div class="label label-max">Celular</div>
+                        <div class="value value-center">
+                            <input type="text" ng-model="client.phones.cell" required ui-br-phone-number ng-disabled="!edit">
+                        </div>
+                    </div>
+
+                    <div class="item col-xs-12 col-sm-6">
+                        <div class="label label-max">Telefone Residencial</div>
+                        <div class="value value-center">
+                            <input type="text" ng-model="client.phones.home" ui-br-phone-number ng-disabled="!edit">
+                        </div>
+                    </div>
+
+                    <div class="item col-xs-12 col-sm-6">
+                        <div class="label label-max">Telefone Comercial</div>
+                        <div class="value value-center">
+                            <input type="text" ng-model="client.phones.commercial" ui-br-phone-number ng-disabled="!edit">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </article>
+
+    <nav class="pagination">
+        <div class="content-center">
+            <div class="item" ng-if="!edit">
+                <button class="btn btn-link btn-link-soft" ng-click="canEdit()">
+                    <span class="icon icon-edit"></span>
+                    <span class="text">Editar</span>
+                </button>
+            </div>
+            <div class="item" ng-if="edit">
+                <button class="btn btn-link btn-link-soft" ng-click="saveOrUpdate()">
+                    <span class="icon icon-save"></span>
+                    <span class="text">Salvar</span>
+                </button>
+            </div>
+            <div class="item">
+                <a ui-sref="dashboard.clients" class="btn btn-link btn-link-soft">
+                    <span class="icon icon-close"></span>
+                    <span class="text">Cancelar</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+</section>

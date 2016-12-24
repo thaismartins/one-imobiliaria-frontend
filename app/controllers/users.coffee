@@ -53,11 +53,11 @@ angular.module('oneImobiliaria')
     $loading.show()
     UserService.delete(user._id)
     .then (response) ->
-      $logger.success('Usuário deletado com sucesso!')
+      $logger.success('Usuário excluído com sucesso!')
       $scope.users.splice(index, 1)
       $loading.hide()
     .catch (response) ->
-      $logger.error('Erro ao deletar usuário. Por favor, tente novamente.')
+      $logger.error('Erro ao excluir usuário. Por favor, tente novamente.')
       $loading.hide()
 
 ]
