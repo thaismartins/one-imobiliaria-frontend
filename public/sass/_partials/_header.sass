@@ -73,28 +73,37 @@
           right: auto
           left: auto
 
-
   .menu
     float: right
 
     .menu-items
+      vertical-align: top
       font:
-        size: 1.4em
+        size: 1.2em
       text-transform: uppercase
 
       .item
         display: inline-block
+        vertical-align: top
 
         &:not(.has-subitem)
           a
             @include transition(all .4s)
-            padding: 32px 20px
+            padding: 40px 20px 30px 65px
             color: $color-soft
             display: block
+            position: relative
 
             &:hover
               background:
                 color: darken($color-gold, 5%)
+
+            .icon
+              position: absolute
+              top: 0
+              bottom: 0
+              left: 10px
+              margin: auto
 
         &.has-subitem
           @include transition(all .4s)
@@ -115,7 +124,7 @@
 
           .item
             width: 100%
-            padding: 32px 40px 32px 65px
+            padding: 40px 40px 35px 65px
             position: relative
             cursor: pointer
 
@@ -126,19 +135,15 @@
               content: url('../images/dropdown.png')
               display: block
               position: absolute
-              top: 0
-              bottom: 0
+              top: 37px
               right: 10px
-              margin: auto
               width: 14px
               height: 40px
 
             .image
               @include border-radius(50%)
               position: absolute
-              top: 0
-              bottom: 0
-              margin: auto
+              top: 27px
               left: 14px
               width: 42px
               height: 42px
@@ -149,12 +154,12 @@
               color: $color-soft
               font:
                 style: italic
-                size: .8em
+                size: .9em
 
           .subitems
             @include transition(all .4s)
             position: absolute
-            top: -150%
+            top: -200%
             right: 0
             min-width: 250px
             opacity: 0
@@ -162,7 +167,7 @@
             .subitem
               width: 100%
               font:
-                size: .7em
+                size: .8em
 
               button,
               a
