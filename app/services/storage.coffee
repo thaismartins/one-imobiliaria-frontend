@@ -11,6 +11,8 @@ angular.module('oneImobiliaria')
     localStorage.setItem('name-one', codes.name)
   getSessionToken: () ->
     localStorage.getItem('x-code-one')
+  getCode: () ->
+    localStorage.getItem('code-one')
   clean: () ->
     localStorage.removeItem('x-code-one')
     localStorage.removeItem('code-one')

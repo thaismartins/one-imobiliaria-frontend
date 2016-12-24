@@ -15,8 +15,15 @@ angular.module('oneImobiliaria')
       return
   create: (user) ->
     return $http.post apiUrl, user
+  update: (user) ->
+    return $http.put apiUrl + '/' + user._id, user
+  saveOrUpdate: (user) ->
+    if user._id then this.update(user)
+    else this.create(user)
   getAll: () ->
     return $http.get apiUrl
-  delete: (user) ->
-    return $http.delete apiUrl+ '/' + user.id
+  get: (id) ->
+    return $http.get apiUrl + '/' + id
+  delete: (id) ->
+    return $http.delete apiUrl+ '/' + id
 ]

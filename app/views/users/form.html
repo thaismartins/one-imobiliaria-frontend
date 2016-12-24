@@ -3,6 +3,7 @@
         <div class="content-center">
 
             <div ui-view="error"></div>
+            <div ui-view="loading"></div>
 
             <div class="title">
                 <span class="text">{{user.name || 'Novo Usuário'}}</span>
@@ -27,9 +28,8 @@
                         <div class="label label-max">Grupo</div>
                         <div class="value value-center">
                             <select ng-model="user.group" ng-disabled="!edit" requiredd>
-                                <option value=""></option>
                                 <option ng-repeat="group in groups" value="{{group.code}}"
-                                        ng-selected="user.group == group.code">
+                                        ng-selected="user.group.type == group.code">
                                     {{group.title}}
                                 </option>
                             </select>
