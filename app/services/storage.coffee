@@ -13,6 +13,10 @@ angular.module('oneImobiliaria')
     localStorage.getItem('x-code-one')
   getCode: () ->
     localStorage.getItem('code-one')
+  getName: () ->
+    localStorage.getItem('name-one') || ''
+  getGroup: () ->
+    localStorage.getItem('group-one') || ''
   clean: () ->
     localStorage.removeItem('x-code-one')
     localStorage.removeItem('code-one')

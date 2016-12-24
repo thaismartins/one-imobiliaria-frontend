@@ -4,7 +4,7 @@ angular.module 'oneImobiliaria', [
   'ui.router',
   'ui.utils.masks'
 ]
-.run ['$rootScope', '$state', 'RESOURCES', 'UserService', ($rootScope, $state, RESOURCES, UserService) ->
+.run ['$rootScope', '$state', 'RESOURCES', 'storage', 'UserService', ($rootScope, $state, RESOURCES, storage, UserService) ->
 
   $rootScope.error = false
   $rootScope.success = false
@@ -36,7 +36,8 @@ angular.module 'oneImobiliaria', [
     page = $state.current.name.split('.')
     $rootScope.page = page[1] || ''
 
-    $rootScope.name = localStorage.getItem('name-one') || ''
+    $rootScope.group = storage.getGroup()
+    $rootScope.name = storage.getName()
 
     $rootScope.error = false
     $rootScope.success = false
@@ -46,6 +47,7 @@ angular.module 'oneImobiliaria', [
 
     UserService.doLogout() if $state.current.requiredLogin && !UserService.isLogged()
     $state.go('dashboard.home') if !$state.current.requiredLogin && UserService.isLogged()
+    $state.go('dashboard.home') if $rootScope.page == 'users' && $rootScope.group != 'admin'
 ]
 .constant 'RESOURCES',
   'API_URL': 'http://desenv.doisoitosete.com:3000/api'
