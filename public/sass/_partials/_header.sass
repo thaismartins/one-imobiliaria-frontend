@@ -32,6 +32,9 @@
             width: 100%
             text-align: center
 
+          .icon
+            display: none
+
   .mobile
     position: absolute
     z-index: 2
@@ -114,6 +117,11 @@
           border:
             bottom: 3px solid $color-soft
 
+          @media #{$small-max}
+            background:
+              color: transparent
+            border: none
+
           &.active
             border:
               color: transparent
@@ -164,10 +172,18 @@
             min-width: 250px
             opacity: 0
 
+            @media #{$small-max}
+              position: static
+              opacity: 1
+
             .subitem
               width: 100%
               font:
                 size: .8em
+
+              @media #{$small-max}
+                font:
+                  size: .9em
 
               button,
               a
@@ -183,6 +199,15 @@
                   align: left
                   transform: uppercase
 
+                @media #{$small-max}
+                  text-align: center
+                  background:
+                    color: transparent
+
                 &:hover
                   background:
                     color: $color-gold
+
+                  @media #{$small-max}
+                    background:
+                      color: darken($color-gold, 5%)

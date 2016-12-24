@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('oneImobiliaria')
-.service 'loading', ['$rootScope', ($rootScope) ->
+.service '$loading', ['$rootScope', ($rootScope) ->
 
   show: () ->
     $rootScope.loading = true

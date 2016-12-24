@@ -33,15 +33,27 @@
       line-height: 1em
       font:
         size: 1em
+        weight: 300
+
+      &.disabled
+        opacity: .6
 
       input,
       select,
-      textarea
+      textarea,
+      span
         width: 100%
         background:
           color: transparent
         border: none
-        min-height: 20px
+        min-height: 22px
+        display: block
+
+        &:disabled
+          opacity: .6
+
+      input[type=file]
+        display: none
 
       &.value-center
         text-align: center

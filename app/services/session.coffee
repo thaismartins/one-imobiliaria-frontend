@@ -8,6 +8,6 @@ angular.module('oneImobiliaria')
 
   request: (config)->
     if !isUnloggedPage(config)
-      config.headers.session_key = storage.getSessionToken()
+      config.headers['x-access-token'] = storage.getSessionToken()
     return config
 ]

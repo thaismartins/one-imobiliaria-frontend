@@ -41,6 +41,10 @@ angular.module('oneImobiliaria')
         controller: 'UsersCtrl'
       'submenu@dashboard.users':
         templateUrl: 'app/views/users/submenu.html'
+      'error@dashboard.users':
+        templateUrl: 'app/views/error.html'
+      'loading@dashboard.users':
+        templateUrl: 'app/views/loading.html'
     requiredLogin: true
 
   .state 'dashboard.users.new',
@@ -49,6 +53,10 @@ angular.module('oneImobiliaria')
       'main@':
         templateUrl: 'app/views/users/form.html'
         controller: 'UsersCtrl'
+      'error@dashboard.users.new':
+        templateUrl: 'app/views/error.html'
+      'loading@dashboard.users.new':
+        templateUrl: 'app/views/loading.html'
     requiredLogin: true
 
   .state 'dashboard.properties',

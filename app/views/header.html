@@ -33,7 +33,7 @@
                          <span class="image">
                         <img src="public/images/user.png" alt="" title="">
                     </span>
-                        <span class="text">Gilson</span>
+                        <span class="text">{{name | firstName}}</span>
                     </div>
                     <ul class="subitems">
                         <li class="subitem">
@@ -49,7 +49,7 @@
                             </a>
                         </li>
                         <li class="subitem">
-                            <button>
+                            <button ng-click="doLogout()">
                                 <span class="icon icon-logout"></span>
                                 <span class="text">Sair</span>
                             </button>

@@ -1,50 +1,74 @@
 <section class="page">
     <article class="article article-noborder">
         <div class="content-center">
+
+            <div ui-view="error"></div>
+
             <div class="title">
-                <span class="text">
-                    <input type="text" ng-model="user.name" ng-disabled="!edit">
-                </span>
+                <span class="text">{{user.name || 'Novo Usuário'}}</span>
             </div>
             <div class="content">
-                <div class="item col-xs-12 col-sm-6">
-                    <div class="label label-max">Email</div>
-                    <div class="value value-center">
-                        <input type="text" ng-model="user.email" ng-disabled="!edit">
+                <form name="forms.user">
+                    <div class="item col-xs-12 col-sm-6">
+                        <div class="label label-max">Nome</div>
+                        <div class="value value-center">
+                            <input type="text" ng-model="user.name" required ng-disabled="!edit">
+                        </div>
                     </div>
-                </div>
 
-                <div class="item col-xs-12 col-sm-6">
-                    <div class="label label-max">Cargo</div>
-                    <div class="value value-center">
-                        <select ng-model="user.group" ng-disabled="!edit">
-                            <option value=""></option>
-                            <option ng-repeat="group in groups" value="{{group.code}}"
-                                ng-selected="user.group == group.code">
-                                {{group.title}}
-                            </option>
-                        </select>
+                    <div class="item col-xs-12 col-sm-6">
+                        <div class="label label-max">Email</div>
+                        <div class="value value-center">
+                            <input type="text" ng-model="user.email" required ng-disabled="!edit">
+                        </div>
                     </div>
-                </div>
+
+                    <div class="item col-xs-12 col-sm-6">
+                        <div class="label label-max">Grupo</div>
+                        <div class="value value-center">
+                            <select ng-model="user.group" ng-disabled="!edit" requiredd>
+                                <option value=""></option>
+                                <option ng-repeat="group in groups" value="{{group.code}}"
+                                        ng-selected="user.group == group.code">
+                                    {{group.title}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="item col-xs-12 col-sm-6">
+                        <div class="label label-max">Foto</div>
+                        <label class="value value-input" ng-class="{'disabled': !edit}">
+                            <span>Selecione um arquivo</span>
+                            <input type="file" ng-model="file" accept="image/*" file
+                                   ng-disabled="!edit" />
+                        </label>
+                    </div>
+                </form>
             </div>
         </div>
     </article>
 
     <nav class="pagination">
-        <div class="item">
-            <button class="btn btn-link btn-link-soft">
-                <span class="text">Salvar</span>
-            </button>
-        </div>
-        <div class="item">
-            <a ui-sref="dashboard.users" class="btn btn-link btn-link-soft">
-                <span class="text">Cancelar</span>
-            </a>
-        </div>
-        <div class="item" ng-if="!edit">
-            <button class="btn btn-link btn-link-soft" ng-click="canEdit()">
-                <span class="text">Editar</span>
-            </button>
+        <div class="content-center">
+            <div class="item" ng-if="!edit">
+                <button class="btn btn-link btn-link-soft" ng-click="canEdit()">
+                    <span class="icon icon-edit"></span>
+                    <span class="text">Editar</span>
+                </button>
+            </div>
+            <div class="item" ng-if="edit">
+                <button class="btn btn-link btn-link-soft" ng-click="saveOrUpdate()">
+                    <span class="icon icon-save"></span>
+                    <span class="text">Salvar</span>
+                </button>
+            </div>
+            <div class="item">
+                <a ui-sref="dashboard.users" class="btn btn-link btn-link-soft">
+                    <span class="icon icon-close"></span>
+                    <span class="text">Cancelar</span>
+                </a>
+            </div>
         </div>
     </nav>
 </section>

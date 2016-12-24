@@ -13,8 +13,10 @@ angular.module('oneImobiliaria')
       storage.clean()
       $state.go('login')
       return
+  create: (user) ->
+    return $http.post apiUrl, user
   getAll: () ->
-    return $http.get apiUrl + '/'
+    return $http.get apiUrl
   delete: (user) ->
-    return $http.delete apiUrl + '/', {id: user.id}
+    return $http.delete apiUrl+ '/' + user.id
 ]

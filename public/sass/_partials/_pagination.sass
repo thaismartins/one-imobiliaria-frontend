@@ -14,7 +14,24 @@
 
   .item
     float: right
-    margin: 30px 3px
+
+    .btn
+      padding: 30px 3px 30px 40px
+      display: table
+      position: relative
+      min-height: 20px
+      margin:
+        right: 10px
+
+      .icon
+        position: absolute
+        top: 0
+        bottom: 0
+        left: 0
+        margin: auto
+
+      .text
+        float: left
 
   .items
     text-align: center
@@ -23,11 +40,18 @@
     li
       @include transition(all .4s)
       display: inline-block
+      float: none
+      vertical-align: top
       opacity: .8
       cursor: pointer
-      margin: 25px 3px
       font:
         size: 1.4em
+      margin: 25px 2px
+
+      &.icon
+        margin:
+          left: 10px
+          right: 10px
 
       &:hover
         color: $color-gold

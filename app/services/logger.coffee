@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('oneImobiliaria')
-.service 'logger', ['$rootScope', ($rootScope) ->
+.service '$logger', ['$rootScope', ($rootScope) ->
 
   clean: () ->
     $rootScope.success = false

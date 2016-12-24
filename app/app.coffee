@@ -13,6 +13,8 @@ angular.module 'oneImobiliaria', [
   $rootScope.fileUrl = RESOURCES.API_URL + '/'
 
   $rootScope.page = ''
+  $rootScope.name = ''
+
   $rootScope.showMenu = false
   $rootScope.showSubmenu = false
 
@@ -20,9 +22,11 @@ angular.module 'oneImobiliaria', [
 
   $rootScope.forms = {}
 
+  $rootScope.doLogout = () ->
+    UserService.doLogout()
+
   $rootScope.toggleMenu = () ->
     $rootScope.showMenu = !$rootScope.showMenu
-
 
   $rootScope.toggleSubmenu = () ->
     $rootScope.showSubmenu = !$rootScope.showSubmenu
@@ -31,6 +35,8 @@ angular.module 'oneImobiliaria', [
 
     page = $state.current.name.split('.')
     $rootScope.page = page[1] || ''
+
+    $rootScope.name = localStorage.getItem('name-one') || ''
 
     $rootScope.error = false
     $rootScope.success = false
@@ -41,6 +47,6 @@ angular.module 'oneImobiliaria', [
     UserService.doLogout() if $state.current.requiredLogin && !UserService.isLogged()
     $state.go('dashboard.home') if !$state.current.requiredLogin && UserService.isLogged()
 ]
-.constant 'RESOURCES', {
-  'API_URL': 'http://desenv.doisoitosete.com:3000/api'
-}
+.constant 'RESOURCES',
+#  'API_URL': 'http://desenv.doisoitosete.com:3000/api'
+  'API_URL': 'http://localhost:3000/api'

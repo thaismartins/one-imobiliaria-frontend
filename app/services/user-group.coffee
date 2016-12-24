@@ -4,7 +4,7 @@ angular.module('oneImobiliaria')
 .service 'UserGroupService', () ->
 
   items = [
-    {title: 'Administrador', code: 'admin'},
+    {title: 'Administrador(a)', code: 'admin'},
     {title: 'Corretor(a)', code: 'broker'}
   ]
 

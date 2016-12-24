@@ -1,13 +1,13 @@
 'use strict'
 
 angular.module('oneImobiliaria')
-.controller 'LoginCtrl', ['$scope', '$rootScope', '$state', 'logger', 'storage', 'UserService', ($scope, $rootScope, $state, logger, storage, UserService) ->
+.controller 'LoginCtrl', ['$scope', '$rootScope', '$state', '$logger', 'storage', 'UserService', ($scope, $rootScope, $state, $logger, storage, UserService) ->
 
   $scope.user = {}
 
   $scope.doLogin = () ->
     if !$rootScope.forms.login.$valid
-      logger.error('Preencha todos os dados obrigatórios.')
+      $logger.error('Preencha todos os dados obrigatórios.')
       return
 
     $scope.user.origin = 'admin'
@@ -16,8 +16,5 @@ angular.module('oneImobiliaria')
       storage.setCodes(response.data)
       $state.go('dashboard.home')
     .catch (response) ->
-      console.log(response)
-      logger.error('Usuário e/ou senha inválido(s).')
-
-
+      $logger.error('Usuário e/ou senha inválido(s).')
 ]
