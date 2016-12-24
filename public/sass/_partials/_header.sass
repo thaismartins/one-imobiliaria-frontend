@@ -2,7 +2,6 @@
   @include transition(height .4s)
   width: 100%
   position: absolute
-  overflow: hidden
   height: 100px
   z-index: 9997
   top: 0
@@ -16,6 +15,8 @@
       bottom: 3px solid $color-dark
 
   @media #{$small-max}
+    overflow: hidden
+
     &.active
       height: 100%
 
@@ -47,7 +48,6 @@
       display: block
 
   .logo
-    width: 160px
     margin:
       right: 100px
     float: left
@@ -65,12 +65,14 @@
       bottom: 0
       left: 0
       right: 0
-      margin: auto
-      max-width: 75%
-      max-height: 30px
+      margin: auto 10px
+      height: 68px
 
       @media #{$small-max}
-        max-width: 40%
+        margin:
+          right: auto
+          left: auto
+
 
   .menu
     float: right
@@ -83,12 +85,99 @@
       .item
         display: inline-block
 
-        a
-          @include transition(all .4s)
-          padding: 32px 20px
-          color: $color-soft
-          display: block
+        &:not(.has-subitem)
+          a
+            @include transition(all .4s)
+            padding: 32px 20px
+            color: $color-soft
+            display: block
 
-          &:hover
-            background:
-              color: darken($color-gold, 5%)
+            &:hover
+              background:
+                color: darken($color-gold, 5%)
+
+        &.has-subitem
+          @include transition(all .4s)
+          background:
+            color: $color-gold-soft
+          height: 100px
+          position: relative
+          border:
+            bottom: 3px solid $color-soft
+
+          &.active
+            border:
+              color: transparent
+
+            .subitems
+              top: 100px
+              opacity: 1
+
+          .item
+            width: 100%
+            padding: 32px 40px 32px 65px
+            position: relative
+            cursor: pointer
+
+            @media #{$small-max}
+              display: none
+
+            &:before
+              content: url('../images/dropdown.png')
+              display: block
+              position: absolute
+              top: 0
+              bottom: 0
+              right: 10px
+              margin: auto
+              width: 14px
+              height: 40px
+
+            .image
+              @include border-radius(50%)
+              position: absolute
+              top: 0
+              bottom: 0
+              margin: auto
+              left: 14px
+              width: 42px
+              height: 42px
+              overflow: hidden
+              display: inline-block
+
+            .text
+              color: $color-soft
+              font:
+                style: italic
+                size: .8em
+
+          .subitems
+            @include transition(all .4s)
+            position: absolute
+            top: -150%
+            right: 0
+            min-width: 250px
+            opacity: 0
+
+            .subitem
+              width: 100%
+              font:
+                size: .7em
+
+              button,
+              a
+                @include transition(all .4s)
+                padding: 15px 10px
+                width: 100%
+                color: $color-soft
+                background:
+                  color: $color-gold-soft
+                display: block
+                border: none
+                text:
+                  align: left
+                  transform: uppercase
+
+                &:hover
+                  background:
+                    color: $color-gold

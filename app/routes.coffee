@@ -62,6 +62,9 @@ angular.module('oneImobiliaria')
 
   $urlRouterProvider.otherwise('/login')
 
+  # Access token injector
+  $httpProvider.interceptors.push('sessionInjector')
+
   $httpProvider.defaults.useXDomain = true
   $httpProvider.defaults.headers.common["Content-Type"] = 'application/json'
   delete $httpProvider.defaults.headers.common['X-Requested-With']

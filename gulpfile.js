@@ -29,16 +29,6 @@ function logError(error) {
     this.emit('end');
 }
 
-// gulp.task('styles', function() {
-//     gulp.src('./public/css/style.css')
-//         .pipe(sourcemaps.init())
-//         .pipe(cleanCSS())
-//         .on('error', logError)
-//         .pipe(rename('style.min.css'))
-//         .pipe(sourcemaps.write('.'))
-//         .pipe(gulp.dest('./public/css'));
-// });
-
 gulp.task('styles', function() {
     gulp.src('./public/sass/style.sass')
         .pipe(sourcemaps.init())
@@ -51,25 +41,6 @@ gulp.task('styles', function() {
         .pipe(gulp.dest('./public/css'));
 });
 
-// gulp.task('scripts', function() {
-//     var appScripts = [
-//         './app/app.js',
-//         './app/routes.js',
-//         './app/services/*.js',
-//         './app/filters/*.js',
-//         './app/directives/*.js',
-//         './app/controllers/*.js'
-//     ];
-//
-//     gulp.src(appScripts)
-//         .pipe(sourcemaps.init())
-//         .pipe(concat('app.js'))
-//         .pipe(uglify())
-//         .on('error', logError)
-//         .pipe(rename('app.min.js'))
-//         .pipe(sourcemaps.write('.'))
-//         .pipe(gulp.dest('./public/js'));
-// });
 
 gulp.task('scripts', function() {
     var appScripts = [

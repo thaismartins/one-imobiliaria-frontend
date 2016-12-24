@@ -4,14 +4,17 @@ angular.module 'oneImobiliaria', [
   'ui.router',
   'ui.utils.masks'
 ]
-.run ['$rootScope', '$state', 'RESOURCES', ($rootScope, $state, RESOURCES) ->
+.run ['$rootScope', '$state', 'RESOURCES', 'UserService', ($rootScope, $state, RESOURCES, UserService) ->
 
   $rootScope.error = false
   $rootScope.success = false
   $rootScope.loading = false
 
+  $rootScope.fileUrl = RESOURCES.API_URL + '/'
+
   $rootScope.page = ''
   $rootScope.showMenu = false
+  $rootScope.showSubmenu = false
 
   $rootScope.appTitle = 'One Consultoria Imobiliária'
 
@@ -19,6 +22,10 @@ angular.module 'oneImobiliaria', [
 
   $rootScope.toggleMenu = () ->
     $rootScope.showMenu = !$rootScope.showMenu
+
+
+  $rootScope.toggleSubmenu = () ->
+    $rootScope.showSubmenu = !$rootScope.showSubmenu
 
   $rootScope.$on '$stateChangeSuccess', () ->
 
@@ -29,7 +36,11 @@ angular.module 'oneImobiliaria', [
     $rootScope.success = false
     $rootScope.loading = false
     $rootScope.showMenu = false
+    $rootScope.showSubmenu = false
+
+    UserService.doLogout() if $state.current.requiredLogin && !UserService.isLogged()
+    $state.go('dashboard.home') if !$state.current.requiredLogin && UserService.isLogged()
 ]
 .constant 'RESOURCES', {
-  'API_URL': 'http://104.236.81.253:1337'
+  'API_URL': 'http://desenv.doisoitosete.com:3000/api'
 }

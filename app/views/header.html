@@ -5,34 +5,56 @@
         </div>
         <div class="logo">
             <a ui-sref="dashboard.home">
-                <img src="public/images/logo.png" alt="{{appTitle}}" title="{{appTitle}}">
+                <img src="public/images/logo-white.png" alt="{{appTitle}}" title="{{appTitle}}">
             </a>
         </div>
         <nav class="menu">
             <ul class="menu-items">
                 <li class="item" ng-if="page != 'clients'">
                     <a ui-sref="dashboard.clients">
-                        <span></span>
+                        <span class="icon icon-clients"></span>
                         <span class="text">Clientes</span>
                     </a>
                 </li>
                 <li class="item" ng-if="page != 'properties'">
                     <a ui-sref="dashboard.properties">
-                        <span></span>
+                        <span class="icon icon-house"></span>
                         <span class="text">Imóveis</span>
                     </a>
                 </li>
                 <li class="item" ng-if="page != 'search'">
                     <a href="#">
-                        <span></span>
+                        <span class="icon icon-search"></span>
                         <span class="text">Busca</span>
                     </a>
                 </li>
-                <li class="item" ng-if="page != 'users'">
-                    <a ui-sref="dashboard.users">
-                        <span></span>
-                        <span class="text">Usuários</span>
-                    </a>
+                <li class="item has-subitem" ng-class="{'active': showSubmenu}">
+                    <div class="item" ng-click="toggleSubmenu()">
+                         <span class="image">
+                        <img src="public/images/user.png" alt="" title="">
+                    </span>
+                        <span class="text">Gilson</span>
+                    </div>
+                    <ul class="subitems">
+                        <li class="subitem">
+                            <a ui-sref="dashboard.account">
+                                <span class="icon icon-gear"></span>
+                                <span class="text">Editar Meus Dados</span>
+                            </a>
+                        </li>
+                        <li class="subitem">
+                            <a ui-sref="dashboard.users">
+                                <span class="icon icon-users"></span>
+                                <span class="text">Editar Usuários</span>
+                            </a>
+                        </li>
+                        <li class="subitem">
+                            <button>
+                                <span class="icon icon-logout"></span>
+                                <span class="text">Sair</span>
+                            </button>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </nav>
