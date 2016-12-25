@@ -9,4 +9,6 @@ angular.module('oneImobiliaria')
     return $http.get apiUrl
   getAllStates: () ->
     return $http.get apiUrl + '/states'
+  getCitiesByState: (state) ->
+    return $http.get apiUrl + '/states/' + state
 ]

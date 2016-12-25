@@ -135,9 +135,21 @@ angular.module('oneImobiliaria')
       'main@':
         templateUrl: 'app/views/properties/form.html'
         controller: 'PropertiesCtrl'
-      'error@dashboard.properties':
+      'error@dashboard.properties.new':
         templateUrl: 'app/views/error.html'
-      'loading@dashboard.properties':
+      'loading@dashboard.properties.new':
+        templateUrl: 'app/views/loading.html'
+    requiredLogin: true
+
+  .state 'dashboard.properties.edit',
+    url: '/edit/:id'
+    views:
+      'main@':
+        templateUrl: 'app/views/properties/form.html'
+        controller: 'PropertiesCtrl'
+      'error@dashboard.properties.edit':
+        templateUrl: 'app/views/error.html'
+      'loading@dashboard.properties.edit':
         templateUrl: 'app/views/loading.html'
     requiredLogin: true
 

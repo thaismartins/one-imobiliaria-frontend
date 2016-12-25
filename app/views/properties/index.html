@@ -12,16 +12,16 @@
     <article class="article" ng-repeat="property in properties">
         <div class="content-center">
             <div class="title title-options">
-                <span class="text">Imóvel 1</span>
+                <span class="text">Imóvel {{property.code}}</span>
                 <nav class="options">
                     <ul class="items">
                         <li>
-                            <button class="btn btn-link btn-link-soft">
+                            <button class="btn btn-link btn-link-soft" ng-click="doDelete($index)">
                                 Excluir
                             </button>
                         </li>
                         <li class="item">
-                            <a ui-sref="dashboard.properties" class="btn btn-link btn-link-soft">
+                            <a ui-sref="dashboard.properties.edit({id: property._id})" class="btn btn-link btn-link-soft">
                                 Ver Detalhes
                             </a>
                         </li>
@@ -34,90 +34,90 @@
                 <div class="item col-xs-12 col-sm-6 col-md-3">
                     <div class="label">tipo</div>
                     <div class="value value-center">
-                        Casa, Apto, Terreno
+                        {{property.type | propertyType}}
                     </div>
                 </div>
 
                 <div class="item col-xs-12 col-sm-6 col-md-3">
                     <div class="label">valor</div>
                     <div class="value value-center">
-                        R$2.000.000,00
+                       {{property.value | currency}}
                     </div>
                 </div>
 
                 <div class="item col-xs-12 col-sm-6 col-md-3">
                     <div class="label">cidade</div>
                     <div class="value value-center">
-                        Ubatuba
+                        {{property.address.city}}
                     </div>
                 </div>
 
                 <div class="item col-xs-12 col-sm-6 col-md-3">
                     <div class="label">bairro</div>
                     <div class="value value-center">
-                        Lázaro
+                        {{property.address.neighborhood}}
                     </div>
                 </div>
 
                 <div class="item col-xs-12 col-sm-9 col-md-10">
                     <div class="label label-max">Localização</div>
                     <div class="value">
-                        Rua de Teste, 1234 - APTO 123 - BL C
+                        {{property.address.street}}, {{property.address.number}} {{property.address.complement}}
                     </div>
                 </div>
 
                 <div class="item col-xs-12 col-sm-3 col-md-2">
                     <div class="label">quitado</div>
                     <div class="value value-center">
-                        Sim
+                        {{property.settled | yesOrNo}}
                     </div>
                 </div>
             </div>
 
-            <div class="subtitle">Interesse em:</div>
-            <div class="content">
-                <div class="item col-xs-12 col-sm-6 col-md-3">
-                    <div class="label">tipo</div>
-                    <div class="value value-center">
-                        Casa, Apto, Terreno
-                    </div>
-                </div>
+            <!--<div class="subtitle">Interesse em:</div>-->
+            <!--<div class="content">-->
+                <!--<div class="item col-xs-12 col-sm-6 col-md-3">-->
+                    <!--<div class="label">tipo</div>-->
+                    <!--<div class="value value-center">-->
+                        <!--Casa, Apto, Terreno-->
+                    <!--</div>-->
+                <!--</div>-->
 
-                <div class="item col-xs-12 col-sm-6 col-md-3">
-                    <div class="label">valor</div>
-                    <div class="value value-center">
-                        R$2.000.000,00
-                    </div>
-                </div>
+                <!--<div class="item col-xs-12 col-sm-6 col-md-3">-->
+                    <!--<div class="label">valor</div>-->
+                    <!--<div class="value value-center">-->
+                        <!--R$2.000.000,00-->
+                    <!--</div>-->
+                <!--</div>-->
 
-                <div class="item col-xs-12 col-sm-6 col-md-3">
-                    <div class="label">cidade</div>
-                    <div class="value value-center">
-                        Ubatuba
-                    </div>
-                </div>
+                <!--<div class="item col-xs-12 col-sm-6 col-md-3">-->
+                    <!--<div class="label">cidade</div>-->
+                    <!--<div class="value value-center">-->
+                        <!--Ubatuba-->
+                    <!--</div>-->
+                <!--</div>-->
 
-                <div class="item col-xs-12 col-sm-6 col-md-3">
-                    <div class="label">bairro</div>
-                    <div class="value value-center">
-                        Lázaro
-                    </div>
-                </div>
+                <!--<div class="item col-xs-12 col-sm-6 col-md-3">-->
+                    <!--<div class="label">bairro</div>-->
+                    <!--<div class="value value-center">-->
+                        <!--Lázaro-->
+                    <!--</div>-->
+                <!--</div>-->
 
-                <div class="item col-xs-12 col-sm-9 col-md-10">
-                    <div class="label label-max">Localização</div>
-                    <div class="value">
-                        Rua de Teste, 1234 - APTO 123 - BL C
-                    </div>
-                </div>
+                <!--<div class="item col-xs-12 col-sm-9 col-md-10">-->
+                    <!--<div class="label label-max">Localização</div>-->
+                    <!--<div class="value">-->
+                        <!--Rua de Teste, 1234 - APTO 123 - BL C-->
+                    <!--</div>-->
+                <!--</div>-->
 
-                <div class="item col-xs-12 col-sm-3 col-md-2">
-                    <div class="label">quitado</div>
-                    <div class="value value-center">
-                        Sim
-                    </div>
-                </div>
-            </div>
+                <!--<div class="item col-xs-12 col-sm-3 col-md-2">-->
+                    <!--<div class="label">quitado</div>-->
+                    <!--<div class="value value-center">-->
+                        <!--Sim-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
         </div>
     </article>
 

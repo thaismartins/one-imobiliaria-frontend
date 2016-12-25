@@ -9,17 +9,17 @@
                 <span class="text">Novo Imóvel {{property.code}}</span>
             </div>
             <div class="content">
-                <form name="forms.user">
+                <form name="forms.property">
                     <div class="division col-xs-12 col-sm-6">
-                        <div class="item item-left col-xs-12">
-                            <div class="label label-max">Código</div>
+                        <div class="item item-left col-xs-12 col-sm-6">
+                            <div class="label label-small">Código*</div>
                             <div class="value value-center">
                                 <input type="text" ng-model="property.code" required ng-disabled="!edit">
                             </div>
                         </div>
 
-                        <div class="item item-left col-xs-12">
-                            <div class="label label-max">Cliente</div>
+                        <div class="item item-left col-xs-12 col-sm-6">
+                            <div class="label label-small">Cliente*</div>
                             <div class="value value-center">
                                 <select ng-model="property.client" ng-disabled="!edit" required>
                                     <option ng-repeat="client in clients" value="{{client._id}}"
@@ -31,7 +31,7 @@
                         </div>
 
                         <div class="item item-left col-xs-12 col-sm-8">
-                            <div class="label label-max">Tipo</div>
+                            <div class="label label-small">Tipo*</div>
                             <div class="value value-center">
                                 <select ng-model="property.type" ng-disabled="!edit" required>
                                     <option value="apartament">Apartamento</option>
@@ -45,15 +45,16 @@
                         <div class="item item-left col-xs-12 col-sm-4">
                             <div class="label label-xsmall">M²</div>
                             <div class="value value-center">
-                                <input type="text" ng-model="property.meters" meters required ng-disabled="!edit">
+                                <input type="number" ng-model="property.meters" ng-disabled="!edit">
                             </div>
                         </div>
 
                         <div class="item item-left col-xs-12 col-sm-6">
-                            <div class="label label-small">Vagas</div>
+                            <div class="label label-small">Vagas {{property.vacancy}}</div>
                             <div class="value value-center">
-                                <select ng-model="property.vacancy" ng-disabled="!edit" required>
-                                    <option value="{{vacancy}}" ng-repeat="vacancy in 30 | range">
+                                <select ng-model="property.vacancy" ng-disabled="!edit">
+                                    <option value="{{vacancy}}" ng-repeat="vacancy in 30 | range"
+                                        ng-selected="property.vacancy == vacancy">
                                         {{vacancy}}
                                     </option>
                                 </select>
@@ -63,19 +64,34 @@
                         <div class="item item-left col-xs-12 col-sm-6">
                             <div class="label label-small">Andar</div>
                             <div class="value value-center">
-                                <select ng-model="property.floor" ng-disabled="!edit" required>
-                                    <option value="{{floor}}" ng-repeat="floor in 30 | range">
-                                        {{floor}}
+                                <select ng-model="property.floor" ng-disabled="!edit">
+                                    <option value="{{floor}}" ng-repeat="floor in 30 | range"
+                                        ng-selected="property.floor == floor">
+                                        {{floor}}º
                                     </option>
                                 </select>
                             </div>
                         </div>
 
+                        <div class="item item-left col-xs-12 col-sm-8">
+                            <div class="label label-xsmall">Endereço*</div>
+                            <div class="value value-center">
+                                <input type="text" ng-model="property.address.street" required ng-disabled="!edit">
+                            </div>
+                        </div>
+
                         <div class="item item-left col-xs-12 col-sm-4">
-                            <div class="label label-small">Estado</div>
+                            <div class="label label-small">Nº*</div>
+                            <div class="value value-center">
+                                <input type="text" ng-model="property.address.number" required ng-disabled="!edit">
+                            </div>
+                        </div>
+
+                        <div class="item item-left col-xs-12 col-sm-4">
+                            <div class="label label-small">Estado*</div>
                             <div class="value value-center">
                                 <select ng-model="property.address.state" ng-disabled="!edit" required
-                                        ng-change="showCities()">
+                                        ng-change="showCities(property.address.state)">
                                     <option value="{{state}}" ng-repeat="state in states">
                                         {{state}}
                                     </option>
@@ -83,10 +99,10 @@
                             </div>
                         </div>
                         <div class="item item-left col-xs-12 col-sm-8">
-                            <div class="label label-small">Cidade</div>
+                            <div class="label label-small">Cidade*</div>
                             <div class="value value-center">
                                 <select ng-model="property.address.city" ng-disabled="!edit" required>
-                                    <option value="{{city}}" ng-repeat="city in cities">
+                                    <option value="{{city.name}}" ng-repeat="city in cities">
                                         {{city.name}}
                                     </option>
                                 </select>
@@ -94,14 +110,14 @@
                         </div>
 
                         <div class="item item-left col-xs-12 col-sm-7">
-                            <div class="label label-small">Bairro</div>
+                            <div class="label label-small">Bairro*</div>
                             <div class="value value-center">
                                 <input type="text" ng-model="property.address.neighborhood" required ng-disabled="!edit">
                             </div>
                         </div>
 
                         <div class="item item-left col-xs-12 col-sm-5">
-                            <div class="label label-xsmall">CEP</div>
+                            <div class="label label-xsmall">CEP*</div>
                             <div class="value value-center">
                                 <input type="text" ng-model="property.address.cep" ui-br-cep-mask required ng-disabled="!edit">
                             </div>
@@ -110,39 +126,39 @@
                         <div class="item item-left col-xs-12">
                             <div class="label">Próximo ao metro?</div>
                             <div class="value value-center">
-                                <input type="checkbox" ng-model="property.hasSubway" required ng-disabled="!edit">
+                                <input type="checkbox" ng-model="property.hasSubway" ng-disabled="!edit">
                                 <input type="text" ng-model="property.subwayStation" placeholder="Qual estação?"
-                                   required ng-disabled="!edit">
+                                   ng-disabled="!edit">
                             </div>
                         </div>
                     </div>
 
                     <div class="division col-xs-12 col-sm-4">
                         <div class="item item-left col-xs-12">
-                            <div class="label label-large label-left">Valor do Imóvel</div>
+                            <div class="label label-large label-left">Valor do Imóvel*</div>
                             <div class="value value-center">
-                                <input type="text" ng-model="property.value" required ng-disabled="!edit">
+                                <input type="text" ng-model="property.value" ui-money-mask required ng-disabled="!edit">
                             </div>
                         </div>
 
                         <div class="item item-left col-xs-12">
                             <div class="label label-large label-left">Valor do condomínio</div>
                             <div class="value value-center">
-                                <input type="text" ng-model="property.condominium" required ng-disabled="!edit">
+                                <input type="text" ng-model="property.condominium" ui-money-mask ng-disabled="!edit">
                             </div>
                         </div>
 
                         <div class="item item-left col-xs-12">
                             <div class="label label-large label-left">Valor <br> do IPTU</div>
                             <div class="value value-center">
-                                <input type="text" ng-model="property.iptu" required ng-disabled="!edit">
+                                <input type="text" ng-model="property.iptu" ui-money-mask ng-disabled="!edit">
                             </div>
                         </div>
 
                         <div class="item item-left col-xs-12">
                             <div class="label label-large label-left">Valor da Locação</div>
                             <div class="value value-center">
-                                <input type="text" ng-model="property.location" required ng-disabled="!edit">
+                                <input type="text" ng-model="property.location" ui-money-mask ng-disabled="!edit">
                             </div>
                         </div>
 
@@ -150,20 +166,20 @@
                             <div class="label label-large label-left">Forma de Pagamento da Diferença</div>
                             <div class="value value-center">
                                 <div class="checkbox">
-                                    <input type="checkbox" ng-model="property.payment[0]" value="financing"
-                                       required ng-disabled="!edit">
+                                    <input type="checkbox" ng-model="property.payments[0]" ng-true-value="'financing'"
+                                       ng-disabled="!edit">
                                     <span class="text">Financiamento</span>
                                 </div>
 
                                 <div class="checkbox">
-                                    <input type="checkbox" ng-model="property.payment[1]" value="money"
-                                       required ng-disabled="!edit">
+                                    <input type="checkbox" ng-model="property.payments[1]" ng-true-value="'money'"
+                                       ng-disabled="!edit">
                                     <span class="text">Dinheiro</span>
                                 </div>
 
                                 <div class="checkbox">
-                                    <input type="checkbox" ng-model="property.payment[2]" value="others"
-                                       required ng-disabled="!edit">
+                                    <input type="checkbox" ng-model="property.payments[2]" ng-true-value="'others'"
+                                       ng-disabled="!edit">
                                     <span class="text">Outros</span>
                                 </div>
                             </div>
@@ -174,35 +190,38 @@
                         <div class="item col-xs-12">
                             <div class="label label-xsmall label-left">% do Valor Aceito para Permuta</div>
                             <div class="value value-center">
-                                <input type="number" ng-model="property.exchange" required ng-disabled="!edit">
+                                <input type="text" ng-model="property.exchange"
+                                   ui-percentage-mask="0" ng-disabled="!edit">
                             </div>
                         </div>
 
                         <div class="item col-xs-12">
                             <div class="label label-xsmall label-left">Imóvel Quitado?</div>
                             <div class="value value-center">
-                                <input type="checkbox" ng-model="property.settled" required ng-disabled="!edit">
+                                <input type="checkbox" ng-model="property.settled" ng-disabled="!edit">
                             </div>
                         </div>
 
                         <div class="item col-xs-12">
                             <div class="label label-xsmall label-left">Qual o saldo?</div>
                             <div class="value value-center">
-                                <input type="number" ng-model="property.difference" required ng-disabled="!edit">
+                                <input type="text" ng-model="property.difference" ui-percentage-mask="0"
+                                   ng-disabled="!edit && property.settled">
                             </div>
                         </div>
 
                         <div class="item col-xs-12">
                             <div class="label label-xsmall label-left">Possui Carro</div>
                             <div class="value value-center">
-                                <input type="checkbox" ng-model="property.car" required ng-disabled="!edit">
+                                <input type="checkbox" ng-model="property.car" ng-disabled="!edit">
                             </div>
                         </div>
 
                         <div class="item col-xs-12">
                             <div class="label label-xsmall label-left">Valor do Carro</div>
                             <div class="value value-center">
-                                <input type="number" ng-model="property.carValue" required ng-disabled="!edit">
+                                <input type="text" ng-model="property.carValue" ui-money-mask
+                                   ng-disabled="!edit && property.car">
                             </div>
                         </div>
 
