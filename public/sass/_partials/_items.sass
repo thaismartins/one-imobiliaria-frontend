@@ -2,13 +2,19 @@
   width: 100%
   clear: both
 
+  .division
+    padding: 0
+
   .item
     @include border-radius(5px)
     display: table
     padding: 0
     margin: 0 0 10px
-    background:
-      color: $color-soft
+
+    &.item-left
+      @media #{$small}
+        padding:
+          right: 10px
 
     .label
       display: table-cell
@@ -21,6 +27,20 @@
       text-transform: uppercase
       color: $color-dark
       padding: 10px 20px
+      white-space: normal
+      line-height: 1.2em
+
+      &.label-left
+        text-align: left
+
+      &.label-xsmall
+        width: 30px
+
+      &.label-small
+        width: 50px
+
+      &.label-large
+        width: 135px
 
       &.label-max
         width: 160px
@@ -29,10 +49,15 @@
         width: 160px
 
     .value
+      @include border-radius(5px, 'top-right')
+      @include border-radius(5px, 'bottom-right')
       display: table-cell
-      padding: 10px 20px
+      padding: 10px 10px 10px 15px
       line-height: 1em
+      position: relative
       vertical-align: middle
+      background:
+        color: $color-soft
       font:
         size: 1em
         weight: 300
@@ -40,7 +65,26 @@
       &.disabled
         opacity: .6
 
-      input,
+      .checkbox
+        position: relative
+
+        input[type=checkbox]
+          position: absolute
+          top: -15px
+          left: 20px
+
+          + .text
+            display: block
+            text-align: left
+            width: calc(100% - 30px)
+            margin:
+              left: 25px !important
+
+      input[type=text],
+      input[type=number],
+      input[type=email],
+      input[type=date],
+      input[type=tel],
       select,
       textarea,
       span
@@ -53,6 +97,16 @@
 
         &:disabled
           opacity: .6
+
+      input[type=checkbox]
+        position: absolute
+        top: 0
+        left: 20px
+
+        + input[type=text]
+          width: calc(100% - 30px)
+          margin:
+            left: 30px !important
 
       input[type=file]
         display: none

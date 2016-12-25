@@ -118,8 +118,27 @@ angular.module('oneImobiliaria')
     views:
       'main@':
         templateUrl: 'app/views/properties/index.html'
+        controller: 'PropertiesCtrl'
       'submenu@dashboard.properties':
         templateUrl: 'app/views/properties/submenu.html'
+      'error@dashboard.properties':
+        templateUrl: 'app/views/error.html'
+      'success@dashboard.properties':
+        templateUrl: 'app/views/success.html'
+      'loading@dashboard.properties':
+        templateUrl: 'app/views/loading.html'
+    requiredLogin: true
+
+  .state 'dashboard.properties.new',
+    url: '/new'
+    views:
+      'main@':
+        templateUrl: 'app/views/properties/form.html'
+        controller: 'PropertiesCtrl'
+      'error@dashboard.properties':
+        templateUrl: 'app/views/error.html'
+      'loading@dashboard.properties':
+        templateUrl: 'app/views/loading.html'
     requiredLogin: true
 
   $urlRouterProvider.otherwise('/login')

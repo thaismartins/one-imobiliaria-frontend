@@ -5,7 +5,7 @@
     <div ui-view="success"></div>
     <div ui-view="loading"></div>
 
-    <article class="article" ng-if="clients.length == 0">
+    <article class="article article-noborder" ng-if="clients.length == 0">
         <p class="not-found">Nenhum item encontrado</p>
     </article>
 
@@ -29,7 +29,7 @@
                 </nav>
             </div>
             <div class="content">
-                <div class="item col-xs-12 col-sm-6">
+                <div class="item item-left col-xs-12 col-sm-6">
                     <div class="label label-max">Email</div>
                     <div class="value value-center">
                         {{client.email}}
@@ -41,7 +41,7 @@
                         {{client.phones.cell | phoneBr}}
                     </div>
                 </div>
-                <div class="item col-xs-12 col-sm-6">
+                <div class="item item-left col-xs-12 col-sm-6">
                     <div class="label label-max">Telefone Residencial</div>
                     <div class="value value-center">
                         {{client.phones.home | phoneBr}}

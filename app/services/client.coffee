@@ -5,13 +5,13 @@ angular.module('oneImobiliaria')
 
   apiUrl = RESOURCES.API_URL + '/clients'
 
-  create: (user) ->
-    return $http.post apiUrl, user
-  update: (user) ->
-    return $http.put apiUrl + '/' + user._id, user
-  saveOrUpdate: (user) ->
-    if user._id then this.update(user)
-    else this.create(user)
+  create: (client) ->
+    return $http.post apiUrl, client
+  update: (client) ->
+    return $http.put apiUrl + '/' + client._id, client
+  saveOrUpdate: (client) ->
+    if client._id then this.update(client)
+    else this.create(client)
   getAll: () ->
     return $http.get apiUrl
   get: (id) ->

@@ -15,6 +15,7 @@
   .item
     float: right
 
+
     .btn
       padding: 30px 3px 30px 40px
       display: table
@@ -23,7 +24,13 @@
       margin:
         right: 10px
 
+      &:hover
+        .icon
+          background-image: url('../images/icons-gold.png')
+          opacity: .6
+
       .icon
+        @include transition(all .4s)
         position: absolute
         top: 0
         bottom: 0
@@ -35,7 +42,6 @@
 
   .items
     text-align: center
-
 
     li
       @include transition(all .4s)

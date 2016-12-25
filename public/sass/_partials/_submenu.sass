@@ -38,7 +38,13 @@
           font:
             weight: 700
 
+          &:hover
+            .icon
+              background-image: url('../images/icons-gold.png')
+              opacity: .8
+
           .icon
+            @include transition(all .4s)
             position: absolute
             top: 0
             bottom: 0
