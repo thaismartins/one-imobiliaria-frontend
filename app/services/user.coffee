@@ -24,6 +24,8 @@ angular.module('oneImobiliaria')
     return $http.get apiUrl
   get: (id) ->
     return $http.get apiUrl + '/' + id
+  getMyAccount: () ->
+    return $http.get apiUrl + '/' + storage.getCode()
   delete: (id) ->
     return $http.delete apiUrl+ '/' + id
 ]

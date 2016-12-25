@@ -153,6 +153,18 @@ angular.module('oneImobiliaria')
         templateUrl: 'app/views/loading.html'
     requiredLogin: true
 
+  .state 'dashboard.account',
+    url: '/account'
+    views:
+      'main@':
+        templateUrl: 'app/views/account/form.html'
+        controller: 'AccountCtrl'
+      'error@dashboard.account':
+        templateUrl: 'app/views/error.html'
+      'loading@dashboard.account':
+        templateUrl: 'app/views/loading.html'
+    requiredLogin: true
+
   $urlRouterProvider.otherwise('/login')
 
   # Access token injector

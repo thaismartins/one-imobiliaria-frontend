@@ -9,6 +9,8 @@ angular.module('oneImobiliaria')
     localStorage.setItem('code-one', codes.code)
     localStorage.setItem('group-one', codes.type)
     localStorage.setItem('name-one', codes.name)
+  updateToken: (token) ->
+    localStorage.setItem('x-code-one', token)
   getSessionToken: () ->
     localStorage.getItem('x-code-one')
   getCode: () ->

@@ -1,0 +1,63 @@
+<section class="page">
+    <article class="article article-noborder">
+        <div class="content-center">
+
+            <div ui-view="error"></div>
+            <div ui-view="loading"></div>
+
+            <div class="title">
+                <span class="text">{{user.name}} | {{user.group.type | groupName}}</span>
+            </div>
+            <div class="content">
+                <form name="forms.user">
+                    <div class="item item-left col-xs-12 col-sm-6">
+                        <div class="label label-max">Nome</div>
+                        <div class="value value-center">
+                            <input type="text" ng-model="user.name" required ng-disabled="!edit">
+                        </div>
+                    </div>
+
+                    <div class="item col-xs-12 col-sm-6">
+                        <div class="label label-max">Email</div>
+                        <div class="value value-center">
+                            <input type="text" ng-model="user.email" required ng-disabled="!edit">
+                        </div>
+                    </div>
+
+                    <div class="item col-xs-12 col-sm-6">
+                        <div class="label label-max">Nova Senha</div>
+                        <div class="value value-center">
+                            <input type="password" ng-model="user.password" ng-disabled="!edit">
+                        </div>
+                    </div>
+
+                    <div class="item col-xs-12 col-sm-6">
+                        <div class="label label-max">Foto</div>
+                        <label class="value value-input" ng-class="{'disabled': !edit}">
+                            <span>Selecione um arquivo</span>
+                            <input type="file" ng-model="file" accept="image/*" file
+                                   ng-disabled="!edit" />
+                        </label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </article>
+
+    <nav class="pagination">
+        <div class="content-center">
+            <div class="item" ng-if="!edit">
+                <button class="btn btn-link btn-link-soft" ng-click="canEdit()">
+                    <span class="icon icon-edit"></span>
+                    <span class="text">Editar</span>
+                </button>
+            </div>
+            <div class="item" ng-if="edit">
+                <button class="btn btn-link btn-link-soft" ng-click="doUpdate()">
+                    <span class="icon icon-save"></span>
+                    <span class="text">Salvar</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+</section>
