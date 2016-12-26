@@ -3,40 +3,7 @@
 angular.module('oneImobiliaria')
 .controller 'PropertiesCtrl', ['$scope', '$rootScope', '$state', '$stateParams', '$filter', '$loading', '$logger', 'storage', 'PropertyService', 'LocationService', 'ClientService', ($scope, $rootScope, $state, $stateParams, $filter, $loading, $logger, storage, PropertyService, LocationService, ClientService) ->
 
-  $scope.property = {
-    "code":"123",
-    "client":"585ecf5bd5af8351e3b894e3",
-    "type":"apartament",
-    "meters":100,
-    "vacancy":"1",
-    "floor":"2",
-    "address":{
-      "street":"Rua Teste",
-      "number":"123",
-      "state":"SP",
-      "city":"São Paulo",
-      "neighborhood":"Jardim Teste",
-      "cep":"03952020"
-    },
-    "hasSubway":true,
-    "subwayStation":"Penha",
-    "value":1,
-    "condominium":2,
-    "iptu":3,
-    "location":4,
-    "payments": [
-      "financing",
-      "money",
-      "others"
-    ],
-    "exchange":0.1,
-    "difference":0.5,
-    "carValue":5,
-    "settled":true,
-    "car":true
-  }
-
-#  $scope.property = {payments: []}
+  $scope.property = {payments: []}
   $scope.properties = []
   $scope.cities = []
   $scope.states = []
