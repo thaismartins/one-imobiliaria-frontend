@@ -12,9 +12,19 @@
     margin: 0 0 10px
 
     &.item-left
-      @media #{$small}
-        padding:
-          right: 10px
+        @media #{$small}
+          padding:
+            right: 10px
+
+    &.item-top
+      .label
+        display: inline-block
+        width: auto
+
+      .value
+        @include border-radius(5px, 'bottom-left')
+        display: block
+        min-height: 45px
 
     .label
       display: table-cell
@@ -51,10 +61,10 @@
     .value
       @include border-radius(5px, 'top-right')
       @include border-radius(5px, 'bottom-right')
-      display: table-cell
       padding: 10px 10px 10px 15px
       line-height: 1em
       position: relative
+      display: table-cell
       vertical-align: middle
       background:
         color: $color-soft
@@ -65,8 +75,36 @@
       &.disabled
         opacity: .6
 
+      &.value-slider
+        &.disabled
+          pointer-events: none
+          cursor: no-drop
+          opacity: 1
+
+        .slider-left,
+        .slider-right
+          width: 80px
+          float: left
+          text-align: center
+          padding: 5px 0
+
+          span
+            font:
+              size: .8em
+
+        .slider-center
+          width: calc(100% - 160px)
+          float: left
+          padding: 0 15px
+
       .checkbox
         position: relative
+
+        &.checkbox-inline
+          display: table-cell
+
+          .text
+            margin: 0 5px
 
         input[type=checkbox]
           position: absolute
@@ -78,7 +116,7 @@
             text-align: left
             width: calc(100% - 30px)
             margin:
-              left: 25px !important
+              left: 25px
 
       input[type=text],
       input[type=number],
@@ -87,8 +125,7 @@
       input[type=tel],
       input[type=password],
       select,
-      textarea,
-      span
+      textarea
         width: 100%
         background:
           color: transparent

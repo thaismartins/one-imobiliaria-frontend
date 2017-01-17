@@ -135,6 +135,12 @@ angular.module('oneImobiliaria')
       'main@':
         templateUrl: 'app/views/properties/form.html'
         controller: 'PropertiesCtrl'
+      'submenu@dashboard.properties.new':
+        templateUrl: 'app/views/properties/form-submenu.html'
+      'property@dashboard.properties.new':
+        templateUrl: 'app/views/properties/property.html'
+      'interest@dashboard.properties.new':
+        templateUrl: 'app/views/properties/interest.html'
       'error@dashboard.properties.new':
         templateUrl: 'app/views/error.html'
       'loading@dashboard.properties.new':
@@ -147,6 +153,12 @@ angular.module('oneImobiliaria')
       'main@':
         templateUrl: 'app/views/properties/form.html'
         controller: 'PropertiesCtrl'
+      'submenu@dashboard.properties.edit':
+        templateUrl: 'app/views/properties/form-submenu.html'
+      'property@dashboard.properties.edit':
+        templateUrl: 'app/views/properties/property.html'
+      'interest@dashboard.properties.edit':
+        templateUrl: 'app/views/properties/interest.html'
       'error@dashboard.properties.edit':
         templateUrl: 'app/views/error.html'
       'loading@dashboard.properties.edit':

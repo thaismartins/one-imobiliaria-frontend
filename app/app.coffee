@@ -2,7 +2,8 @@
 
 angular.module 'oneImobiliaria', [
   'ui.router',
-  'ui.utils.masks'
+  'ui.utils.masks',
+  'ui.slider'
 ]
 .run ['$rootScope', '$state', 'RESOURCES', 'storage', 'UserService', ($rootScope, $state, RESOURCES, storage, UserService) ->
 
@@ -50,5 +51,5 @@ angular.module 'oneImobiliaria', [
     $state.go('dashboard.home') if $rootScope.page == 'users' && $rootScope.group != 'admin'
 ]
 .constant 'RESOURCES',
-  'API_URL': 'http://desenv.doisoitosete.com:3000/api'
-#  'API_URL': 'http://localhost:3000/api'
+#  'API_URL': 'http://desenv.doisoitosete.com:3000/api'
+  'API_URL': 'http://localhost:3000/api'

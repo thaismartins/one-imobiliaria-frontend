@@ -17,12 +17,16 @@ var jsFiles = [
     'bower_components/angular-input-masks/angular-input-masks-standalone.min.js',
     'bower_components/moment/min/moment-with-locales.min.js',
     'bower_components/moment/locale/pt-br.js',
-    'bower_components/moment/min/moment-with-locales.js'
+    'bower_components/moment/min/moment-with-locales.js',
+    'node_modules/jquery-ui-dist/jquery-ui.js',
+    'node_modules/jquery-ui/ui/widgets/slider.js',
+    'node_modules/angular-ui-slider/src/slider.js'
 ];
 
 var cssFiles = [
     'bower_components/bootstrap/dist/css/bootstrap.min.css',
-    'bower_components/fontawesome/css/font-awesome.min.css'
+    'bower_components/fontawesome/css/font-awesome.min.css',
+    'node_modules/jquery-ui-dist/jquery-ui.min.css'
 ];
 
 function logError(error) {

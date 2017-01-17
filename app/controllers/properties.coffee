@@ -3,12 +3,69 @@
 angular.module('oneImobiliaria')
 .controller 'PropertiesCtrl', ['$scope', '$rootScope', '$state', '$stateParams', '$filter', '$loading', '$logger', 'storage', 'PropertyService', 'LocationService', 'ClientService', ($scope, $rootScope, $state, $stateParams, $filter, $loading, $logger, storage, PropertyService, LocationService, ClientService) ->
 
-  $scope.property = {payments: []}
+#  $scope.property =
+#    payments: []
+#    interest:
+#      allMeters:  [10, 500]
+#      allVacancies: [0, 10]
+#      allFloors: [1, 30]
+#      allValues: [1000, 5000000]
+#      allIptus: [1000, 15000]
+#      allCondominiums: [1000, 500000]
+#      allLocations: [1000, 50000]
+
+  $scope.property = {
+    "code":"123",
+    "client":"585ecf5bd5af8351e3b894e3",
+    "type":"apartament",
+    "meters":100,
+    "vacancy":"1",
+    "floor":"2",
+    "address":{
+      "street":"Rua Simoes Delgado",
+      "number":"15",
+      "state":"SP",
+      "city":"São Paulo",
+      "neighborhood":"Jardim 9 de Julho",
+      "cep":"03952020"
+    },
+    "hasSubway":true,
+    "subwayStation":"Penha",
+    "value":1,
+    "condominium":2,
+    "iptu":3,
+    "location":4,
+    "payments": [
+      "financing",
+      "money",
+      "others"
+    ],
+    "exchange":0.1,
+    "difference":0.5,
+    "carValue":5,
+    "settled":true,
+    "car":true
+    interest:
+      allMeters:  [10, 500]
+      allVacancies: [0, 10]
+      allFloors: [1, 30]
+      allValues: [1000, 5000000]
+      allIptus: [1000, 15000]
+      allCondominiums: [1000, 500000]
+      allLocations: [1000, 50000]
+  }
   $scope.properties = []
   $scope.cities = []
   $scope.states = []
   $scope.clients = []
   cities = []
+
+  $scope.options =
+    start:  (event, ui) ->
+      console.log('Entrou slider...')
+    stop:  (event, ui) ->
+      console.log('Parou slider...')
+
 
   $scope.edit = true
 
@@ -17,6 +74,13 @@ angular.module('oneImobiliaria')
     PropertyService.get($stateParams.id)
     .then (response) ->
       $scope.property = response.data
+      $scope.property.interest.allMeters = [52, 184]
+      $scope.property.interest.allVacancies = [1, 3]
+      $scope.property.interest.allFloors = [2, 10]
+      $scope.property.interest.allValues = [2222, 1000000]
+      $scope.property.interest.allIptus = [2222, 10000]
+      $scope.property.interest.allCondominiums = [2222, 10000]
+      $scope.property.interest.allLocations = [2222, 10000]
       return LocationService.getAllStates()
     .then (response) ->
       $scope.states = response.data.sort()
@@ -79,7 +143,11 @@ angular.module('oneImobiliaria')
       $loading.hide()
       $state.go('dashboard.properties')
     .catch (response) ->
-      $logger.error('Erro ao criar/editar imóvel. Por favor, tente novamente.')
+      console.log()
+      if response.data.code == 8
+        $logger.error('Verifique o endereço digitado. Não foi possível validar esta informação.')
+      else
+        $logger.error('Erro ao criar/editar imóvel. Por favor, tente novamente.')
       $loading.hide()
 
   $scope.doDelete = (index) ->

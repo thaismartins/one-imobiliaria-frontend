@@ -1,0 +1,31 @@
+<div class="submenu">
+    <div class="content-center">
+        <div class="infos">
+            <span class="icon"></span>
+            <span class="title">Imóveis</span>
+            <span class="subtitle">Cadastro</span>
+        </div>
+        <nav class="options">
+            <div class="items">
+                <div class="item" ng-if="!edit">
+                    <button class="btn btn-link btn-link-soft" ng-click="canEdit()">
+                        <span class="icon icon-edit"></span>
+                        <span class="text">Editar</span>
+                    </button>
+                </div>
+                <div class="item" ng-if="edit">
+                    <button class="btn btn-link btn-link-soft" ng-click="saveOrUpdate()">
+                        <span class="icon icon-save"></span>
+                        <span class="text">Salvar</span>
+                    </button>
+                </div>
+                <div class="item">
+                    <a ui-sref="dashboard.properties" class="btn btn-link btn-link-soft">
+                        <span class="icon icon-close"></span>
+                        <span class="text">Cancelar</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>

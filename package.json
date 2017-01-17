@@ -31,7 +31,10 @@
     "jshint": "^2.9.2"
   },
   "dependencies": {
+    "angular-ui-slider": "^0.4.0",
     "gulp-sass": "^3.0.0",
+    "jquery-ui": "^1.12.1",
+    "jquery-ui-dist": "^1.12.1",
     "moment": "^2.15.2"
   }
 }
