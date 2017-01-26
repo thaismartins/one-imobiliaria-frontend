@@ -172,31 +172,31 @@ angular.module('oneImobiliaria')
     if $scope.property.interest.types?
       $scope.property.interest.types = []
 
-    if not $scope.property.interest.meters?
+    if $scope.property.interest.meters?
       $scope.property.interest.allMeters[0] = $scope.property.interest.meters.min
       $scope.property.interest.allMeters[1] = $scope.property.interest.meters.max
 
-    if not $scope.property.interest.condominium?
+    if $scope.property.interest.condominium?
       $scope.property.interest.allCondominiums[0] = $scope.property.interest.condominium.min
       $scope.property.interest.allCondominiums[1] = $scope.property.interest.condominium.max
 
-    if not $scope.property.interest.vacancy?
+    if $scope.property.interest.vacancy?
       $scope.property.interest.allVacancies[0] = $scope.property.interest.vacancy.min
       $scope.property.interest.allVacancies[1] = $scope.property.interest.vacancy.max
 
-    if not $scope.property.interest.floor?
+    if $scope.property.interest.floor?
       $scope.property.interest.allFloors[0] = $scope.property.interest.floor.min
       $scope.property.interest.allFloors[1] = $scope.property.interest.floor.max
 
-    if not $scope.property.interest.value?
+    if $scope.property.interest.value?
       $scope.property.interest.allValues[0] = $scope.property.interest.value.min
       $scope.property.interest.allValues[1] = $scope.property.interest.value.max
 
-    if not $scope.property.interest.iptu?
+    if $scope.property.interest.iptu?
       $scope.property.interest.allIptus[0] = $scope.property.interest.iptu.min
       $scope.property.interest.allIptus[1] = $scope.property.interest.iptu.max
 
-    if not $scope.property.interest.location?
+    if $scope.property.interest.location?
       $scope.property.interest.allLocations[0] = $scope.property.interest.location.min
       $scope.property.interest.allLocations[1] = $scope.property.interest.location.max
 
