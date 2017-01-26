@@ -52,4 +52,4 @@ angular.module 'oneImobiliaria', [
 ]
 .constant 'RESOURCES',
 #  'API_URL': 'http://desenv.doisoitosete.com:3000/api'
-  'API_URL': 'http://localhost:3000/api'
+  'API_URL': process.env.API_URI || 'http://localhost:3000/api'
