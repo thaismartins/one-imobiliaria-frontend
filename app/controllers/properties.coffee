@@ -161,16 +161,16 @@ angular.module('oneImobiliaria')
     console.log($scope.csv)
 
   convertData = () ->
-    $scope.property.interest.allMeters:  [10, 500]
-    $scope.property.interest.allVacancies: [0, 10]
-    $scope.property.interest.allFloors: [1, 30]
-    $scope.property.interest.allValues: [1000, 5000000]
-    $scope.property.interest.allIptus: [1000, 15000]
-    $scope.property.interest.allCondominiums: [1000, 500000]
-    $scope.property.interest.allLocations: [1000, 50000]
+    $scope.property.interest.allMeters =  [10, 500]
+    $scope.property.interest.allVacancies = [0, 10]
+    $scope.property.interest.allFloors = [1, 30]
+    $scope.property.interest.allValues = [1000, 5000000]
+    $scope.property.interest.allIptus = [1000, 15000]
+    $scope.property.interest.allCondominiums = [1000, 500000]
+    $scope.property.interest.allLocations = [1000, 50000]
 
     if $scope.property.interest.types?
-      $scope.property.interest.types: []
+      $scope.property.interest.types = []
 
     if not $scope.property.interest.meters?
       $scope.property.interest.allMeters[0] = $scope.property.interest.meters.min
@@ -236,5 +236,4 @@ angular.module('oneImobiliaria')
       min: $scope.property.interest.allLocations[0]
       max: $scope.property.interest.allLocations[1]
     delete $scope.property.interest.allLocations
-
 ]
