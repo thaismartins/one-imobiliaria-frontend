@@ -29,7 +29,9 @@
                 </nav>
             </div>
 
-            <div class="subtitle">Dados do Imóvel:</div>
+            <div class="subtitle">
+                <span class="text">Dados do Imóvel:</span>
+            </div>
             <div class="content">
                 <div class="item col-xs-12 col-sm-6 col-md-3">
                     <div class="label">tipo</div>
@@ -62,7 +64,7 @@
                 <div class="item col-xs-12 col-sm-9 col-md-10">
                     <div class="label label-max">Localização</div>
                     <div class="value">
-                        {{property.address.street}}, {{property.address.number}} {{property.address.complement}}
+                        {{property.address | address}}
                     </div>
                 </div>
 
@@ -74,50 +76,52 @@
                 </div>
             </div>
 
-            <!--<div class="subtitle">Interesse em:</div>-->
-            <!--<div class="content">-->
-                <!--<div class="item col-xs-12 col-sm-6 col-md-3">-->
-                    <!--<div class="label">tipo</div>-->
-                    <!--<div class="value value-center">-->
-                        <!--Casa, Apto, Terreno-->
-                    <!--</div>-->
-                <!--</div>-->
+            <div class="subtitle">
+                <span class="text">Interesse em:</span>
+            </div>
+            <div class="content">
+                <div class="item col-xs-12 col-sm-6 col-md-4">
+                    <div class="label">tipo(s)</div>
+                    <div class="value value-center">
+                        {{property.interest.types | typesToText}}
+                    </div>
+                </div>
 
-                <!--<div class="item col-xs-12 col-sm-6 col-md-3">-->
-                    <!--<div class="label">valor</div>-->
-                    <!--<div class="value value-center">-->
-                        <!--R$2.000.000,00-->
-                    <!--</div>-->
-                <!--</div>-->
+                <div class="item col-xs-12 col-sm-6 col-md-4">
+                    <div class="label">valor</div>
+                    <div class="value value-center">
+                       {{property.interest.value.min | currency:'R$':0}} até {{property.interest.value.max | currency:'R$':0}}
+                    </div>
+                </div>
 
-                <!--<div class="item col-xs-12 col-sm-6 col-md-3">-->
-                    <!--<div class="label">cidade</div>-->
-                    <!--<div class="value value-center">-->
-                        <!--Ubatuba-->
-                    <!--</div>-->
-                <!--</div>-->
+                <div class="item col-xs-12 col-sm-6 col-md-4">
+                    <div class="label">cidade</div>
+                    <div class="value value-center">
+                        {{property.interest.address.city || 'Indefinido'}}
+                    </div>
+                </div>
 
-                <!--<div class="item col-xs-12 col-sm-6 col-md-3">-->
-                    <!--<div class="label">bairro</div>-->
-                    <!--<div class="value value-center">-->
-                        <!--Lázaro-->
-                    <!--</div>-->
-                <!--</div>-->
+                <div class="item col-xs-12 col-sm-6 col-md-3">
+                    <div class="label">bairro</div>
+                    <div class="value value-center">
+                        {{property.interest.address.neighborhood || 'Indefinido'}}
+                    </div>
+                </div>
 
-                <!--<div class="item col-xs-12 col-sm-9 col-md-10">-->
-                    <!--<div class="label label-max">Localização</div>-->
-                    <!--<div class="value">-->
-                        <!--Rua de Teste, 1234 - APTO 123 - BL C-->
-                    <!--</div>-->
-                <!--</div>-->
+                <div class="item col-xs-12 col-sm-9 col-md-7">
+                    <div class="label label-max">Localização</div>
+                    <div class="value">
+                        {{property.interest.address | address}}
+                    </div>
+                </div>
 
-                <!--<div class="item col-xs-12 col-sm-3 col-md-2">-->
-                    <!--<div class="label">quitado</div>-->
-                    <!--<div class="value value-center">-->
-                        <!--Sim-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
+                <div class="item col-xs-12 col-sm-3 col-md-2">
+                    <div class="label">quitado</div>
+                    <div class="value value-center">
+                        {{property.interest.settled | yesOrNo}}
+                    </div>
+                </div>
+            </div>
         </div>
     </article>
 
