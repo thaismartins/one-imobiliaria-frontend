@@ -8,10 +8,11 @@
         <nav class="options">
             <ul class="items">
                 <li class="item">
-                    <button class="btn btn-link btn-link-soft">
+                    <label class="btn btn-link btn-link-soft">
                         <span class="icon icon-import"></span>
                         <span class="text">Importar CSV</span>
-                    </button>
+                        <input type="file" ng-model="csv" ng-change="doUploadCSV()" file accept=".csv">
+                    </label>
                 </li>
                 <li class="item">
                     <a ui-sref="dashboard.properties.new" class="btn btn-link btn-link-soft">
