@@ -70,13 +70,7 @@ angular.module('oneImobiliaria')
     PropertyService.get($stateParams.id)
     .then (response) ->
       $scope.property = response.data
-      $scope.property.interest.allMeters = [52, 184]
-      $scope.property.interest.allVacancies = [1, 3]
-      $scope.property.interest.allFloors = [2, 10]
-      $scope.property.interest.allValues = [2222, 1000000]
-      $scope.property.interest.allIptus = [2222, 10000]
-      $scope.property.interest.allCondominiums = [2222, 10000]
-      $scope.property.interest.allLocations = [2222, 10000]
+      convertData()
       return LocationService.getAllStates()
     .then (response) ->
       $scope.states = response.data.sort()
@@ -135,7 +129,7 @@ angular.module('oneImobiliaria')
 
     $loading.show()
 
-    convertData()
+    revertData()
     PropertyService.saveOrUpdate($scope.property)
     .then (response) ->
       $loading.hide()
@@ -166,9 +160,48 @@ angular.module('oneImobiliaria')
     console.log('Entrou....')
     console.log($scope.csv)
 
-
   convertData = () ->
-    console.log('Entrou...')
+    $scope.property.interest.allMeters:  [10, 500]
+    $scope.property.interest.allVacancies: [0, 10]
+    $scope.property.interest.allFloors: [1, 30]
+    $scope.property.interest.allValues: [1000, 5000000]
+    $scope.property.interest.allIptus: [1000, 15000]
+    $scope.property.interest.allCondominiums: [1000, 500000]
+    $scope.property.interest.allLocations: [1000, 50000]
+
+    if $scope.property.interest.types?
+      $scope.property.interest.types: []
+
+    if not $scope.property.interest.meters?
+      $scope.property.interest.allMeters[0] = $scope.property.interest.meters.min
+      $scope.property.interest.allMeters[1] = $scope.property.interest.meters.max
+
+    if not $scope.property.interest.condominium?
+      $scope.property.interest.allCondominiums[0] = $scope.property.interest.condominium.min
+      $scope.property.interest.allCondominiums[1] = $scope.property.interest.condominium.max
+
+    if not $scope.property.interest.vacancy?
+      $scope.property.interest.allVacancies[0] = $scope.property.interest.vacancy.min
+      $scope.property.interest.allVacancies[1] = $scope.property.interest.vacancy.max
+
+    if not $scope.property.interest.floor?
+      $scope.property.interest.allFloors[0] = $scope.property.interest.floor.min
+      $scope.property.interest.allFloors[1] = $scope.property.interest.floor.max
+
+    if not $scope.property.interest.value?
+      $scope.property.interest.allValues[0] = $scope.property.interest.value.min
+      $scope.property.interest.allValues[1] = $scope.property.interest.value.max
+
+    if not $scope.property.interest.iptu?
+      $scope.property.interest.allIptus[0] = $scope.property.interest.iptu.min
+      $scope.property.interest.allIptus[1] = $scope.property.interest.iptu.max
+
+    if not $scope.property.interest.location?
+      $scope.property.interest.allLocations[0] = $scope.property.interest.location.min
+      $scope.property.interest.allLocations[1] = $scope.property.interest.location.max
+
+
+  revertData = () ->
     $scope.property.interest.meters =
       min: $scope.property.interest.allMeters[0]
       max: $scope.property.interest.allMeters[1]
@@ -203,6 +236,5 @@ angular.module('oneImobiliaria')
       min: $scope.property.interest.allLocations[0]
       max: $scope.property.interest.allLocations[1]
     delete $scope.property.interest.allLocations
-    console.log($scope.property.interest)
 
 ]
