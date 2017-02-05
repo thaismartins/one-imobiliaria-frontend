@@ -11,7 +11,7 @@
                     <label class="btn btn-link btn-link-soft">
                         <span class="icon icon-import"></span>
                         <span class="text">Importar CSV</span>
-                        <input type="file" ng-model="csv" ng-change="doUploadCSV()" file accept=".csv">
+                        <input type="file" ng-model="file" ng-file-selected="doUploadCSV($file)" file accept=".csv">
                     </label>
                 </li>
                 <li class="item">

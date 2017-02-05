@@ -17,5 +17,16 @@ angular.module('oneImobiliaria')
   get: (id) ->
     return $http.get apiUrl + '/' + id
   delete: (id) ->
-    return $http.delete apiUrl+ '/' + id
+    return $http.delete apiUrl + '/' + id
+  importCsv: (file) ->
+
+    form = new FormData()
+    form.append 'csv', file
+
+    return $http.post apiUrl + '/import/csv', form,
+      withCredentials: false
+      headers:
+        'Content-Type': undefined
+      transformRequest: angular.identity
+
 ]

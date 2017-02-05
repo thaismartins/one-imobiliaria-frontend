@@ -23,7 +23,6 @@ angular.module('oneImobiliaria')
       $logger.error('Preencha todos os dados obrigatórios.')
       return
 
-    console.log($scope.user)
     $loading.show()
     UserService.update($scope.user)
     .then (response) ->

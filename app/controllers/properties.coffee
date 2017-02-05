@@ -156,9 +156,25 @@ angular.module('oneImobiliaria')
       $logger.error('Erro ao excluir imóvel. Por favor, tente novamente.')
       $loading.hide()
 
-  $scope.doUploadCSV = () ->
+  $scope.doUploadCSV = (file) ->
     console.log('Entrou....')
-    console.log($scope.csv)
+
+    if not file? or file.type != 'text/csv'
+      $logger.error('Por favor, selecione um arquivo válido do tipo .csv')
+      return false
+
+    $loading.show()
+    PropertyService.importCsv(file)
+    .then (response) ->
+      console.log(response)
+      $loading.hide()
+    .catch (response) ->
+      console.log(response)
+      $logger.error('Erro ao importar dados. Por favor, tente novamente.')
+      $loading.hide()
+
+
+
 
   convertData = () ->
     $scope.property.interest.allMeters =  [10, 500]
