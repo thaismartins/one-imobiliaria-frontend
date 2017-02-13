@@ -13,6 +13,8 @@ angular.module 'oneImobiliaria', [
 
   $rootScope.fileUrl = RESOURCES.API_URL + '/'
 
+  $rootScope.newProperties = {}
+
   $rootScope.page = ''
   $rootScope.name = ''
 

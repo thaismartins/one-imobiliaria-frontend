@@ -3,49 +3,8 @@
 angular.module('oneImobiliaria')
 .controller 'PropertiesCtrl', ['$scope', '$rootScope', '$state', '$stateParams', '$filter', '$loading', '$logger', 'storage', 'PropertyService', 'LocationService', 'ClientService', ($scope, $rootScope, $state, $stateParams, $filter, $loading, $logger, storage, PropertyService, LocationService, ClientService) ->
 
-  $scope.property =
-    payments: []
-    interest:
-      types: []
-      allMeters:  [10, 500]
-      allVacancies: [0, 10]
-      allFloors: [1, 30]
-      allValues: [1000, 5000000]
-      allIptus: [1000, 15000]
-      allCondominiums: [1000, 500000]
-      allLocations: [1000, 50000]
-
-#  $scope.property = {
-#    "code":"123",
-#    "client":"585ecf5bd5af8351e3b894e3",
-#    "type":"apartament",
-#    "meters":100,
-#    "vacancy":"1",
-#    "floor":"2",
-#    "address":{
-#      "street":"Rua Simoes Delgado",
-#      "number":"15",
-#      "state":"SP",
-#      "city":"São Paulo",
-#      "neighborhood":"Jardim 9 de Julho",
-#      "cep":"03952020"
-#    },
-#    "hasSubway":true,
-#    "subwayStation":"Penha",
-#    "value":1,
-#    "condominium":2,
-#    "iptu":3,
-#    "location":4,
-#    "payments": [
-#      "financing",
-#      "money",
-#      "others"
-#    ],
-#    "exchange":0.1,
-#    "difference":0.5,
-#    "carValue":5,
-#    "settled":true,
-#    "car":true
+#  $scope.property =
+#    payments: []
 #    interest:
 #      types: []
 #      allMeters:  [10, 500]
@@ -55,7 +14,48 @@ angular.module('oneImobiliaria')
 #      allIptus: [1000, 15000]
 #      allCondominiums: [1000, 500000]
 #      allLocations: [1000, 50000]
-#  }
+
+  $scope.property = {
+    "code":"123",
+    "client":"585ecf5bd5af8351e3b894e3",
+    "type":"apartament",
+    "meters":100,
+    "vacancy":"1",
+    "floor":"2",
+    "address":{
+      "street":"Rua Simoes Delgado",
+      "number":"15",
+      "state":"SP",
+      "city":"São Paulo",
+      "neighborhood":"Jardim 9 de Julho",
+      "cep":"03952020"
+    },
+    "hasSubway":true,
+    "subwayStation":"Penha",
+    "value":1.00,
+    "condominium":2.00,
+    "iptu":3.00,
+    "location":4.00,
+    "payments": [
+      "financing",
+      "money",
+      "others"
+    ],
+    "exchange":0.1,
+    "difference":0.5,
+    "carValue":5,
+    "settled":true,
+    "car":true
+    interest:
+      types: []
+      allMeters:  [10, 500]
+      allVacancies: [0, 10]
+      allFloors: [1, 30]
+      allValues: [1000, 5000000]
+      allIptus: [1000, 15000]
+      allCondominiums: [1000, 500000]
+      allLocations: [1000, 50000]
+  }
 
   $scope.properties = []
   $scope.cities = []
@@ -141,8 +141,12 @@ angular.module('oneImobiliaria')
         $logger.error('Erro ao criar/editar imóvel. Por favor, tente novamente.')
       $loading.hide()
 
-  $scope.doDelete = (index) ->
 
+  $scope.doRemoveCsv = (index) ->
+    $scope.newProperties.errors.splice(index, 1)
+
+
+  $scope.doDelete = (index) ->
     property = $scope.properties[index]
     return false if property._id == storage.getCode()
 
@@ -157,19 +161,21 @@ angular.module('oneImobiliaria')
       $loading.hide()
 
   $scope.doUploadCSV = (file) ->
-    console.log('Entrou....')
-
     if not file? or file.type != 'text/csv'
       $logger.error('Por favor, selecione um arquivo válido do tipo .csv')
       return false
 
+    $rootScope.newProperties = {}
+
     $loading.show()
     PropertyService.importCsv(file)
     .then (response) ->
-      console.log(response)
+      $scope.file = {}
+      $rootScope.newProperties = response.data.content
+      $state.go('dashboard.properties.confirm')
       $loading.hide()
     .catch (response) ->
-      console.log(response)
+      $scope.file = {}
       $logger.error('Erro ao importar dados. Por favor, tente novamente.')
       $loading.hide()
 
@@ -218,6 +224,11 @@ angular.module('oneImobiliaria')
 
 
   revertData = () ->
+    $scope.property.value = $scope.property.value.toFixed(2)
+    $scope.property.condominium = $scope.property.condominium.toFixed(2)
+    $scope.property.location = $scope.property.location.toFixed(2)
+    $scope.property.iptu = $scope.property.iptu.toFixed(2)
+
     $scope.property.interest.meters =
       min: $scope.property.interest.allMeters[0]
       max: $scope.property.interest.allMeters[1]

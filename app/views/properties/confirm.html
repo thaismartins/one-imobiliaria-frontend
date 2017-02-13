@@ -1,0 +1,143 @@
+<section class="page">
+    <div ui-view="submenu"></div>
+
+    <div ui-view="error"></div>
+    <div ui-view="success"></div>
+    <div ui-view="loading"></div>
+
+    <article class="article article-noborder" ng-if="newProperties.success.length == 0 && newProperties.errors.length == 0 || !newProperties.errors">
+        <div class="content-center">
+            <p class="not-found">Nenhum item foi adicionado</p>
+        </div>
+    </article>
+
+    <div class="alert alert-error" ng-if="newProperties.success.length > 0 || newProperties.errors.length > 0">
+        <div class="icon">
+            <i class="fa fa-times-circle"></i>
+        </div>
+        <div class="text">
+            <p>Foram inseridos {{newProperties.success.length}} imóveis com sucesso.</p>
+            <p>Porém, {{newProperties.errors.length}} imóveis encontraram algum erro na inserção.</p>
+        </div>
+    </div>
+
+    <article class="article" ng-repeat="item in newProperties.errors">
+        <div class="content-center">
+            <div class="title title-options">
+                <span class="text">Imóvel {{property.code}}</span>
+                <nav class="options">
+                    <ul class="items">
+                        <li class="item">
+                            <button ng-click="doTryAgain($index)" class="btn btn-link btn-link-soft">
+                                Salvar
+                            </button>
+                        </li>
+                        <li ng-if="item.error.code == 1">
+                            <button class="btn btn-link btn-link-soft" ng-click="doRemoveCsv($index)">
+                                Ignorar
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="alert alert-error alert-nomargin" ng-if="newProperties.success.length > 0 || newProperties.errors.length > 0">
+                <div class="icon">
+                    <i class="fa fa-times-circle"></i>
+                </div>
+                <div class="text">{{item.error.code | errorImport}}</div>
+            </div>
+
+            <div class="subtitle">
+                <span class="text">Dados do Cliente:</span>
+            </div>
+            <div class="content">
+                <div class="item col-xs-12 col-sm-6 col-md-3">
+                    <div class="label">nome</div>
+                    <div class="value value-center">
+                        {{item.client.name}}
+                    </div>
+                </div>
+
+                <div class="item col-xs-12 col-sm-6">
+                    <div class="label">email</div>
+                    <div class="value value-center">
+                        {{item.client.email}}
+                    </div>
+                </div>
+
+                <div class="item col-xs-12 col-sm-6">
+                    <div class="label">Celular</div>
+                    <div class="value value-center">
+                        {{item.client.phones.cell}}
+                    </div>
+                </div>
+
+                <div class="item col-xs-12 col-sm-6">
+                    <div class="label">Telefone Residencial</div>
+                    <div class="value value-center">
+                        {{item.client.phones.cell}}
+                    </div>
+                </div>
+
+                <div class="item col-xs-12 col-sm-6">
+                    <div class="label label-max">Telefone Comercial</div>
+                    <div class="value">
+                        {{item.client.phones.cell}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="subtitle">
+                <span class="text">Dados do Imóvel:</span>
+            </div>
+            <div class="content">
+                <div class="item col-xs-12 col-sm-6 col-md-3">
+                    <div class="label">tipo</div>
+                    <div class="value value-center">
+                        {{item.property.type | propertyType}}
+                    </div>
+                </div>
+
+                <div class="item col-xs-12 col-sm-6 col-md-3">
+                    <div class="label">valor</div>
+                    <div class="value value-center">
+                       {{item.property.value | currency}}
+                    </div>
+                </div>
+
+                <div class="item col-xs-12 col-sm-6 col-md-3">
+                    <div class="label">cidade</div>
+                    <div class="value value-center">
+                        {{item.property.address.city}}
+                    </div>
+                </div>
+
+                <div class="item col-xs-12 col-sm-6 col-md-3">
+                    <div class="label">bairro</div>
+                    <div class="value value-center">
+                        {{item.property.address.neighborhood}}
+                    </div>
+                </div>
+
+                <div class="item col-xs-12">
+                    <div class="label label-max">Localização</div>
+                    <div class="value">
+                        {{item.property.address | address}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <nav class="pagination">
+        <div class="content-center">
+            <div class="item">
+                <a ui-sref="dashboard.properties" class="btn btn-link btn-link-soft">
+                    <span class="icon icon-close"></span>
+                    <span class="text">Finalizar</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+</section>

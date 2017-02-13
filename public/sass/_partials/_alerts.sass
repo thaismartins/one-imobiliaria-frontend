@@ -17,7 +17,12 @@
     weight: 700
 
   @media #{$medium-max}
-    max-width: 100%
+    &:not(.alert-nomargin)
+      max-width: calc(100% - 40px)
+      margin: 20px
+
+    &.alert-nomargin
+      max-width: 100%
 
   .fa
     width: 28px

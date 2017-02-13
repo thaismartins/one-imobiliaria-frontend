@@ -165,6 +165,18 @@ angular.module('oneImobiliaria')
         templateUrl: 'app/views/loading.html'
     requiredLogin: true
 
+  .state 'dashboard.properties.confirm',
+    url: '/confirm'
+    views:
+      'main@':
+        templateUrl: 'app/views/properties/confirm.html'
+        controller: 'PropertiesCtrl'
+      'error@dashboard.properties.edit':
+        templateUrl: 'app/views/error.html'
+      'loading@dashboard.properties.edit':
+        templateUrl: 'app/views/loading.html'
+    requiredLogin: true
+
   .state 'dashboard.account',
     url: '/account'
     views:
