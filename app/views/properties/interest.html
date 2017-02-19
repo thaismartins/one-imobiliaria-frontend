@@ -103,28 +103,6 @@
         </div>
     </div>
 
-    <div class="item item-left col-xs-12 col-sm-4">
-        <div class="label label-small">Estado*</div>
-        <div class="value value-center">
-            <select ng-model="property.interest.address.state" ng-disabled="!edit"
-                    ng-change="showCities(property.interest.address.state)">
-                <option value="{{state}}" ng-repeat="state in states">
-                    {{state}}
-                </option>
-            </select>
-        </div>
-    </div>
-    <div class="item item-left col-xs-12 col-sm-8">
-        <div class="label label-small">Cidade*</div>
-        <div class="value value-center">
-            <select ng-model="property.interest.address.city" ng-disabled="!edit">
-                <option value="{{city.name}}" ng-repeat="city in cities">
-                    {{city.name}}
-                </option>
-            </select>
-        </div>
-    </div>
-
     <div class="item item-left col-xs-12 col-sm-7">
         <div class="label label-small">Bairro*</div>
         <div class="value value-center">
@@ -136,6 +114,29 @@
         <div class="label label-xsmall">CEP*</div>
         <div class="value value-center">
             <input type="text" ng-model="property.interest.address.cep" ui-br-cep-mask ng-disabled="!edit">
+        </div>
+    </div>
+
+    <div class="item item-left col-xs-12 col-sm-4">
+        <div class="label label-small">Estado*</div>
+        <div class="value value-center">
+            <select ng-model="property.interest.address.state" ng-disabled="!edit"
+                    ng-change="showCities(property.interest.address.state)">
+                <option value="{{state}}" ng-repeat="state in states">
+                    {{state}}
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="item item-left col-xs-12 col-sm-8">
+        <div class="label label-small">Cidade*</div>
+        <div class="value value-center">
+            <select ng-model="property.interest.address.city" ng-disabled="!edit">
+                <option value="{{city.name}}" ng-repeat="city in cities">
+                    {{city.name}}
+                </option>
+            </select>
         </div>
     </div>
 

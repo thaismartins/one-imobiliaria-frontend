@@ -1,4 +1,5 @@
 <section class="page">
+
     <div ui-view="submenu"></div>
 
     <div ui-view="error"></div>
@@ -27,12 +28,12 @@
                 <span class="text">Imóvel {{property.code}}</span>
                 <nav class="options">
                     <ul class="items">
-                        <li class="item">
+                        <li class="item" ng-if="item.error.code == 1">
                             <button ng-click="doTryAgain($index)" class="btn btn-link btn-link-soft">
                                 Salvar
                             </button>
                         </li>
-                        <li ng-if="item.error.code == 1">
+                        <li class="item">
                             <button class="btn btn-link btn-link-soft" ng-click="doRemoveCsv($index)">
                                 Ignorar
                             </button>
