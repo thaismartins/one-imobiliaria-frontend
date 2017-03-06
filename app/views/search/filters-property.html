@@ -1,5 +1,5 @@
 <div class="subtitle">
-    <span class="text">Interesse em:</span>
+    <span class="text">Dados do Imóvel:</span>
 </div>
 
 <div class="division col-xs-12 col-sm-6">
@@ -144,7 +144,23 @@
         <div class="value value-center">
             <input type="checkbox" ng-model="query.interest.hasSubway">
             <input type="text" ng-model="query.interest.subwayStation" placeholder="Qual estação?"
-                  >
+                  ng-disabled="!query.interest.hasSubway">
+        </div>
+    </div>
+
+    <div class="item item-left col-xs-12">
+        <div class="label">Raio</div>
+        <div class="value value-center value-slider" ng-class="{'disabled': !edit}">
+            <div class="slider-left">
+                <span>&nbsp;</span>
+            </div>
+            <div class="slider-center">
+                <div ui-slider="{range: 'min'}" min="0" max="500" step="10"
+                     ng-model="query.interest.radius"></div>
+            </div>
+            <div class="slider-right">
+                <span>{{query.interest.radius}}km</span>
+            </div>
         </div>
     </div>
 </div>
@@ -231,40 +247,16 @@
             </div>
 
             <div class="checkbox">
-                <input type="checkbox" ng-model="query.interest.payments[2]" ng-true-value="'others'"
-                      >
+                <input type="checkbox" ng-model="query.interest.payments[2]" ng-true-value="'others'">
                 <span class="text">Outros</span>
             </div>
         </div>
     </div>
 
-    <div class="item item-left col-xs-6"  style="min-height: 110px">
-        <div class="label label-large">% do Valor Aceito para Permuta</div>
-        <div class="value value-center">
-            <input type="text" ng-model="query.interest.exchange" ui-percentage-mask="0">
-        </div>
-    </div>
-
-    <div class="item col-xs-6">
+    <div class="item col-xs-12">
         <div class="label label-large">Imóvel Quitado?</div>
         <div class="value value-center">
             <input type="checkbox" ng-model="query.interest.settled">
-        </div>
-    </div>
-
-    <div class="item col-xs-6">
-        <div class="label label-large">Qual o saldo?</div>
-        <div class="value value-center">
-            <input type="text" ng-model="query.interest.difference" ui-percentage-mask="0"
-                   ng-disabled="!query.interest.settled">
-        </div>
-    </div>
-
-    <div class="item col-xs-12">
-        <div class="label label-large">Carro</div>
-        <div class="value value-center">
-            <input type="checkbox" ng-model="query.interest.car">
-            <input type="text" ng-model="query.carValue" ng-disabled="!query.interest.car" ui-money-mask>
         </div>
     </div>
 </div>

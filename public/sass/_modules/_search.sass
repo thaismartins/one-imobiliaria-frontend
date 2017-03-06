@@ -1,0 +1,72 @@
+.search-item
+  position: relative
+  width: 100%
+
+  .left,
+  .right
+    @include border-radius(5px)
+    width: 36%
+    padding: 15px
+    z-index: 2
+    background:
+      color: $color-soft
+
+    .title
+      max-width: 200px
+      font:
+        size: 1em
+
+    .item
+      .value
+        min-height: 35px
+        border: 1px solid $color-gray
+
+  .left
+    float: left
+    position: relative
+
+    &::after
+      position: absolute
+      top: 0
+      right: -58px
+      content: ''
+      display: block
+      width: 60px
+      height: 200px
+      border:
+        top: 110px solid transparent
+        bottom: 114px solid transparent
+        left: 30px solid $color-soft
+
+  .right
+    float: right
+    position: relative
+
+    &::after
+      position: absolute
+      top: 0
+      left: -58px
+      content: ''
+      display: block
+      width: 60px
+      height: 200px
+      border:
+        top: 110px solid transparent
+        bottom: 114px solid transparent
+        right: 30px solid $color-soft
+
+  .center
+    position: absolute
+    padding: 20px 20px
+    width: 28%
+    height: 200px
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    margin: auto
+    background:
+      color: lighten($color-gray-dark, 15%)
+
+    .btn
+      margin: 20px auto

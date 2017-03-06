@@ -2,64 +2,68 @@
 
     <div ui-view="submenu"></div>
 
-    <article class="article article-noborder article-gray-dark">
-        <div class="content-center">
-            <div class="content">
-                <div ui-view="filters-interest"></div>
+    <div class="filters" ng-class="{'active': showFilters}">
+        <article class="article article-noborder article-gray-dark">
+            <div class="content-center">
+                <div class="content">
+                    <div ui-view="filters-interest"></div>
+                </div>
+                <div class="content" style="margin-top: 20px;">
+                    <div ui-view="filters-property"></div>
+                </div>
             </div>
-        </div>
-    </article>
+        </article>
+
+        <div ui-view="submenu-filter"></div>
+    </div>
 
     <div ui-view="error"></div>
     <div ui-view="success"></div>
     <div ui-view="loading"></div>
 
-    <article class="article article-noborder" ng-if="clients.length == 0">
-        <p class="not-found">Nenhum item encontrado</p>
+    <article class="article article-noborder" ng-if="properties.length == 0">
+        <p class="not-found">Não foram encontrados imóveis compatíveis.</p>
     </article>
 
-    <article class="article" ng-repeat="client in clients">
+    <article class="article">
         <div class="content-center">
-            <div class="title title-options">
-                <span class="text">{{client.name}}</span>
-                <nav class="options">
-                    <ul class="items">
-                        <li>
-                            <button class="btn btn-link btn-link-soft" ng-click="doDelete($index)">
-                                Excluir
-                            </button>
-                        </li>
-                        <li class="item">
-                            <a ui-sref="dashboard.clients.edit({id: client._id})" class="btn btn-link btn-link-soft">
-                                Ver Detalhes
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="content">
-                <div class="item item-left col-xs-12 col-sm-6">
-                    <div class="label label-max">Email</div>
-                    <div class="value value-center">
-                        {{client.email}}
+            <div class="search-item content">
+                <div class="left">
+                    <h2 class="title">Imóvel 1</h2>
+                    <div class="item item-top col-xs-12">
+                        <div class="label label-max">Localização</div>
+                        <div class="value value-center">
+                            {{client.phones.cell | phoneBr}}
+                        </div>
+                    </div>
+                    <div class="item col-xs-12">
+                        <div class="label label-max">Telefone</div>
+                        <div class="value value-center">
+                            {{client.phones.cell | phoneBr}}
+                        </div>
                     </div>
                 </div>
-                <div class="item col-xs-12 col-sm-6">
-                    <div class="label label-max">Celular</div>
-                    <div class="value value-center">
-                        {{client.phones.cell | phoneBr}}
-                    </div>
+                <div class="center">
+                    <button class="btn btn-soft btn-rounded">
+                        Notificações
+                    </button>
+                    <button class="btn btn-dark btn-rounded">
+                        Ver Mais Detalhes
+                    </button>
                 </div>
-                <div class="item item-left col-xs-12 col-sm-6">
-                    <div class="label label-max">Telefone Residencial</div>
-                    <div class="value value-center">
-                        {{client.phones.home | phoneBr}}
+                <div class="right">
+                    <h2 class="title">Imóvel 1</h2>
+                    <div class="item item-top col-xs-12">
+                        <div class="label label-max">Localização</div>
+                        <div class="value value-center">
+                            {{client.phones.cell | phoneBr}}
+                        </div>
                     </div>
-                </div>
-                <div class="item col-xs-12 col-sm-6">
-                    <div class="label label-max">Telefone Comercial</div>
-                    <div class="value value-center">
-                        {{client.phones.commercial | phoneBr}}
+                    <div class="item col-xs-12">
+                        <div class="label label-max">Telefone</div>
+                        <div class="value value-center">
+                            {{client.phones.cell | phoneBr}}
+                        </div>
                     </div>
                 </div>
             </div>

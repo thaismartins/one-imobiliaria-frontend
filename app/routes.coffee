@@ -192,11 +192,16 @@ angular.module('oneImobiliaria')
     views:
       'main@':
         templateUrl: 'app/views/search/index.html'
-        controller: 'AccountCtrl'
+        controller: 'SearchCtrl'
       'submenu@dashboard.search':
         templateUrl: 'app/views/search/submenu.html'
+      'submenu-filter@dashboard.search':
+        templateUrl: 'app/views/search/submenu-filter.html'
       'filters-interest@dashboard.search':
         templateUrl: 'app/views/search/filters-interest.html'
+        controller: 'AccountCtrl'
+      'filters-property@dashboard.search':
+        templateUrl: 'app/views/search/filters-property.html'
         controller: 'AccountCtrl'
       'error@dashboard.search':
         templateUrl: 'app/views/error.html'

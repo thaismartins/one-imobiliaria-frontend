@@ -26,45 +26,67 @@
       margin:
         left: 10px
 
+      @media #{$small-max}
+        font:
+          size: 1em
+        margin:
+          left: 0
+
   .options
     width: 50%
     float: right
-    opacity: .4
 
     @media #{$small-max}
       width: 130px
 
     .items
       .item
+        opacity: .4
+
         input[type=file]
           display: none
 
-        .btn
-          position: relative
-          float: right
-          margin: 25px 0
-          padding: 10px 10px 10px 40px
-          font:
-            weight: 700
+        &.active
+          opacity: 1
 
-          @media #{$small-max}
-            padding: 0
-            margin: 30px 10px
-            min-width: 32px
-            height: 32px
+          .btn
+            color: rgba(255,255,255, .6)
+            background:
+              color: $color-gray-dark
 
+          .icon
+            opacity: 1
+
+        &:not(.active)
           &:hover
             .icon
               background-image: url('../images/icons-gold.png')
               opacity: .8
 
+        .btn
+          position: relative
+          float: right
+          margin:
+            top: 15px
+          padding: 20px 20px 35px 60px
+          font:
+            weight: 700
+
+          @media #{$small-max}
+            padding: 0
+            min-width: 75px
+            height: 75px
+
           .icon
             @include transition(all .4s)
             position: absolute
-            top: 0
-            bottom: 0
-            left: 0
+            top: 15px
+            left: 10px
             margin: auto
+
+            @media #{$small-max}
+              left: 0
+              right: 0
 
           .text
             @media #{$small-max}
