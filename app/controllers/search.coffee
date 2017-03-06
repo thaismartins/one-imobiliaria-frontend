@@ -4,20 +4,11 @@ angular.module('oneImobiliaria')
 .controller 'SearchCtrl', ['$scope', '$rootScope', '$loading', '$logger', 'storage', 'PropertyService', ($scope, $rootScope, $loading, $logger, storage, PropertyService) ->
 
   $scope.properties = []
-  $scope.showFilters = true
+  $scope.showFilters = false
 
   $scope.query =
     interest: {}
     property: {}
-
-#  $loading.show()
-#  UserService.getMyAccount()
-#  .then (response) ->
-#    $scope.user = response.data
-#    $loading.hide()
-#  .catch (response) ->
-#    $logger.error('Erro ao buscar sua conta. Por favor, atualize a página.')
-#    $loading.hide()
 
   resetValues = () ->
     $scope.query.interest.allMeters =  [10, 500]
@@ -36,12 +27,41 @@ angular.module('oneImobiliaria')
     $scope.query.property.allCondominiums = [1000, 500000]
     $scope.query.property.allLocations = [1000, 50000]
 
-  convertData = () ->
-#    $scope.property.value = $scope.property.value.toFixed(2)
-#    $scope.property.condominium = $scope.property.condominium.toFixed(2)
-#    $scope.property.location = $scope.property.location.toFixed(2)
-#    $scope.property.iptu = $scope.property.iptu.toFixed(2)
+  revertData = () ->
+    resetValues()
 
+    if $scope.property.interest.types?
+      $scope.property.interest.types = []
+
+    if $scope.property.interest.meters?
+      $scope.property.interest.allMeters[0] = $scope.property.interest.meters.min
+      $scope.property.interest.allMeters[1] = $scope.property.interest.meters.max
+
+    if $scope.property.interest.condominium?
+      $scope.property.interest.allCondominiums[0] = $scope.property.interest.condominium.min
+      $scope.property.interest.allCondominiums[1] = $scope.property.interest.condominium.max
+
+    if $scope.property.interest.vacancy?
+      $scope.property.interest.allVacancies[0] = $scope.property.interest.vacancy.min
+      $scope.property.interest.allVacancies[1] = $scope.property.interest.vacancy.max
+
+    if $scope.property.interest.floor?
+      $scope.property.interest.allFloors[0] = $scope.property.interest.floor.min
+      $scope.property.interest.allFloors[1] = $scope.property.interest.floor.max
+
+    if $scope.property.interest.value?
+      $scope.property.interest.allValues[0] = $scope.property.interest.value.min
+      $scope.property.interest.allValues[1] = $scope.property.interest.value.max
+
+    if $scope.property.interest.iptu?
+      $scope.property.interest.allIptus[0] = $scope.property.interest.iptu.min
+      $scope.property.interest.allIptus[1] = $scope.property.interest.iptu.max
+
+    if $scope.property.interest.location?
+      $scope.property.interest.allLocations[0] = $scope.property.interest.location.min
+      $scope.property.interest.allLocations[1] = $scope.property.interest.location.max
+
+  convertData = () ->
     $scope.query.property.meters =
       min: $scope.query.property.allMeters[0]
       max: $scope.query.property.allMeters[1]

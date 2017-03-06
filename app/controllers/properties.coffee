@@ -179,9 +179,6 @@ angular.module('oneImobiliaria')
       $logger.error('Erro ao importar dados. Por favor, tente novamente.')
       $loading.hide()
 
-
-
-
   convertData = () ->
     $scope.property.interest.allMeters =  [10, 500]
     $scope.property.interest.allVacancies = [0, 10]

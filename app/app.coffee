@@ -53,5 +53,5 @@ angular.module 'oneImobiliaria', [
     $state.go('dashboard.home') if $rootScope.page == 'users' && $rootScope.group != 'admin'
 ]
 .constant 'RESOURCES',
-#  'API_URL': 'http://desenv.doisoitosete.com:3000/api'
-  'API_URL': 'http://localhost:3000/api'
+  'API_URL': 'http://desenv.doisoitosete.com:3000/api'
+#  'API_URL': 'http://localhost:3000/api'
