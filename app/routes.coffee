@@ -187,6 +187,23 @@ angular.module('oneImobiliaria')
         templateUrl: 'app/views/loading.html'
     requiredLogin: true
 
+  .state 'dashboard.search',
+    url: '/search'
+    views:
+      'main@':
+        templateUrl: 'app/views/search/index.html'
+        controller: 'AccountCtrl'
+      'submenu@dashboard.search':
+        templateUrl: 'app/views/search/submenu.html'
+      'filters-interest@dashboard.search':
+        templateUrl: 'app/views/search/filters-interest.html'
+        controller: 'AccountCtrl'
+      'error@dashboard.search':
+        templateUrl: 'app/views/error.html'
+      'loading@dashboard.search':
+        templateUrl: 'app/views/loading.html'
+    requiredLogin: true
+
   $urlRouterProvider.otherwise('/login')
 
   # Access token injector

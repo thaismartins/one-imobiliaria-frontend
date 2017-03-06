@@ -1,0 +1,264 @@
+<div class="subtitle">
+    <span class="text">Interesse em:</span>
+</div>
+
+<div class="division col-xs-12 col-sm-6">
+
+    <div class="item item-left col-xs-12">
+        <div class="label label-large label-left">Tipo</div>
+        <div class="value value-center">
+
+            <div class="col-xs-12 col-sm-6">
+                <div class="checkbox">
+                    <input type="checkbox" ng-model="property.interest.types[0]" ng-true-value="'apartament'">
+                    <span class="text">Apartamento</span>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-6">
+                <div class="checkbox">
+                    <input type="checkbox" ng-model="property.interest.types[1]" ng-true-value="'house'"
+                          >
+                    <span class="text">Casa</span>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-6">
+                <div class="checkbox">
+                    <input type="checkbox" ng-model="property.interest.types[2]" ng-true-value="'land'"
+                          >
+                    <span class="text">Terreno</span>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <div class="checkbox">
+                    <input type="checkbox" ng-model="property.interest.types[3]" ng-true-value="'car'"
+                          >
+                    <span class="text">Carro</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="item item-left col-xs-12">
+        <div class="label label-xsmall">Metragem</div>
+        <div class="value value-center value-slider" ng-class="{'disabled': !edit}">
+            <div class="slider-left">
+                <span>{{property.interest.allMeters[0]}}m²</span>
+            </div>
+            <div class="slider-center">
+                <div ui-slider="{range: true}" min="10" max="500"
+                     ng-model="property.interest.allMeters"></div>
+            </div>
+            <div class="slider-right">
+                <span>{{property.interest.allMeters[1]}}m²</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="item item-left col-xs-12">
+        <div class="label label-xsmall">Vagas</div>
+        <div class="value value-center value-slider" ng-class="{'disabled': !edit}">
+            <div class="slider-left">
+                <span>{{property.interest.allVacancies[0]}}</span>
+            </div>
+            <div class="slider-center">
+                <div ui-slider="{range: true}" min="0" max="10"
+                     ng-model="property.interest.allVacancies"></div>
+            </div>
+            <div class="slider-right">
+                <span>{{property.interest.allVacancies[1]}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="item item-left col-xs-12">
+        <div class="label label-xsmall">Andar</div>
+        <div class="value value-center value-slider">
+            <div class="slider-left">
+                <span>{{property.interest.allFloors[0]}}º</span>
+            </div>
+            <div class="slider-center">
+                <div ui-slider="{range: true}" min="1" max="30"
+                     ng-model="property.interest.allFloors"></div>
+            </div>
+            <div class="slider-right">
+                <span>{{property.interest.allFloors[1]}}º</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="item item-left col-xs-12 col-sm-8">
+        <div class="label label-xsmall">Endereço*</div>
+        <div class="value value-center">
+            <input type="text" ng-model="property.interest.address.street">
+        </div>
+    </div>
+
+    <div class="item item-left col-xs-12 col-sm-4">
+        <div class="label label-small">Nº*</div>
+        <div class="value value-center">
+            <input type="text" ng-model="property.interest.address.number">
+        </div>
+    </div>
+
+    <div class="item item-left col-xs-12 col-sm-7">
+        <div class="label label-small">Bairro*</div>
+        <div class="value value-center">
+            <input type="text" ng-model="property.interest.address.neighborhood">
+        </div>
+    </div>
+
+    <div class="item item-left col-xs-12 col-sm-5">
+        <div class="label label-xsmall">CEP*</div>
+        <div class="value value-center">
+            <input type="text" ng-model="property.interest.address.cep" ui-br-cep-mask>
+        </div>
+    </div>
+
+    <div class="item item-left col-xs-12 col-sm-4">
+        <div class="label label-small">Estado*</div>
+        <div class="value value-center">
+            <select ng-model="property.interest.address.state"
+                    ng-change="showCities(property.interest.address.state)">
+                <option value="{{state}}" ng-repeat="state in states">
+                    {{state}}
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="item item-left col-xs-12 col-sm-8">
+        <div class="label label-small">Cidade*</div>
+        <div class="value value-center">
+            <select ng-model="property.interest.address.city">
+                <option value="{{city.name}}" ng-repeat="city in cities">
+                    {{city.name}}
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="item item-left col-xs-12">
+        <div class="label">Próximo ao metro?</div>
+        <div class="value value-center">
+            <input type="checkbox" ng-model="property.interest.hasSubway">
+            <input type="text" ng-model="property.interest.subwayStation" placeholder="Qual estação?"
+                  >
+        </div>
+    </div>
+
+    <div class="item item-left col-xs-12">
+        <div class="label">Raio</div>
+        <div class="value value-center value-slider" ng-class="{'disabled': !edit}">
+            <div class="slider-left">
+                <span>&nbsp;</span>
+            </div>
+            <div class="slider-center">
+                <div ui-slider="{range: 'min'}" min="0" max="500" step="10"
+                     ng-model="property.interest.radius"></div>
+            </div>
+            <div class="slider-right">
+                <span>{{property.interest.radius}}km</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="division col-xs-12 col-sm-6">
+
+    <div class="item item-top col-xs-12">
+        <div class="label">Valor do Investimento</div>
+        <div class="value value-center value-slider" ng-class="{'disabled': !edit}">
+            <div class="slider-left">
+                <span>R${{property.interest.allValues[0] | decimals}}</span>
+            </div>
+            <div class="slider-center">
+                <div ui-slider="{range: true}" min="1000" max="5000000" step="50"
+                     ng-model="property.interest.allValues"></div>
+            </div>
+            <div class="slider-right">
+                <span>R${{property.interest.allValues[1] | decimals}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="item item-top col-xs-12">
+        <div class="label">Valor do Condomínio</div>
+        <div class="value value-center value-slider" ng-class="{'disabled': !edit}">
+            <div class="slider-left">
+                <span>R${{property.interest.allCondominiums[0] | decimals}}</span>
+            </div>
+            <div class="slider-center">
+                <div ui-slider="{range: true}" min="1000" max="500000" step="50"
+                     ng-model="property.interest.allCondominiums"></div>
+            </div>
+            <div class="slider-right">
+                <span>R${{property.interest.allCondominiums[1] | decimals}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="item item-top col-xs-12">
+        <div class="label">Valor do IPTU</div>
+        <div class="value value-center value-slider" ng-class="{'disabled': !edit}">
+            <div class="slider-left">
+                <span>R${{property.interest.allIptus[0] | decimals}}</span>
+            </div>
+            <div class="slider-center">
+                <div ui-slider="{range: true}" min="1000" max="15000" step="50"
+                     ng-model="property.interest.allIptus"></div>
+            </div>
+            <div class="slider-right">
+                <span>R${{property.interest.allIptus[1] | decimals}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="item item-top col-xs-12">
+        <div class="label">Valor da Locação</div>
+        <div class="value value-center value-slider" ng-class="{'disabled': !edit}">
+            <div class="slider-left">
+                <span>R${{property.interest.allLocations[0] | decimals}}</span>
+            </div>
+            <div class="slider-center">
+                <div ui-slider="{range: true}" min="1000" max="50000" step="50"
+                     ng-model="property.interest.allLocations"></div>
+            </div>
+            <div class="slider-right">
+                <span>R${{property.interest.allLocations[1] | decimals}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="item col-xs-12">
+        <div class="label label-large label-left">Forma de Pagamento da Diferença</div>
+        <div class="value value-center">
+            <div class="checkbox">
+                <input type="checkbox" ng-model="property.interest.payments[0]" ng-true-value="'financing'"
+                      >
+                <span class="text">Financiamento</span>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" ng-model="property.interest.payments[1]" ng-true-value="'money'"
+                      >
+                <span class="text">Dinheiro</span>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" ng-model="property.interest.payments[2]" ng-true-value="'others'"
+                      >
+                <span class="text">Outros</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="item col-xs-12">
+        <div class="label label-large">Imóvel Quitado?</div>
+        <div class="value value-center">
+            <input type="checkbox" ng-model="property.interest.settled">
+        </div>
+    </div>
+
+</div>
