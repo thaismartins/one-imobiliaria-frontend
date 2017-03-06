@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('oneImobiliaria')
-.service 'PropertyService', ['$http', '$state', 'RESOURCES', ($http, $state, RESOURCES) ->
+.service 'PropertyService', ['$http', '$state', 'RESOURCES', '$httpParamSerializer', ($http, $state, RESOURCES, $httpParamSerializer) ->
 
   apiUrl = RESOURCES.API_URL + '/properties'
 
@@ -18,6 +18,9 @@ angular.module('oneImobiliaria')
     return $http.get apiUrl + '/' + id
   delete: (id) ->
     return $http.delete apiUrl + '/' + id
+  search: (query) ->
+    console.log($httpParamSerializer(query));
+    return $http.get apiUrl + '/search?' + $httpParamSerializer(query)
   importCsv: (file) ->
 
     form = new FormData()

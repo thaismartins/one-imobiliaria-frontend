@@ -27,27 +27,27 @@
 
     <article class="article">
         <div class="content-center">
-            <div class="search-item content">
+            <div class="search-item content" ng-repeat="item in properties">
                 <div class="left">
                     <h2 class="title">Imóvel 1</h2>
                     <div class="item item-top col-xs-12">
                         <div class="label label-max">Localização</div>
                         <div class="value value-center">
-                            {{client.phones.cell | phoneBr}}
+                            {{item.property.address.neighborhood}} {{item.property.address.city}}/{{item.property.address.state}}
                         </div>
                     </div>
                     <div class="item col-xs-12">
                         <div class="label label-max">Telefone</div>
                         <div class="value value-center">
-                            {{client.phones.cell | phoneBr}}
+                            {{item.property.client.phones.cell | phoneBr}}
                         </div>
                     </div>
                 </div>
                 <div class="center">
-                    <button class="btn btn-soft btn-rounded">
+                    <button class="btn btn-soft btn-rounded" ng-click="showNotifications(item)">
                         Notificações
                     </button>
-                    <button class="btn btn-dark btn-rounded">
+                    <button class="btn btn-dark btn-rounded" ng-click="showDetails(item)">
                         Ver Mais Detalhes
                     </button>
                 </div>
@@ -56,13 +56,13 @@
                     <div class="item item-top col-xs-12">
                         <div class="label label-max">Localização</div>
                         <div class="value value-center">
-                            {{client.phones.cell | phoneBr}}
+                            {{item.interest.address.neighborhood}} {{item.interest.address.city}}/{{item.property.interest.state}}
                         </div>
                     </div>
                     <div class="item col-xs-12">
                         <div class="label label-max">Telefone</div>
                         <div class="value value-center">
-                            {{client.phones.cell | phoneBr}}
+                            {{item.interest.client.phones.cell | phoneBr}}
                         </div>
                     </div>
                 </div>
