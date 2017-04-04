@@ -135,6 +135,13 @@
 
 <div class="division col-xs-12 col-sm-4">
     <div class="item item-left col-xs-12">
+        <div class="label label-large label-left">Corretor</div>
+        <div class="value value-center">
+            <input type="text" ng-model="property.broker" required ng-disabled="!edit">
+        </div>
+    </div>
+
+    <div class="item item-left col-xs-12">
         <div class="label label-large label-left">Valor do Imóvel*</div>
         <div class="value value-center">
             <input type="text" ng-model="property.value" ui-money-mask required ng-disabled="!edit">
