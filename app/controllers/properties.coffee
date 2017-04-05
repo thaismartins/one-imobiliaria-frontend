@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('oneImobiliaria')
-.controller 'PropertiesCtrl', ['$scope', '$rootScope', '$state', '$stateParams', '$filter', '$loading', '$logger', 'storage', 'PropertyService', 'LocationService', 'ClientService', ($scope, $rootScope, $state, $stateParams, $filter, $loading, $logger, storage, PropertyService, LocationService, ClientService) ->
+.controller 'PropertiesCtrl', ['$scope', '$rootScope', '$q', '$state', '$stateParams', '$filter', '$loading', '$logger', 'storage', 'PropertyService', 'LocationService', 'ClientService', ($scope, $rootScope, $q, $state, $stateParams, $filter, $loading, $logger, storage, PropertyService, LocationService, ClientService) ->
 
 #  $scope.property =
 #    payments: []
@@ -122,32 +122,27 @@ angular.module('oneImobiliaria')
     $scope.edit = true
 
   $scope.doTryAgain = (index) ->
-    property = $scope.newProperties.errors[index]
-    console.log(property);
+
+    item = $scope.newProperties.errors[index]
+    property = item.property
+    property.client = item.client._id
+    delete property._id
+
+    $scope.property = property
+
+    saveOrUpdate(false)
+    .then () ->
+      $scope.newProperties.errors.splice(index, 1)
 
   $scope.saveOrUpdate = () ->
     if !$rootScope.forms.property.$valid
       $logger.error('Preencha todos os dados obrigatórios.')
       return
 
-    $loading.show()
-
-    revertData()
-    PropertyService.saveOrUpdate($scope.property)
-    .then (response) ->
-      $loading.hide()
-      $state.go('dashboard.properties')
-    .catch (response) ->
-      if response.data.code == 8
-        $logger.error('Verifique o endereço digitado. Não foi possível validar esta informação.')
-      else
-        $logger.error('Erro ao criar/editar imóvel. Por favor, tente novamente.')
-      $loading.hide()
-
+    saveOrUpdate(true)
 
   $scope.doRemoveCsv = (index) ->
     $scope.newProperties.errors.splice(index, 1)
-
 
   $scope.doDelete = (index) ->
     property = $scope.properties[index]
@@ -182,6 +177,27 @@ angular.module('oneImobiliaria')
       $logger.error('Erro ao importar dados. Por favor, tente novamente.')
       $loading.hide()
 
+  saveOrUpdate = (redirect) ->
+    if not $scope.property?
+      return false
+
+    promise = $q.defer()
+    $loading.show()
+
+    revertData()
+    PropertyService.saveOrUpdate($scope.property)
+      .then (response) ->
+        $loading.hide()
+        promise.resolve()
+        $state.go('dashboard.properties') if redirect
+      .catch (response) ->
+        promise.reject()
+        if response.data.code == 8
+          $logger.error('Verifique o endereço digitado. Não foi possível validar esta informação.')
+        else
+          $logger.error('Erro ao criar/editar imóvel. Por favor, tente novamente.')
+        $loading.hide()
+
   convertData = () ->
     $scope.property.interest.allMeters =  [10, 500]
     $scope.property.interest.allVacancies = [0, 10]
@@ -191,34 +207,34 @@ angular.module('oneImobiliaria')
     $scope.property.interest.allCondominiums = [1000, 500000]
     $scope.property.interest.allLocations = [1000, 50000]
 
-    if $scope.property.interest.types?
+    if $scope.property.interest?.types?
       $scope.property.interest.types = []
 
-    if $scope.property.interest.meters?
+    if $scope.property.interest?.meters?
       $scope.property.interest.allMeters[0] = $scope.property.interest.meters.min
       $scope.property.interest.allMeters[1] = $scope.property.interest.meters.max
 
-    if $scope.property.interest.condominium?
+    if $scope.property.interest?.condominium?
       $scope.property.interest.allCondominiums[0] = $scope.property.interest.condominium.min
       $scope.property.interest.allCondominiums[1] = $scope.property.interest.condominium.max
 
-    if $scope.property.interest.vacancy?
+    if $scope.property.interest?.vacancy?
       $scope.property.interest.allVacancies[0] = $scope.property.interest.vacancy.min
       $scope.property.interest.allVacancies[1] = $scope.property.interest.vacancy.max
 
-    if $scope.property.interest.floor?
+    if $scope.property.interest?.floor?
       $scope.property.interest.allFloors[0] = $scope.property.interest.floor.min
       $scope.property.interest.allFloors[1] = $scope.property.interest.floor.max
 
-    if $scope.property.interest.value?
+    if $scope.property.interest?.value?
       $scope.property.interest.allValues[0] = $scope.property.interest.value.min
       $scope.property.interest.allValues[1] = $scope.property.interest.value.max
 
-    if $scope.property.interest.iptu?
+    if $scope.property.interest?.iptu?
       $scope.property.interest.allIptus[0] = $scope.property.interest.iptu.min
       $scope.property.interest.allIptus[1] = $scope.property.interest.iptu.max
 
-    if $scope.property.interest.location?
+    if $scope.property.interest?.location?
       $scope.property.interest.allLocations[0] = $scope.property.interest.location.min
       $scope.property.interest.allLocations[1] = $scope.property.interest.location.max
 
@@ -229,38 +245,45 @@ angular.module('oneImobiliaria')
     $scope.property.location = $scope.property.location.toFixed(2)
     $scope.property.iptu = $scope.property.iptu.toFixed(2)
 
-    $scope.property.interest.meters =
-      min: $scope.property.interest.allMeters[0]
-      max: $scope.property.interest.allMeters[1]
-    delete $scope.property.interest.allMeters
+    if $scope.property.interest.allMeters?
+      $scope.property.interest.meters =
+        min: $scope.property.interest.allMeters[0]
+        max: $scope.property.interest.allMeters[1]
+      delete $scope.property.interest.allMeters
 
-    $scope.property.interest.condominium =
-      min: $scope.property.interest.allCondominiums[0]
-      max: $scope.property.interest.allCondominiums[1]
-    delete $scope.property.interest.allCondominiums
+    if $scope.property.interest.allCondominiums?
+      $scope.property.interest.condominium =
+        min: $scope.property.interest.allCondominiums[0]
+        max: $scope.property.interest.allCondominiums[1]
+      delete $scope.property.interest.allCondominiums
 
-    $scope.property.interest.vacancy =
-      min: $scope.property.interest.allVacancies[0]
-      max: $scope.property.interest.allVacancies[1]
-    delete $scope.property.interest.allVacancies
+    if $scope.property.interest.allVacancies?
+      $scope.property.interest.vacancy =
+        min: $scope.property.interest.allVacancies[0]
+        max: $scope.property.interest.allVacancies[1]
+      delete $scope.property.interest.allVacancies
 
-    $scope.property.interest.floor =
-      min: $scope.property.interest.allFloors[0]
-      max: $scope.property.interest.allFloors[1]
-    delete $scope.property.interest.allFloors
+    if $scope.property.interest.allFloors?
+      $scope.property.interest.floor =
+        min: $scope.property.interest.allFloors[0]
+        max: $scope.property.interest.allFloors[1]
+      delete $scope.property.interest.allFloors
 
-    $scope.property.interest.value =
-      min: $scope.property.interest.allValues[0]
-      max: $scope.property.interest.allValues[1]
-    delete $scope.property.interest.allValues
+    if $scope.property.interest.allValues?
+      $scope.property.interest.value =
+        min: $scope.property.interest.allValues[0]
+        max: $scope.property.interest.allValues[1]
+      delete $scope.property.interest.allValues
 
-    $scope.property.interest.iptu =
-      min: $scope.property.interest.allIptus[0]
-      max: $scope.property.interest.allIptus[1]
-    delete $scope.property.interest.allIptus
+    if $scope.property.interest.allIptus?
+      $scope.property.interest.iptu =
+        min: $scope.property.interest.allIptus[0]
+        max: $scope.property.interest.allIptus[1]
+      delete $scope.property.interest.allIptus
 
-    $scope.property.interest.location =
-      min: $scope.property.interest.allLocations[0]
-      max: $scope.property.interest.allLocations[1]
-    delete $scope.property.interest.allLocations
+    if $scope.property.interest.allLocations?
+      $scope.property.interest.location =
+        min: $scope.property.interest.allLocations[0]
+        max: $scope.property.interest.allLocations[1]
+      delete $scope.property.interest.allLocations
 ]
