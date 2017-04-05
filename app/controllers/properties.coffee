@@ -15,47 +15,47 @@ angular.module('oneImobiliaria')
 #      allCondominiums: [1000, 500000]
 #      allLocations: [1000, 50000]
 
-  $scope.property = {
-    "code":"123",
-    "client":"585ecf5bd5af8351e3b894e3",
-    "type":"apartament",
-    "meters":100,
-    "vacancy":"1",
-    "floor":"2",
-    "address":{
-      "street":"Rua Simoes Delgado",
-      "number":"15",
-      "state":"SP",
-      "city":"São Paulo",
-      "neighborhood":"Jardim 9 de Julho",
-      "cep":"03952020"
-    },
-    "hasSubway":true,
-    "subwayStation":"Penha",
-    "value":1.00,
-    "condominium":2.00,
-    "iptu":3.00,
-    "location":4.00,
-    "payments": [
-      "financing",
-      "money",
-      "others"
-    ],
-    "exchange":0.1,
-    "difference":0.5,
-    "carValue":5,
-    "settled":true,
-    "car":true
-    interest:
-      types: []
-      allMeters:  [10, 500]
-      allVacancies: [0, 10]
-      allFloors: [1, 30]
-      allValues: [1000, 5000000]
-      allIptus: [1000, 15000]
-      allCondominiums: [1000, 500000]
-      allLocations: [1000, 50000]
-  }
+#  $scope.property = {
+#    "code":"123",
+#    "client":"585ecf5bd5af8351e3b894e3",
+#    "type":"apartament",
+#    "meters":100,
+#    "vacancy":"1",
+#    "floor":"2",
+#    "address":{
+#      "street":"Rua Simoes Delgado",
+#      "number":"15",
+#      "state":"SP",
+#      "city":"São Paulo",
+#      "neighborhood":"Jardim 9 de Julho",
+#      "cep":"03952020"
+#    },
+#    "hasSubway":true,
+#    "subwayStation":"Penha",
+#    "value":1.00,
+#    "condominium":2.00,
+#    "iptu":3.00,
+#    "location":4.00,
+#    "payments": [
+#      "financing",
+#      "money",
+#      "others"
+#    ],
+#    "exchange":0.1,
+#    "difference":0.5,
+#    "carValue":5,
+#    "settled":true,
+#    "car":true
+#    interest:
+#      types: []
+#      allMeters:  [10, 500]
+#      allVacancies: [0, 10]
+#      allFloors: [1, 30]
+#      allValues: [1000, 5000000]
+#      allIptus: [1000, 15000]
+#      allCondominiums: [1000, 500000]
+#      allLocations: [1000, 50000]
+#  }
 
   $scope.properties = []
   $scope.cities = []
@@ -118,9 +118,12 @@ angular.module('oneImobiliaria')
     .catch () ->
       $loading.hide()
 
-
   $scope.canEdit = () ->
     $scope.edit = true
+
+  $scope.doTryAgain = (index) ->
+    property = $scope.newProperties.errors[index]
+    console.log(property);
 
   $scope.saveOrUpdate = () ->
     if !$rootScope.forms.property.$valid
@@ -170,7 +173,7 @@ angular.module('oneImobiliaria')
     $loading.show()
     PropertyService.importCsv(file)
     .then (response) ->
-      $scope.file = {}
+      $scope.file = null
       $rootScope.newProperties = response.data.content
       $state.go('dashboard.properties.confirm')
       $loading.hide()
