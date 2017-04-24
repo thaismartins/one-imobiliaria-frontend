@@ -46,7 +46,7 @@
                 <div class="icon">
                     <i class="fa fa-times-circle"></i>
                 </div>
-                <div class="text">{{item.error.code | errorImport}}</div>
+                <div class="text">{{item.error.code | errorImport:item.error.fields}}</div>
             </div>
 
             <div class="subtitle">
