@@ -55,6 +55,8 @@ angular.module('oneImobiliaria')
       'main@':
         templateUrl: 'app/views/users/form.html'
         controller: 'UsersCtrl'
+      'submenu@dashboard.users.new':
+        templateUrl: 'app/views/users/form-submenu.html'
       'error@dashboard.users.new':
         templateUrl: 'app/views/error.html'
       'loading@dashboard.users.new':
@@ -67,6 +69,8 @@ angular.module('oneImobiliaria')
       'main@':
         templateUrl: 'app/views/users/form.html'
         controller: 'UsersCtrl'
+      'submenu@dashboard.users.edit':
+        templateUrl: 'app/views/users/form-submenu.html'
       'error@dashboard.users.edit':
         templateUrl: 'app/views/error.html'
       'loading@dashboard.users.edit':

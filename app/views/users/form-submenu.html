@@ -1,0 +1,31 @@
+<div class="submenu">
+    <div class="content-center">
+        <div class="infos">
+            <span class="icon"></span>
+            <span class="title">Usuários</span>
+            <span class="subtitle">Listagem</span>
+        </div>
+        <nav class="options">
+            <ul class="items">
+                <li class="item" ng-if="!edit">
+                    <button class="btn btn-link btn-link-soft" ng-click="canEdit()">
+                        <span class="icon icon-edit"></span>
+                        <span class="text">Editar</span>
+                    </button>
+                </li>
+                <li class="item" ng-if="edit">
+                    <button class="btn btn-link btn-link-soft" ng-click="saveOrUpdate()">
+                        <span class="icon icon-save"></span>
+                        <span class="text">Salvar</span>
+                    </button>
+                </li>
+                <li class="item">
+                    <a ui-sref="dashboard.users" class="btn btn-link btn-link-soft">
+                        <span class="icon icon-close"></span>
+                        <span class="text">Cancelar</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
