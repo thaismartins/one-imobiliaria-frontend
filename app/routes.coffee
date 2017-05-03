@@ -121,6 +121,8 @@ angular.module('oneImobiliaria')
         controller: 'PropertiesCtrl'
       'submenu@dashboard.properties':
         templateUrl: 'app/views/properties/submenu.html'
+      'search@dashboard.properties':
+        templateUrl: 'app/views/properties/search.html'
       'error@dashboard.properties':
         templateUrl: 'app/views/error.html'
       'success@dashboard.properties':

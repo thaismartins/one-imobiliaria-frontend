@@ -61,6 +61,7 @@ angular.module('oneImobiliaria')
   $scope.cities = []
   $scope.states = []
   $scope.clients = []
+  $scope.search = {}
   cities = []
 
   $scope.edit = true

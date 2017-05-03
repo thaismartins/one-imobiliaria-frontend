@@ -5,11 +5,13 @@
     <div ui-view="success"></div>
     <div ui-view="loading"></div>
 
-    <article class="article article-noborder" ng-if="properties.length == 0">
+    <div ui-view="search"></div>
+
+    <article class="article article-noborder" ng-if="(properties | filter:search).length == 0">
         <p class="not-found">Nenhum item encontrado</p>
     </article>
 
-    <article class="article" ng-repeat="property in properties">
+    <article class="article" ng-repeat="property in properties | filter:search">
         <div class="content-center">
             <div class="title title-options">
                 <span class="text">Imóvel {{property.code}}</span>
@@ -32,6 +34,7 @@
             <div class="subtitle">
                 <span class="text">Dados do Imóvel:</span>
             </div>
+
             <div class="content">
                 <div class="item col-xs-12 col-sm-6 col-md-3">
                     <div class="label">tipo</div>
