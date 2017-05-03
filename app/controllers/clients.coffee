@@ -5,6 +5,7 @@ angular.module('oneImobiliaria')
 
   $scope.client = {}
   $scope.clients = []
+  $scope.search = {}
 
   $scope.edit = true
 

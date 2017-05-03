@@ -1,0 +1,37 @@
+<article class="article">
+    <div class="content-center">
+        <div class="title title-options">
+            <span class="text">Buscar por:</span>
+        </div>
+
+        <div class="content">
+            <div class="item item-left col-xs-12 col-sm-6">
+                <div class="label">Nome</div>
+                <div class="value value-center">
+                    <input type="text" ng-model="search.name">
+                </div>
+            </div>
+
+            <div class="item col-xs-12 col-sm-6">
+                <div class="label">Celular</div>
+                <div class="value value-center">
+                    <input type="text" ng-model="search.phones.cell" ui-br-phone-number>
+                </div>
+            </div>
+
+            <div class="item item-left col-xs-12 col-sm-6">
+                <div class="label">Residencial {{search.phones.home}}</div>
+                <div class="value value-center">
+                    <input type="text" ng-model="search.phones.home" ui-br-phone-number>
+                </div>
+            </div>
+
+            <div class="item col-xs-12 col-sm-6">
+                <div class="label">Comercial {{search.phones.commercial}}</div>
+                <div class="value value-center">
+                    <input type="text" ng-model="search.phones.commercial" ui-br-phone-number>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>

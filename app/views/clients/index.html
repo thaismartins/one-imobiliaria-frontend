@@ -5,11 +5,13 @@
     <div ui-view="success"></div>
     <div ui-view="loading"></div>
 
-    <article class="article article-noborder" ng-if="clients.length == 0">
+    <div ui-view="search"></div>
+
+    <article class="article article-noborder" ng-if="(clients | filter:search).length == 0">
         <p class="not-found">Nenhum item encontrado</p>
     </article>
 
-    <article class="article" ng-repeat="client in clients">
+    <article class="article" ng-repeat="client in clients | filter:search">
         <div class="content-center">
             <div class="title title-options">
                 <span class="text">{{client.name}}</span>
