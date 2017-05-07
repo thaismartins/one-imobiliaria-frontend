@@ -38,7 +38,7 @@
 
                     <div class="item col-xs-12 col-sm-5">
                         <div class="label label-max">Foto</div>
-                        <label class="value value-input" ng-class="{'disabled': !edit}">
+                        <label class="value value-input value-file" ng-class="{'disabled': !edit}">
                             <span>{{fileName}}</span>
                             <input type="file" ng-model="file" accept="image/*" file
                                    ng-disabled="!edit" ng-change="selectPhoto()" />

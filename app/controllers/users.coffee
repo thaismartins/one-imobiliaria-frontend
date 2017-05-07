@@ -52,6 +52,7 @@ angular.module('oneImobiliaria')
     .then (response) ->
       console.log(response);
       $scope.user.photo if response.data.file
+      console.log($scope.user);
       return UserService.saveOrUpdate($scope.user)
     .then (response) ->
       $loading.hide()
