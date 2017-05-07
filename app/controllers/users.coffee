@@ -17,6 +17,7 @@ angular.module('oneImobiliaria')
     UserService.get($stateParams.id)
     .then (response) ->
       $scope.user = response.data
+      $scope.user.photo = false if not $scope.user.photo?
       $scope.edit = false
       $loading.hide()
     .catch (response) ->
@@ -50,9 +51,7 @@ angular.module('oneImobiliaria')
     $loading.show()
     UserService.savePhoto($scope.file)
     .then (response) ->
-      console.log(response);
-      $scope.user.photo if response.data.file?
-      console.log($scope.user);
+      $scope.user.photo = response.data.file if response.data.file?
       return UserService.saveOrUpdate($scope.user)
     .then (response) ->
       $loading.hide()

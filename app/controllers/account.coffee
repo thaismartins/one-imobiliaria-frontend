@@ -13,6 +13,7 @@ angular.module('oneImobiliaria')
   UserService.getMyAccount()
   .then (response) ->
     $scope.user = response.data
+    $scope.user.photo = false if not $scope.user.photo?
     $loading.hide()
   .catch (response) ->
     $logger.error('Erro ao buscar sua conta. Por favor, atualize a página.')
@@ -37,9 +38,7 @@ angular.module('oneImobiliaria')
     $loading.show()
     UserService.savePhoto($scope.file)
     .then (response) ->
-      console.log(response);
-      $scope.user.photo if response.data.file?
-      console.log($scope.user);
+      $scope.user.photo = response.data.file if response.data.file?
       return UserService.update($scope.user)
     .then (response) ->
       $logger.success('Sua conta foi atualizada com sucesso!')
