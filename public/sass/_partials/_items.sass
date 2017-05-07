@@ -11,6 +11,7 @@
     display: table
     padding: 0
     margin: 0 0 10px
+    min-height: 42px
 
     &.item-left
         @media #{$small}
@@ -26,6 +27,23 @@
         @include border-radius(5px, 'bottom-left')
         display: block
         min-height: 45px
+
+    &.item-image
+      text-align: center
+
+      .photo-fill
+        @include border-radius(5px)
+        width: 100%
+        height: 95px
+        background: lighten($color-gray, 13%)
+        display: block
+        border: 1px solid $color-gray
+
+      img
+        @include border-radius(5px)
+        max-width: 100%
+        max-height: 250px
+        object-fit: contain
 
     .label
       display: table-cell
@@ -75,6 +93,12 @@
 
       &.disabled
         opacity: .6
+
+      &.value-file
+        cursor: pointer
+
+        &.disabled
+          opacity: .6
 
       &.value-slider
         &.disabled

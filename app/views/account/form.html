@@ -10,33 +10,38 @@
             </div>
             <div class="content">
                 <form name="forms.user">
-                    <div class="item item-left col-xs-12 col-sm-6">
+                    <div class="item item-left item-image col-xs-12 col-sm-2">
+                        <span ng-class="{'photo-fill': !user.photo}"></span>
+                        <img ng-src="{{fileUrl + 'users/' + user.photo}}" alt="{{user.name}}" title="{{user.name}}" ng-if="user.photo">
+                    </div>
+
+                    <div class="item item-left col-xs-12 col-sm-5">
                         <div class="label label-max">Nome</div>
                         <div class="value value-center">
                             <input type="text" ng-model="user.name" required ng-disabled="!edit">
                         </div>
                     </div>
 
-                    <div class="item col-xs-12 col-sm-6">
+                    <div class="item col-xs-12 col-sm-5">
                         <div class="label label-max">Email</div>
                         <div class="value value-center">
                             <input type="text" ng-model="user.email" required ng-disabled="!edit">
                         </div>
                     </div>
 
-                    <div class="item col-xs-12 col-sm-6">
+                    <div class="item item-left col-xs-12 col-sm-5">
                         <div class="label label-max">Nova Senha</div>
                         <div class="value value-center">
                             <input type="password" ng-model="user.password" ng-disabled="!edit">
                         </div>
                     </div>
 
-                    <div class="item col-xs-12 col-sm-6">
+                    <div class="item col-xs-12 col-sm-5">
                         <div class="label label-max">Foto</div>
                         <label class="value value-input" ng-class="{'disabled': !edit}">
-                            <span>Selecione um arquivo</span>
+                            <span>{{fileName}}</span>
                             <input type="file" ng-model="file" accept="image/*" file
-                                   ng-disabled="!edit" />
+                                   ng-disabled="!edit" ng-change="selectPhoto()" />
                         </label>
                     </div>
                 </form>

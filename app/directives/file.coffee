@@ -1,21 +1,21 @@
 'use strict'
 
 angular.module('oneImobiliaria')
-.directive 'file', ['$parse', '$timeout', ($parse, $timeout) ->
-  require: "ngModel"
+.directive 'file', () ->
+  require:"ngModel"
   restrict: 'A'
-  link: ($scope, elem, attrs, ngModel) ->
+  link: ($scope, element, attrs, ngModel) ->
 
-    fn = $parse(attrs['ngFileSelected'])
     changeHandler = (event) ->
       files = event.target.files
       file = files[0]
 
-      $timeout () ->
-        fn $scope,
-          $file: file,
-          $event: event
+      fileReader = new FileReader()
+      fileReader.readAsDataURL(file);
+      fileReader.onload = (e) ->
+        file.thumbnail = e.target.result
+        ngModel.$setViewValue file
+        $scope.$apply()
 
-    elem.bind('change', changeHandler)
-
-]
+    element.bind('change', changeHandler)
+    return

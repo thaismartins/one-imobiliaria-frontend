@@ -6,6 +6,9 @@ angular.module('oneImobiliaria')
   $scope.user = {}
   $scope.users = []
 
+  $scope.file = {}
+  $scope.fileName = 'Selecione um arquivo'
+
   $scope.groups = UserGroupService.getAll()
   $scope.edit = true
 
@@ -31,19 +34,31 @@ angular.module('oneImobiliaria')
   $scope.canEdit = () ->
     $scope.edit = true
 
+  $scope.selectPhoto = () ->
+    if not $scope.file.name?
+      $scope.file = {}
+      $scope.fileName = 'Selecione um arquivo'
+      return false
+
+    $scope.fileName = $scope.file.name
+
   $scope.saveOrUpdate = () ->
     if !$rootScope.forms.user.$valid
       $logger.error('Preencha todos os dados obrigatórios.')
       return
 
     $loading.show()
-    UserService.saveOrUpdate($scope.user)
+    UserService.savePhoto($scope.file)
+    .then (response) ->
+      $scope.user.photo if response.data.file
+      return UserService.saveOrUpdate($scope.user)
     .then (response) ->
       $loading.hide()
       $state.go('dashboard.users')
     .catch (response) ->
       $logger.error('Erro ao criar/editar usuário. Por favor, tente novamente.')
       $loading.hide()
+
 
   $scope.doDelete = (index) ->
 

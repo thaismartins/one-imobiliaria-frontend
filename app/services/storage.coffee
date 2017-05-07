@@ -9,6 +9,7 @@ angular.module('oneImobiliaria')
     localStorage.setItem('code-one', codes.code)
     localStorage.setItem('group-one', codes.type)
     localStorage.setItem('name-one', codes.name)
+    localStorage.setItem('photo-one', codes.photo)
   updateToken: (token) ->
     localStorage.setItem('x-code-one', token)
   getSessionToken: () ->
@@ -19,6 +20,9 @@ angular.module('oneImobiliaria')
     localStorage.getItem('name-one') || ''
   getGroup: () ->
     localStorage.getItem('group-one') || ''
+  getPhoto: () ->
+    return false if localStorage.getItem('photo-one') == 'undefined'
+    localStorage.getItem('photo-one')
   clean: () ->
     localStorage.removeItem('x-code-one')
     localStorage.removeItem('code-one')

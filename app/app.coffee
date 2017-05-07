@@ -11,7 +11,7 @@ angular.module 'oneImobiliaria', [
   $rootScope.success = false
   $rootScope.loading = false
 
-  $rootScope.fileUrl = RESOURCES.API_URL + '/'
+  $rootScope.fileUrl = RESOURCES.API_URL + '/files/'
 
   $rootScope.newProperties = {}
 
@@ -41,6 +41,7 @@ angular.module 'oneImobiliaria', [
 
     $rootScope.group = storage.getGroup()
     $rootScope.name = storage.getName()
+    $rootScope.photo = storage.getPhoto()
 
     $rootScope.error = false
     $rootScope.success = false
