@@ -37,6 +37,7 @@ angular.module('oneImobiliaria')
     $loading.show()
     UserService.savePhoto($scope.file)
     .then (response) ->
+      console.log(response);
       $scope.user.photo if response.data.file
       return UserService.update($scope.user)
     .then (response) ->
