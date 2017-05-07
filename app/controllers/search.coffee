@@ -12,7 +12,7 @@ angular.module('oneImobiliaria')
 
   resetValues = () ->
     $scope.query.interest.allMeters =  [10, 500]
-    $scope.query.interest.allVacancies = [0, 10]
+    $scope.query.interest.allVacancies = [0, 50]
     $scope.query.interest.allFloors = [1, 30]
     $scope.query.interest.allValues = [1000, 5000000]
     $scope.query.interest.allIptus = [1000, 15000]
@@ -20,7 +20,7 @@ angular.module('oneImobiliaria')
     $scope.query.interest.allLocations = [1000, 50000]
 
     $scope.query.property.allMeters =  [10, 500]
-    $scope.query.property.allVacancies = [0, 10]
+    $scope.query.property.allVacancies = [0, 50]
     $scope.query.property.allFloors = [1, 30]
     $scope.query.property.allValues = [1000, 5000000]
     $scope.query.property.allIptus = [1000, 15000]

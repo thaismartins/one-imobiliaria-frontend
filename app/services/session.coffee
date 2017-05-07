@@ -15,6 +15,5 @@ angular.module('oneImobiliaria')
     if rejection.data.error.name == 'TokenExpiredError'
       storage.clean()
       $injector.get('$state').go('login')
-      console.log('Entrou')
     return rejection;
 ]
