@@ -42,7 +42,7 @@
 
     <div class="item item-left col-xs-12">
         <div class="label label-xsmall">Metragem</div>
-        <div class="value value-center value-slider" ng-class="{'disabled': !edit}">
+        <div class="value value-center value-slider">
             <div class="slider-left">
                 <span>{{query.interest.allMeters[0]}}m²</span>
             </div>
@@ -58,12 +58,12 @@
 
     <div class="item item-left col-xs-12">
         <div class="label label-xsmall">Vagas</div>
-        <div class="value value-center value-slider" ng-class="{'disabled': !edit}">
+        <div class="value value-center value-slider">
             <div class="slider-left">
                 <span>{{query.interest.allVacancies[0]}}</span>
             </div>
             <div class="slider-center">
-                <div ui-slider="{range: true}" min="0" max="10"
+                <div ui-slider="{range: true}" min="0" max="50"
                      ng-model="query.interest.allVacancies"></div>
             </div>
             <div class="slider-right">
@@ -153,7 +153,7 @@
 
     <div class="item item-top col-xs-12">
         <div class="label">Valor do Investimento</div>
-        <div class="value value-center value-slider" ng-class="{'disabled': !edit}">
+        <div class="value value-center value-slider">
             <div class="slider-left">
                 <span>R${{query.interest.allValues[0] | decimals}}</span>
             </div>
@@ -169,7 +169,7 @@
 
     <div class="item item-top col-xs-12">
         <div class="label">Valor do Condomínio</div>
-        <div class="value value-center value-slider" ng-class="{'disabled': !edit}">
+        <div class="value value-center value-slider">
             <div class="slider-left">
                 <span>R${{query.interest.allCondominiums[0] | decimals}}</span>
             </div>
@@ -185,7 +185,7 @@
 
     <div class="item item-top col-xs-12">
         <div class="label">Valor do IPTU</div>
-        <div class="value value-center value-slider" ng-class="{'disabled': !edit}">
+        <div class="value value-center value-slider">
             <div class="slider-left">
                 <span>R${{query.interest.allIptus[0] | decimals}}</span>
             </div>
@@ -201,7 +201,7 @@
 
     <div class="item item-top col-xs-12">
         <div class="label">Valor da Locação</div>
-        <div class="value value-center value-slider" ng-class="{'disabled': !edit}">
+        <div class="value value-center value-slider">
             <div class="slider-left">
                 <span>R${{query.interest.allLocations[0] | decimals}}</span>
             </div>
