@@ -38,7 +38,9 @@ angular.module('oneImobiliaria')
     $loading.show()
     UserService.savePhoto($scope.file)
     .then (response) ->
-      $scope.user.photo = response.data.file if response.data.file?
+      if response.data.file?
+        $scope.user.photo = response.data.file
+        storage.setPhoto(response.data.file)
       return UserService.update($scope.user)
     .then (response) ->
       $logger.success('Sua conta foi atualizada com sucesso!')

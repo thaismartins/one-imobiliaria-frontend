@@ -10,6 +10,8 @@ angular.module('oneImobiliaria')
     localStorage.setItem('group-one', codes.type)
     localStorage.setItem('name-one', codes.name)
     localStorage.setItem('photo-one', codes.photo)
+  setPhoto: (photo) ->
+    localStorage.setItem('photo-one', photo)
   updateToken: (token) ->
     localStorage.setItem('x-code-one', token)
   getSessionToken: () ->
