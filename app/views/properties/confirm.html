@@ -34,6 +34,11 @@
                             </button>
                         </li>
                         <li class="item">
+                            <button class="btn btn-link btn-link-soft" ng-click="doEditCsv($index)">
+                                Editar
+                            </button>
+                        </li>
+                        <li class="item">
                             <button class="btn btn-link btn-link-soft" ng-click="doRemoveCsv($index)">
                                 Ignorar
                             </button>
@@ -141,4 +146,6 @@
             </div>
         </div>
     </nav>
+
+    <div ui-view="modal" class="modal-page" ng-class="{'active': showModal}"></div>
 </section>

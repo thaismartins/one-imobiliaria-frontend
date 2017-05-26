@@ -3,60 +3,6 @@
 angular.module('oneImobiliaria')
 .controller 'PropertiesCtrl', ['$scope', '$rootScope', '$q', '$state', '$stateParams', '$filter', '$loading', '$logger', 'storage', 'PropertyService', 'LocationService', 'ClientService', ($scope, $rootScope, $q, $state, $stateParams, $filter, $loading, $logger, storage, PropertyService, LocationService, ClientService) ->
 
-#  $scope.property =
-#    payments: []
-#    interest:
-#      types: []
-#      allMeters:  [10, 500]
-#      allVacancies: [0, 10]
-#      allFloors: [1, 30]
-#      allValues: [1000, 5000000]
-#      allIptus: [1000, 15000]
-#      allCondominiums: [1000, 500000]
-#      allLocations: [1000, 50000]
-
-#  $scope.property = {
-#    "code":"123",
-#    "client":"585ecf5bd5af8351e3b894e3",
-#    "type":"apartament",
-#    "meters":100,
-#    "vacancy":"1",
-#    "floor":"2",
-#    "address":{
-#      "street":"Rua Simoes Delgado",
-#      "number":"15",
-#      "state":"SP",
-#      "city":"São Paulo",
-#      "neighborhood":"Jardim 9 de Julho",
-#      "cep":"03952020"
-#    },
-#    "hasSubway":true,
-#    "subwayStation":"Penha",
-#    "value":1.00,
-#    "condominium":2.00,
-#    "iptu":3.00,
-#    "location":4.00,
-#    "payments": [
-#      "financing",
-#      "money",
-#      "others"
-#    ],
-#    "exchange":0.1,
-#    "difference":0.5,
-#    "carValue":5,
-#    "settled":true,
-#    "car":true
-#    interest:
-#      types: []
-#      allMeters:  [10, 500]
-#      allVacancies: [0, 10]
-#      allFloors: [1, 30]
-#      allValues: [1000, 5000000]
-#      allIptus: [1000, 15000]
-#      allCondominiums: [1000, 500000]
-#      allLocations: [1000, 50000]
-#  }
-
   $scope.properties = []
   $scope.cities = []
   $scope.states = []
@@ -71,6 +17,9 @@ angular.module('oneImobiliaria')
     PropertyService.get($stateParams.id)
     .then (response) ->
       $scope.property = response.data
+      console.log(response.data);
+      $scope.property.interest.types = response.data.interest.types || []
+      console.log(response.data);
       convertData()
       return LocationService.getAllStates()
     .then (response) ->
@@ -122,8 +71,29 @@ angular.module('oneImobiliaria')
   $scope.canEdit = () ->
     $scope.edit = true
 
-  $scope.doTryAgain = (index) ->
+  $scope.setType = (type) ->
+    $scope.property.interest.types = [] if typeof $scope.property.interest.types == 'undefined'
+    $scope.property.interest.types.push(type) if type
 
+  $scope.hasType = (currentType) ->
+    return false if not $scope.property? or not $scope.property.interest? or not $scope.property.interest.types?
+    exists = false
+#    console.log($scope.property.interest);
+    $scope.property.interest.types.map((type) ->
+      console.log('Entrou map');
+      console.log(type);
+    )
+    return exists
+
+  $scope.doEditCsv = (index) ->
+    item = $scope.newProperties.errors[index]
+    $scope.property = item.property
+    $scope.property.client = item.client._id
+    $scope.property.address.cep = $scope.property.address.cep.replace(/[^0-9.]/g, "") if $scope.property.address?.cep?
+    delete $scope.property._id
+    $rootScope.toggleModal()
+
+  $scope.doTryAgain = (index) ->
     item = $scope.newProperties.errors[index]
     property = item.property
     property.client = item.client._id
@@ -134,6 +104,16 @@ angular.module('oneImobiliaria')
     saveOrUpdate(false)
     .then () ->
       $scope.newProperties.errors.splice(index, 1)
+
+  $scope.saveOrUpdateModal = (index) ->
+    if !$rootScope.forms.property.$valid
+      $logger.error('Preencha todos os dados obrigatórios.')
+      return
+
+    saveOrUpdate(false)
+    .then () ->
+      $scope.newProperties.errors.splice(index, 1)
+      $rootScope.toggleModal()
 
   $scope.saveOrUpdate = () ->
     if !$rootScope.forms.property.$valid

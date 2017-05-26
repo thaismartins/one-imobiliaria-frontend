@@ -1,0 +1,29 @@
+<article class="modal-box">
+    <div class="modal-title">
+        <span class="title">Imóveis</span>
+        <span class="subtitle">Novo</span>
+        <span class="modal-close" ng-click="toggleModal()">
+            <span class="icon icon-close"></span>
+        </span>
+    </div>
+    <div class="modal-text">
+        <div class="article article-noborder">
+            <div class="content">
+                <ng-include src="'app/views/error.html'"></ng-include>
+                <form name="forms.property">
+                    <ng-include src="'app/views/properties/property.html'"></ng-include>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-btns">
+        <div class="item">
+            <button class="btn btn-link btn-link-soft pull-left" ng-click="toggleModal()">
+                <span class="text">Fechar</span>
+            </button>
+            <button class="btn btn-link btn-link-soft pull-right" ng-click="saveOrUpdateModal()">
+                <span class="text">Salvar</span>
+            </button>
+        </div>
+    </div>
+</article>

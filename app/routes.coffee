@@ -181,6 +181,12 @@ angular.module('oneImobiliaria')
         controller: 'PropertiesCtrl'
       'submenu@dashboard.properties.confirm':
         templateUrl: 'app/views/properties/confirm-submenu.html'
+      'modal@dashboard.properties.confirm':
+        templateUrl: 'app/views/properties/confirm-modal.html'
+      'error@dashboard.properties.confirm':
+        templateUrl: 'app/views/error.html'
+      'loading@dashboard.properties.confirm':
+        templateUrl: 'app/views/loading.html'
     requiredLogin: true
 
   .state 'dashboard.account',

@@ -23,17 +23,22 @@
   -moz-box-sizing: $value
   box-sizing: $value
 
-@mixin transition($valueOne, $valueTwo: false)
-  @if $valueTwo
+@mixin transition($valueOne, $valueTwo: false, $valueThree: false)
+  @if $valueThree
+    -o-transition: $valueOne, $valueTwo, $valueThree
+    -webkit-transition: $valueOne, $valueTwo, $valueThree
+    -moz-transition: $valueOne, $valueTwo, $valueThree
+    transition: $valueOne, $valueTwo, $valueThree
+  @elseif $valueTwo
     -o-transition: $valueOne, $valueTwo
     -webkit-transition: $valueOne, $valueTwo
     -moz-transition: $valueOne, $valueTwo
     transition: $valueOne, $valueTwo
   @else
-  -o-transition: $valueOne
-  -webkit-transition: $valueOne
-  -moz-transition: $valueOne
-  transition: $valueOne
+    -o-transition: $valueOne
+    -webkit-transition: $valueOne
+    -moz-transition: $valueOne
+    transition: $valueOne
 
 @mixin create-button($color-button, $color-font)
   color: $color-font

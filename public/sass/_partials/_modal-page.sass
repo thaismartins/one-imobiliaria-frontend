@@ -1,0 +1,78 @@
+.modal-page
+  @include transition(all .4s)
+  position: fixed
+  width: 0
+  height: 0
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  z-index: 9999
+  margin: auto
+  overflow: hidden
+  background:
+    color: rgba(0,0,0,.4)
+
+  &.active
+    width: 100%
+    height: 100%
+    opacity: 1
+
+  .modal-box
+    @include border-radius(5px)
+    width: 990px
+    max-width: calc(100% - 40px)
+    height: calc(100% - 40px)
+    margin: 20px auto
+    position: absolute
+    overflow-y: scroll
+    overflow-x: hidden
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    background-color: $color-gray-soft
+
+    .modal-title
+      width: 100%
+      padding: 20px
+      position: relative
+      text-transform: uppercase
+      background-color: $color-dark
+      color: $color-soft
+
+      .title
+        opacity: .6
+        font-size: 1.6em
+
+      .subtitle
+        opacity: .5
+        margin-left: 5px
+        font-size: 1.2em
+
+      .modal-close
+        position: absolute
+        top: 20px
+        right: 10px
+        z-index: 2
+        cursor: pointer
+
+        &:hover
+          opacity: .8
+
+    .modal-text
+      padding: 0 20px
+
+      @media screen and #{$small}
+        .division
+          width: 100%
+          height: 100%
+
+    .modal-btns
+      width: 100%
+      padding: 20px
+      position: relative
+      text-transform: uppercase
+      background-color: $color-dark
+      color: $color-soft
+      min-height: 60px

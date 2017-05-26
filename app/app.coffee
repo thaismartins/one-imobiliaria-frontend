@@ -21,12 +21,17 @@ angular.module 'oneImobiliaria', [
   $rootScope.showMenu = false
   $rootScope.showSubmenu = false
 
+  $rootScope.showModal = false
+
   $rootScope.appTitle = 'One Consultoria Imobiliária'
 
   $rootScope.forms = {}
 
   $rootScope.doLogout = () ->
     UserService.doLogout()
+
+  $rootScope.toggleModal = () ->
+    $rootScope.showModal = !$rootScope.showModal
 
   $rootScope.toggleMenu = () ->
     $rootScope.showMenu = !$rootScope.showMenu

@@ -12,7 +12,8 @@ angular.module('oneImobiliaria')
       car: 'Carro'
       house: 'Case'
 
+    values = []
     for type in types
-      console.log(type)
+      values.push(items[type])
 
-    return types
+    return values.join(' | ')
