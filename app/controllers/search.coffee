@@ -132,8 +132,6 @@ angular.module('oneImobiliaria')
       max: $scope.query.interest.allLocations[1]
     delete $scope.query.interest.allLocations
 
-  resetValues()
-
   $scope.toggleFilters = () ->
     $scope.showFilters = !$scope.showFilters
     resetValues() if !$scope.showFilters
@@ -144,9 +142,11 @@ angular.module('oneImobiliaria')
     convertData()
     PropertyService.search($scope.query)
     .then (response) ->
-      console.log(response);
       $loading.hide()
     .catch (response) ->
       $logger.error('Erro ao efetuar busca. Por favor, tente novamente.')
       $loading.hide()
+
+  resetValues()
+  $scope.doFilter()
 ]

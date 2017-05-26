@@ -19,7 +19,6 @@ angular.module('oneImobiliaria')
   delete: (id) ->
     return $http.delete apiUrl + '/' + id
   search: (query) ->
-    console.log($httpParamSerializer(query));
     return $http.get apiUrl + '/search?' + $httpParamSerializer(query)
   importCsv: (file) ->
 
