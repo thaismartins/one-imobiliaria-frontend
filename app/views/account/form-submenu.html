@@ -1,0 +1,25 @@
+<div class="submenu">
+    <div class="content-center">
+        <div class="infos">
+            <span class="icon"></span>
+            <span class="title">Meus Dados</span>
+            <span class="subtitle">Editar</span>
+        </div>
+        <nav class="options">
+            <ul class="items">
+                <li class="item" ng-if="!edit">
+                    <button class="btn btn-link btn-link-soft" ng-click="canEdit()">
+                        <span class="icon icon-edit"></span>
+                        <span class="text">Editar</span>
+                    </button>
+                </li>
+                <li class="item" ng-if="edit">
+                    <button class="btn btn-link btn-link-soft" ng-click="doUpdate()">
+                        <span class="icon icon-save"></span>
+                        <span class="text">Salvar</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

@@ -195,6 +195,8 @@ angular.module('oneImobiliaria')
       'main@':
         templateUrl: 'app/views/account/form.html'
         controller: 'AccountCtrl'
+      'submenu@dashboard.account':
+        templateUrl: 'app/views/account/form-submenu.html'
       'error@dashboard.account':
         templateUrl: 'app/views/error.html'
       'loading@dashboard.account':
