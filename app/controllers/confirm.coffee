@@ -1,10 +1,9 @@
 'use strict'
 
 angular.module('oneImobiliaria')
-.controller 'PropertiesCtrl', ['$scope', '$rootScope', '$q', '$state', '$stateParams', '$filter', '$loading', '$logger', 'storage', 'PropertyService', 'LocationService', 'ClientService', ($scope, $rootScope, $q, $state, $stateParams, $filter, $loading, $logger, storage, PropertyService, LocationService, ClientService) ->
+.controller 'ConfirmCtrl', ['$scope', '$rootScope', '$q', '$state', '$filter', '$loading', '$logger', 'storage', 'PropertyService', 'LocationService', 'ClientService', ($scope, $rootScope, $q, $state, $stateParams, $filter, $loading, $logger, storage, PropertyService, LocationService, ClientService) ->
 
   $scope.properties = []
-#  $scope.property = {}
   $scope.cities = []
   $scope.states = []
   $scope.clients = []
@@ -13,53 +12,17 @@ angular.module('oneImobiliaria')
 
   $scope.edit = true
 
-  $scope.property = {
-    code: 123
-    value: 500000
-    address:
-      street: 'Rua Simões Delgado'
-      number: 15
-      neighborhood: 'Jardim Nove de Julho'
-      condominium: 'Condominio de Teste'
-  }
-
   $loading.show()
-  if $stateParams.id
-    PropertyService.get($stateParams.id)
-    .then (response) ->
-      $scope.property = response.data
-      convertData()
-      return LocationService.getAllStates()
-    .then (response) ->
-      $scope.states = response.data.sort()
-      return LocationService.getCitiesByState($scope.property.address.state)
-    .then (response) ->
-      currentCities = $filter('orderByString')(response.data, 'name')
-      $scope.cities = currentCities
-      cities[$scope.property.address.state] = currentCities
-      return ClientService.getAll()
-    .then (response) ->
-      $scope.clients = $filter('orderByString')(response.data, 'name')
-      $scope.edit = false
-      $loading.hide()
-    .catch (response) ->
-      $logger.error('Erro ao buscar imóveis. Por favor, atualize a página.')
-      $loading.hide()
-  else
-    PropertyService.getAll()
-    .then (response) ->
-      $scope.properties = $filter('orderBy')(response.data, '-created')
-      convertData()
-      return LocationService.getAllStates()
-    .then (response) ->
-      $scope.states = response.data.sort()
-      return ClientService.getAll()
-    .then (response) ->
-      $scope.clients = $filter('orderByString')(response.data, 'name')
-      $loading.hide()
-    .catch (response) ->
-      $logger.error('Erro ao buscar imóveis. Por favor, atualize a página.')
-      $loading.hide()
+  LocationService.getAllStates()
+  .then (response) ->
+    $scope.states = response.data.sort()
+    return ClientService.getAll()
+  .then (response) ->
+    $scope.clients = $filter('orderByString')(response.data, 'name')
+    $loading.hide()
+  .catch (response) ->
+    $logger.error('Erro ao buscar imóveis. Por favor, atualize a página.')
+    $loading.hide()
 
   $scope.showCities = (state) ->
 
@@ -77,63 +40,60 @@ angular.module('oneImobiliaria')
     .catch () ->
       $loading.hide()
 
-  $scope.canEdit = () ->
-    $scope.edit = true
+  $scope.doEditCsv = (index) ->
+    item = $scope.newProperties.errors[index]
+    $scope.property = item.property
+    $scope.property.client = item.client._id
+    $scope.property.address.cep = $scope.property.address.cep.replace(/[^0-9.]/g, "") if $scope.property.address?.cep?
+    delete $scope.property._id
+    $rootScope.toggleModal()
 
-  $scope.saveOrUpdate = () ->
-    if !$rootScope.forms.property.$valid or not $scope.property?
+  $scope.doTryAgain = (index) ->
+    item = $scope.newProperties.errors[index]
+    property = item.property
+    property.client = item.client._id
+    delete property._id
+
+    $scope.property = property
+
+    saveOrUpdate()
+    .then () ->
+      $scope.newProperties.errors.splice(index, 1)
+
+  $scope.saveOrUpdateModal = (index) ->
+    if !$rootScope.forms.property.$valid
       $logger.error('Preencha todos os dados obrigatórios.')
       return
 
-    $loading.show()
-    revertData()
-    PropertyService.saveOrUpdate($scope.property)
-    .then (response) ->
-      $loading.hide()
-      $state.go('dashboard.properties')
-    .catch (response) ->
-      if response.data.code == 8
-        $logger.error('Verifique o endereço digitado. Não foi possível validar esta informação.')
-      else
-        $logger.error('Erro ao criar/editar imóvel. Por favor, tente novamente.')
-      $loading.hide()
+    saveOrUpdate()
+    .then () ->
+      $scope.newProperties.errors.splice(index, 1)
+      $rootScope.toggleModal()
 
+  $scope.doRemoveCsv = (index) ->
+    $scope.newProperties.errors.splice(index, 1)
 
-  $scope.doDelete = (index) ->
-    property = $scope.properties[index]
-    return false if property._id == storage.getCode()
-
-    $loading.show()
-    PropertyService.delete(property._id)
-    .then (response) ->
-      $logger.success('Imóvel excluído com sucesso!')
-      $scope.properties.splice(index, 1)
-      $loading.hide()
-    .catch (response) ->
-      $logger.error('Erro ao excluir imóvel. Por favor, tente novamente.')
-      $loading.hide()
-
-  $scope.doUploadCSV = (file) ->
-    if not file? or file.type != 'text/csv'
-      $logger.error('Por favor, selecione um arquivo válido do tipo .csv')
+  saveOrUpdate = () ->
+    if not $scope.property?
       return false
 
-    $rootScope.newProperties = {}
-
+    promise = $q.defer()
     $loading.show()
-    PropertyService.importCsv(file)
-    .then (response) ->
-      $scope.file = null
-      $rootScope.newProperties = response.data.content
-      $state.go('dashboard.properties.confirm')
-      $loading.hide()
-    .catch (response) ->
-      $scope.file = {}
-      $logger.error('Erro ao importar dados. Por favor, tente novamente.')
-      $loading.hide()
+
+    revertData()
+    PropertyService.saveOrUpdate($scope.property)
+      .then (response) ->
+        $loading.hide()
+        promise.resolve()
+      .catch (response) ->
+        promise.reject()
+        if response.data.code == 8
+          $logger.error('Verifique o endereço digitado. Não foi possível validar esta informação.')
+        else
+          $logger.error('Erro ao criar/editar imóvel. Por favor, tente novamente.')
+        $loading.hide()
 
   convertData = () ->
-    $scope.property.interest = {} if not $scope.property.interest?
     $scope.property.interest.allMeters =  [10, 500]
     $scope.property.interest.allVacancies = [0, 50]
     $scope.property.interest.allFloors = [1, 30]
@@ -141,6 +101,9 @@ angular.module('oneImobiliaria')
     $scope.property.interest.allIptus = [1000, 15000]
     $scope.property.interest.allCondominiums = [1000, 500000]
     $scope.property.interest.allLocations = [1000, 50000]
+
+#    if $scope.property.interest?.types?
+#      $scope.property.interest.types = []
 
     if $scope.property.interest?.meters?
       $scope.property.interest.allMeters[0] = $scope.property.interest.meters.min
@@ -173,11 +136,9 @@ angular.module('oneImobiliaria')
 
   revertData = () ->
     $scope.property.value = $scope.property.value.toFixed(2)
-    $scope.property.condominium = $scope.property.condominium.toFixed(2) if $scope.property.condominium?
-    $scope.property.location = $scope.property.location.toFixed(2) if $scope.property.location?
-    $scope.property.iptu = $scope.property.iptu.toFixed(2) if $scope.property.iptu?
-
-    return false if not $scope.property.interest?
+    $scope.property.condominium = $scope.property.condominium.toFixed(2)
+    $scope.property.location = $scope.property.location.toFixed(2)
+    $scope.property.iptu = $scope.property.iptu.toFixed(2)
 
     if $scope.property.interest.allMeters?
       $scope.property.interest.meters =

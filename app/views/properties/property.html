@@ -100,6 +100,13 @@
         </div>
     </div>
 
+    <div class="item item-left col-xs-12">
+        <div class="label label-small">Condomínio</div>
+        <div class="value value-center">
+            <input type="text" ng-model="property.address.condominium" ng-disabled="!edit">
+        </div>
+    </div>
+
     <div class="item item-left col-xs-12 col-sm-4">
         <div class="label label-small">Estado*</div>
         <div class="value value-center">
@@ -137,7 +144,7 @@
     <div class="item item-left col-xs-12">
         <div class="label label-large label-left">Corretor</div>
         <div class="value value-center">
-            <input type="text" ng-model="property.broker" required ng-disabled="!edit">
+            <input type="text" ng-model="property.broker" ng-disabled="!edit">
         </div>
     </div>
 

@@ -18,4 +18,7 @@ angular.module('oneImobiliaria')
     if address.complement?
       fullAddress += ' - ' + address.complement
 
+    if address.condominium?
+      fullAddress += ' - ' + address.condominium
+
     return fullAddress

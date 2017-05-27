@@ -90,35 +90,42 @@
     </div>
 
     <div class="item item-left col-xs-12 col-sm-8">
-        <div class="label label-xsmall">Endereço*</div>
+        <div class="label label-xsmall">Endereço</div>
         <div class="value value-center">
             <input type="text" ng-model="property.interest.address.street" ng-disabled="!edit">
         </div>
     </div>
 
     <div class="item item-left col-xs-12 col-sm-4">
-        <div class="label label-small">Nº*</div>
+        <div class="label label-small">Nº</div>
         <div class="value value-center">
             <input type="text" ng-model="property.interest.address.number" ng-disabled="!edit">
         </div>
     </div>
 
     <div class="item item-left col-xs-12 col-sm-7">
-        <div class="label label-small">Bairro*</div>
+        <div class="label label-small">Bairro</div>
         <div class="value value-center">
             <input type="text" ng-model="property.interest.address.neighborhood" ng-disabled="!edit">
         </div>
     </div>
 
     <div class="item item-left col-xs-12 col-sm-5">
-        <div class="label label-xsmall">CEP*</div>
+        <div class="label label-xsmall">CEP</div>
         <div class="value value-center">
             <input type="text" ng-model="property.interest.address.cep" ui-br-cep-mask ng-disabled="!edit">
         </div>
     </div>
 
+    <div class="item item-left col-xs-12">
+        <div class="label label-small">Condomínio</div>
+        <div class="value value-center">
+            <input type="text" ng-model="property.interest.address.condominium" ng-disabled="!edit">
+        </div>
+    </div>
+
     <div class="item item-left col-xs-12 col-sm-4">
-        <div class="label label-small">Estado*</div>
+        <div class="label label-small">Estado</div>
         <div class="value value-center">
             <select ng-model="property.interest.address.state" ng-disabled="!edit"
                     ng-change="showCities(property.interest.address.state)">
@@ -130,7 +137,7 @@
     </div>
 
     <div class="item item-left col-xs-12 col-sm-8">
-        <div class="label label-small">Cidade*</div>
+        <div class="label label-small">Cidade</div>
         <div class="value value-center">
             <select ng-model="property.interest.address.city" ng-disabled="!edit">
                 <option value="{{city.name}}" ng-repeat="city in cities">
