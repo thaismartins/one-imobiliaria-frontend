@@ -11,21 +11,21 @@ angular.module('oneImobiliaria')
     property: {}
 
   resetValues = () ->
-    $scope.query.interest.allMeters =  [10, 500]
+    $scope.query.interest.allMeters =  [0, 500]
     $scope.query.interest.allVacancies = [0, 50]
-    $scope.query.interest.allFloors = [1, 30]
-    $scope.query.interest.allValues = [1000, 5000000]
-    $scope.query.interest.allIptus = [1000, 15000]
-    $scope.query.interest.allCondominiums = [1000, 500000]
-    $scope.query.interest.allLocations = [1000, 50000]
+    $scope.query.interest.allFloors = [0, 30]
+    $scope.query.interest.allValues = [0, 5000000]
+    $scope.query.interest.allIptus = [0, 15000]
+    $scope.query.interest.allCondominiums = [0, 500000]
+    $scope.query.interest.allLocations = [0, 50000]
 
-    $scope.query.property.allMeters =  [10, 500]
+    $scope.query.property.allMeters =  [0, 500]
     $scope.query.property.allVacancies = [0, 50]
-    $scope.query.property.allFloors = [1, 30]
-    $scope.query.property.allValues = [1000, 5000000]
-    $scope.query.property.allIptus = [1000, 15000]
-    $scope.query.property.allCondominiums = [1000, 500000]
-    $scope.query.property.allLocations = [1000, 50000]
+    $scope.query.property.allFloors = [0, 30]
+    $scope.query.property.allValues = [0, 5000000]
+    $scope.query.property.allIptus = [0, 15000]
+    $scope.query.property.allCondominiums = [0, 500000]
+    $scope.query.property.allLocations = [0, 50000]
 
   revertData = () ->
     resetValues()
@@ -140,13 +140,16 @@ angular.module('oneImobiliaria')
 
     $loading.show()
     convertData()
+    find()
+
+  find = () ->
     PropertyService.search($scope.query)
     .then (response) ->
+      $scope.properties = response.data
       $loading.hide()
     .catch (response) ->
       $logger.error('Erro ao efetuar busca. Por favor, tente novamente.')
       $loading.hide()
 
-  resetValues()
-  $scope.doFilter()
+  find()
 ]
