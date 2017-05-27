@@ -1,0 +1,257 @@
+<article class="modal-box">
+    <div class="modal-title">
+        <span class="title">Busca</span>
+        <span class="subtitle">Imóveis</span>
+        <span class="modal-close" ng-click="toggleModal()">
+            <span class="icon icon-close"></span>
+        </span>
+    </div>
+    <div class="modal-text">
+        <div class="article article-noborder">
+            <div class="content">
+                <div class="subtitle">
+                    <span class="text">Dados do Imóvel {{property.code}}</span>
+                </div>
+
+                <div class="division col-xs-12 col-sm-6">
+                    <div class="item item-left col-xs-12">
+                        <div class="label label-small">Endereço</div>
+                        <div class="value">
+                            {{property.address | fullAddress}}
+                        </div>
+                    </div>
+
+                    <div class="item item-left col-xs-12 col-sm-3">
+                        <div class="label label-small">Tipo</div>
+                        <div class="value">
+                            {{property.type | propertyType}}
+                        </div>
+                    </div>
+
+                    <div class="item item-left col-xs-12 col-sm-3">
+                        <div class="label label-small">Andar</div>
+                        <div class="value">
+                            {{property.floor}}
+                        </div>
+                    </div>
+
+                    <div class="item item-left col-xs-12 col-sm-3">
+                        <div class="label label-small">M²</div>
+                        <div class="value">
+                            {{property.meters}}
+                        </div>
+                    </div>
+
+                    <div class="item item-left col-xs-12 col-sm-3">
+                        <div class="label label-small">Metro</div>
+                        <div class="value">
+                            {{property.subwayStation}}
+                        </div>
+                    </div>
+
+                    <div class="item item-left col-xs-12 col-sm-6">
+                        <div class="label label-large">Valor do Imóvel</div>
+                        <div class="value">
+                            {{property.value | currency}}
+                        </div>
+                    </div>
+
+                    <div class="item item-left col-xs-12 col-sm-6">
+                        <div class="label label-large">Valor do Condomínio</div>
+                        <div class="value">
+                            {{property.condominium | currency}}
+                        </div>
+                    </div>
+
+                    <div class="item item-left col-xs-12 col-sm-6">
+                        <div class="label label-large">Valor do IPTU</div>
+                        <div class="value">
+                            {{property.iptu | currency}}
+                        </div>
+                    </div>
+
+                    <div class="item item-left col-xs-12 col-sm-6">
+                        <div class="label label-large">Valor do Locação</div>
+                        <div class="value">
+                            {{property.location | currency}}
+                        </div>
+                    </div>
+
+                    <div class="item item-left col-xs-12 col-sm-6">
+                        <div class="label label-large">Corretor</div>
+                        <div class="value">
+                            {{property.broker}}
+                        </div>
+                    </div>
+
+                    <div class="item item-left col-xs-12 col-sm-6">
+                        <div class="label label-big">% do Valor Aceito Para Permuta</div>
+                        <div class="value">
+                            {{property.exchange}} <span ng-if="property.exchange">%</span>
+                        </div>
+                    </div>
+
+                    <div class="item item-left col-xs-12">
+                        <div class="label label-big">Forma de Pagamento da Diferença</div>
+                        <div class="value">
+                            {{property.payments | paymentType}}
+                        </div>
+                    </div>
+
+                    <div class="item item-left col-xs-12 col-sm-6">
+                        <div class="label label-max">Imóvel Quitado?</div>
+                        <div class="value">
+                            {{property.settled | yesOrNo}}
+                        </div>
+                    </div>
+
+                    <div class="item item-left col-xs-12 col-sm-6">
+                        <div class="label label-max">Qual o saldo?</div>
+                        <div class="value">
+                            {{property.difference}}<span ng-if="property.difference">%</span>
+                        </div>
+                    </div>
+
+                    <div class="item item-left col-xs-12 col-sm-6">
+                        <div class="label label-max">Possui Carro</div>
+                        <div class="value">
+                            {{property.car | yesOrNo}}
+                        </div>
+                    </div>
+
+                    <div class="item item-left col-xs-12 col-sm-6">
+                        <div class="label label-max">Valor do Carro</div>
+                        <div class="value">
+                            {{property.carValue | currency}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subtitle">
+                    <span class="text">Dados do Imóvel {{interest.code}}</span>
+                </div>
+
+                <div class="division col-xs-12 col-sm-6">
+                    <div class="item item-left col-xs-12">
+                        <div class="label label-small">Endereço</div>
+                        <div class="value">
+                            {{interest.address | fullAddress}}
+                        </div>
+                    </div>
+
+                    <div class="item item-left col-xs-12 col-sm-3">
+                        <div class="label label-small">Tipo</div>
+                        <div class="value">
+                            {{interest.type | propertyType}}
+                        </div>
+                    </div>
+
+                    <div class="item item-left col-xs-12 col-sm-3">
+                        <div class="label label-small">Andar</div>
+                        <div class="value">
+                            {{interest.floor}}
+                        </div>
+                    </div>
+
+                    <div class="item item-left col-xs-12 col-sm-3">
+                        <div class="label label-small">M²</div>
+                        <div class="value">
+                            {{interest.meters}}
+                        </div>
+                    </div>
+
+                    <div class="item item-left col-xs-12 col-sm-3">
+                        <div class="label label-small">Metro</div>
+                        <div class="value">
+                            {{interest.subwayStation}}
+                        </div>
+                    </div>
+
+                    <div class="item item-left col-xs-12 col-sm-6">
+                        <div class="label label-large">Valor do Imóvel</div>
+                        <div class="value">
+                            {{interest.value | currency}}
+                        </div>
+                    </div>
+
+                    <div class="item item-left col-xs-12 col-sm-6">
+                        <div class="label label-large">Valor do Condomínio</div>
+                        <div class="value">
+                            {{interest.condominium | currency}}
+                        </div>
+                    </div>
+
+                    <div class="item item-left col-xs-12 col-sm-6">
+                        <div class="label label-large">Valor do IPTU</div>
+                        <div class="value">
+                            {{interest.iptu | currency}}
+                        </div>
+                    </div>
+
+                    <div class="item item-left col-xs-12 col-sm-6">
+                        <div class="label label-large">Valor do Locação</div>
+                        <div class="value">
+                            {{interest.location | currency}}
+                        </div>
+                    </div>
+
+                    <div class="item item-left col-xs-12 col-sm-6">
+                        <div class="label label-large">Corretor</div>
+                        <div class="value">
+                            {{interest.broker}}
+                        </div>
+                    </div>
+
+                    <div class="item item-left col-xs-12 col-sm-6">
+                        <div class="label label-big">% do Valor Aceito Para Permuta</div>
+                        <div class="value">
+                            {{interest.exchange}}<span ng-if="interest.exchange">%</span>
+                        </div>
+                    </div>
+
+                    <div class="item item-left col-xs-12">
+                        <div class="label label-big">Forma de Pagamento da Diferença</div>
+                        <div class="value">
+                            {{interest.payments | paymentType}}
+                        </div>
+                    </div>
+
+                    <div class="item item-left col-xs-12 col-sm-6">
+                        <div class="label label-max">Imóvel Quitado?</div>
+                        <div class="value">
+                            {{interest.settled | yesOrNo}}
+                        </div>
+                    </div>
+
+                    <div class="item item-left col-xs-12 col-sm-6">
+                        <div class="label label-max">Qual o saldo?</div>
+                        <div class="value">
+                            {{interest.difference}}<span ng-if="interest.difference">%</span>
+                        </div>
+                    </div>
+
+                    <div class="item item-left col-xs-12 col-sm-6">
+                        <div class="label label-max">Possui Carro</div>
+                        <div class="value">
+                            {{interest.car | yesOrNo}}
+                        </div>
+                    </div>
+
+                    <div class="item item-left col-xs-12 col-sm-6">
+                        <div class="label label-max">Valor do Carro</div>
+                        <div class="value">
+                            {{interest.carValue | currency}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-btns">
+        <div class="item">
+            <button class="btn btn-link btn-link-soft pull-left" ng-click="toggleModal()">
+                <span class="text">Fechar</span>
+            </button>
+        </div>
+    </div>
+</article>

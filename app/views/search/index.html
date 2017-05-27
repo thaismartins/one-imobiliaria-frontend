@@ -36,6 +36,12 @@
                             {{item.property.address.neighborhood}} {{item.property.address.city}}/{{item.property.address.state}}
                         </div>
                     </div>
+                    <div class="item item-top col-xs-12">
+                        <div class="label label-xlarge">Nome do Proprietário</div>
+                        <div class="value value-center">
+                            {{item.property.client.name}}
+                        </div>
+                    </div>
                     <div class="item col-xs-12">
                         <div class="label label-max">Telefone</div>
                         <div class="value value-center">
@@ -56,7 +62,13 @@
                     <div class="item item-top col-xs-12">
                         <div class="label label-max">Localização</div>
                         <div class="value value-center">
-                            {{item.interest.address.neighborhood}} {{item.interest.address.city}}/{{item.property.interest.state}}
+                            {{item.interest.address.neighborhood}} {{item.interest.address.city}}/{{item.interest.address.state}}
+                        </div>
+                    </div>
+                    <div class="item item-top col-xs-12">
+                        <div class="label label-xlarge">Nome do Proprietário</div>
+                        <div class="value value-center">
+                            {{item.interest.client.name}}
                         </div>
                     </div>
                     <div class="item col-xs-12">
@@ -81,4 +93,6 @@
             <li class="icon icon-hover icon-arrow-right"></li>
         </ul>
     </nav>
+
+    <div ui-view="modal" class="modal-page" ng-class="{'active': showModal}"></div>
 </section>

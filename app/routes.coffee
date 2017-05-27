@@ -219,6 +219,8 @@ angular.module('oneImobiliaria')
       'filters-property@dashboard.search':
         templateUrl: 'app/views/search/filters-property.html'
         controller: 'AccountCtrl'
+      'modal@dashboard.search':
+        templateUrl: 'app/views/search/modal.html'
       'error@dashboard.search':
         templateUrl: 'app/views/error.html'
       'loading@dashboard.search':
