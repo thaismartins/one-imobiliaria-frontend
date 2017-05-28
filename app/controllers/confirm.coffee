@@ -7,10 +7,12 @@ angular.module('oneImobiliaria')
   $scope.cities = []
   $scope.states = []
   $scope.clients = []
+  $scope.client = {}
   $scope.search = {}
   cities = []
 
   $scope.edit = true
+  $scope.showClient = false
 
   $loading.show()
   LocationService.getAllStates()
@@ -39,11 +41,25 @@ angular.module('oneImobiliaria')
       .catch () ->
         $loading.hide()
 
+  $scope.toggleClient = () ->
+    $scope.showClient = !$scope.showClient
+
   $scope.doEditCsv = (index) ->
     item = $rootScope.newProperties.errors[index]
     $scope.property = item.property
     $scope.property.client = item.client._id
-    $scope.property.address.cep = $scope.property.address.cep.replace(/[^0-9.]/g, "") if $scope.property.address?.cep?
+    $scope.client = item.client
+
+    if $scope.client.phones?
+      if $scope.client.phones.commercial?
+        $scope.client.phones.commercial = $scope.client.phones.commercial.replace(/[^0-9.]/g, "")
+      if $scope.client.phones.home?
+        $scope.client.phones.home = $scope.client.phones.home.replace(/[^0-9.]/g, "")
+      if $scope.client.phones.commercial?
+        $scope.client.phones.cell = $scope.client.phones.cell.replace(/[^0-9.]/g, "")
+    if $scope.property.address?.cep?
+      $scope.property.address.cep = $scope.property.address.cep.replace(/[^0-9.]/g, "")
+
     delete $scope.property._id
     $rootScope.toggleModal()
 
@@ -55,6 +71,23 @@ angular.module('oneImobiliaria')
 
     $scope.property = property
     saveOrUpdate(index)
+
+  $scope.saveClient = () ->
+    if !$rootScope.forms.client.$valid
+      $logger.error('Preencha todos os dados obrigatórios de cliente.')
+      return
+
+    $loading.show()
+    delete $scope.client._id
+    ClientService.create($scope.client)
+    .then (response) ->
+      $scope.showClient = false
+      $scope.clients.push response.data
+      $scope.property.client = response.data._id
+      $loading.hide()
+    .catch (response) ->
+      $logger.error('Erro ao criar cliente. Por favor, tente novamente.')
+      $loading.hide()
 
   $scope.saveOrUpdateModal = (index) ->
     if !$rootScope.forms.property.$valid
@@ -83,7 +116,6 @@ angular.module('oneImobiliaria')
 
   $scope.doRemoveCsv = (index) ->
     $rootScope.newProperties.errors.splice(index, 1)
-
 
   convertData = () ->
     $scope.property.interest.allMeters =  [10, 500]

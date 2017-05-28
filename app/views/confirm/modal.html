@@ -10,6 +10,21 @@
         <div class="article article-noborder">
             <div class="content">
                 <ng-include src="'app/views/error.html'"></ng-include>
+
+                <button class="btn btn-gray-dark pull-right" ng-click="toggleClient()">
+                    <span class="text">+ Adicionar Cliente</span>
+                </button>
+
+                <form name="forms.client" ng-show="showClient">
+                    <div class="subtitle">
+                        <span class="text">Dados do Cliente</span>
+                    </div>
+                    <ng-include src="'app/views/clients/client.html'"></ng-include>
+                    <button class="btn btn-gray-dark pull-right" ng-click="saveClient()">
+                        <span class="text">Salvar Cliente</span>
+                    </button>
+                </form>
+
                 <form name="forms.property">
                     <ng-include src="'app/views/properties/property.html'"></ng-include>
                 </form>

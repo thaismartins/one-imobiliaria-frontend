@@ -8,42 +8,10 @@
             <div class="title">
                 <span class="text">{{client.name || 'Novo Cliente'}}</span>
             </div>
+
             <div class="content">
                 <form name="forms.client">
-                    <div class="item item-left col-xs-12 col-sm-6">
-                        <div class="label label-max">Nome</div>
-                        <div class="value value-center">
-                            <input type="text" ng-model="client.name" required ng-disabled="!edit">
-                        </div>
-                    </div>
-
-                    <div class="item col-xs-12 col-sm-6">
-                        <div class="label label-max">Email</div>
-                        <div class="value value-center">
-                            <input type="text" ng-model="client.email" required ng-disabled="!edit">
-                        </div>
-                    </div>
-
-                    <div class="item item-left col-xs-12 col-sm-6">
-                        <div class="label label-max">Celular</div>
-                        <div class="value value-center">
-                            <input type="text" ng-model="client.phones.cell" required ui-br-phone-number ng-disabled="!edit">
-                        </div>
-                    </div>
-
-                    <div class="item col-xs-12 col-sm-6">
-                        <div class="label label-max">Telefone Residencial</div>
-                        <div class="value value-center">
-                            <input type="text" ng-model="client.phones.home" ui-br-phone-number ng-disabled="!edit">
-                        </div>
-                    </div>
-
-                    <div class="item  col-xs-12 col-sm-6">
-                        <div class="label label-max">Telefone Comercial</div>
-                        <div class="value value-center">
-                            <input type="text" ng-model="client.phones.commercial" ui-br-phone-number ng-disabled="!edit">
-                        </div>
-                    </div>
+                    <div ui-view="client"></div>
                 </form>
             </div>
         </div>
