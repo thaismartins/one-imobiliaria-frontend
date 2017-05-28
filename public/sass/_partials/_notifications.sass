@@ -1,0 +1,42 @@
+.notifications
+  position: absolute
+  top: 10px
+  right: 10px
+  width: 400px
+  max-width: 100%
+  z-index: 9997
+
+  .notification
+    @include border-radius(5px)
+    width: 400px
+    height: 150px
+    margin-bottom: 10px
+    overflow: hidden
+    position: relative
+    background-color: $color-gray-soft
+
+    .title
+      padding: 10px 20px
+      background-color: $color-dark
+      color: $color-soft
+
+      .close
+        position: absolute
+        top: 5px
+        right: 0
+        z-index: 2
+        cursor: pointer
+
+        &:hover
+          opacity: .8
+
+    .text
+      padding: 10px 20px
+
+    .date
+      position: absolute
+      right: 20px
+      bottom: 10px
+      font:
+        size: .8em
+        style: italic

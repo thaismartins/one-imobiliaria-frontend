@@ -33,7 +33,7 @@
                 <div class="item col-xs-12">
                     <div class="label label-large">Última Mensagem</div>
                     <div class="value">
-                        <p class="text">{{notification.messages[notification.messages.length - 1].message}}</p>
+                        <p class="text">{{notification.messages[notification.messages.length - 1].message | excerpt}}</p>
                         <p class="date">{{notification.messages[notification.messages.length - 1].created | dateTimeBr}}</p>
                     </div>
                 </div>

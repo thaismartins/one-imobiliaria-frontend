@@ -31,6 +31,7 @@ angular.module('oneImobiliaria')
     views:
       'main@':
         templateUrl: 'app/views/home/index.html'
+        controller: 'HomeCtrl'
     requiredLogin: true
 
   .state 'dashboard.users',

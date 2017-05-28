@@ -1,4 +1,18 @@
 <section class="home">
+
+    <div class="notifications" ng-if="notifications.length > 0">
+        <div class="notification" ng-repeat="notification in notifications">
+            <p class="title">
+                Imóvel {{notification.property.code}} e Imóvel {{notification.interest.code}}
+                <span class="close" ng-click="removeNotification($index)">
+                    <span class="icon icon-close"></span>
+                </span>
+            </p>
+            <p class="text">{{notification.messages[notification.messages.length - 1].message | excerpt}}</p>
+            <p class="date">{{notification.messages[notification.messages.length - 1].created | dateTimeBr}}</p>
+        </div>
+    </div>
+
     <div class="content-center">
         <div class="home-box">
             <h2 class="title">Olá {{name | firstName}}, que você tenha um dia de excelentes negócios!</h2>
@@ -6,4 +20,5 @@
             <p class="text">Clique em “BUSCA” para visualizar as oportunidades de negócios identificadas pelo sistema ou para fazer uma busca segundo parâmetros específicos.</p>
         </div>
     </div>
+
 </section>
