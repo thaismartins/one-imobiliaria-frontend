@@ -1,11 +1,11 @@
 <section class="page">
     <div ui-view="submenu"></div>
 
+    <div ui-view="filter"></div>
+
     <div ui-view="error"></div>
     <div ui-view="success"></div>
     <div ui-view="loading"></div>
-
-    <div ui-view="search"></div>
 
     <article class="article article-noborder" ng-if="(properties | filter:search).length == 0">
         <p class="not-found">Nenhum item encontrado</p>

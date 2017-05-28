@@ -6,7 +6,7 @@
 
   .infos
     padding: 25px 20px
-    width: 50%
+    width: 40%
     float: left
     color: $color-soft
     text-transform: uppercase
@@ -33,7 +33,7 @@
           left: 0
 
   .options
-    width: 50%
+    width: 60%
     float: right
 
     @media #{$small-max}
@@ -42,6 +42,13 @@
     .items
       .item
         opacity: .4
+
+        @media #{$small-max}
+          width: 50px
+          float: right
+
+          .btn
+            min-width: 50px !important
 
         input[type=file]
           display: none
@@ -68,7 +75,7 @@
           float: right
           margin:
             top: 15px
-          padding: 20px 20px 35px 60px
+          padding: 20px 10px 35px 50px
           font:
             weight: 700
 
@@ -89,5 +96,5 @@
               right: 0
 
           .text
-            @media #{$small-max}
+            @media #{$medium-max}
               display: none

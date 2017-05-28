@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('oneImobiliaria')
-.controller 'ConfirmCtrl', ['$scope', '$rootScope', '$q', '$state', '$filter', '$loading', '$logger', 'storage', 'PropertyService', 'LocationService', 'ClientService', ($scope, $rootScope, $q, $state, $stateParams, $filter, $loading, $logger, storage, PropertyService, LocationService, ClientService) ->
+.controller 'ConfirmCtrl', ['$scope', '$rootScope', '$state', '$filter', '$loading', '$logger', 'storage', 'PropertyService', 'LocationService', 'ClientService', ($scope, $rootScope, $state, $filter, $loading, $logger, storage, PropertyService, LocationService, ClientService) ->
 
   $scope.properties = []
   $scope.cities = []
@@ -25,23 +25,22 @@ angular.module('oneImobiliaria')
     $loading.hide()
 
   $scope.showCities = (state) ->
-
     if cities[state]?
       $scope.cities = cities[state]
       return false
-
-    $loading.show()
-    LocationService.getCitiesByState(state)
-    .then (response) ->
-      currentCities = $filter('orderByString')(response.data, 'name')
-      $scope.cities = currentCities
-      cities[state] = currentCities
-      $loading.hide()
-    .catch () ->
-      $loading.hide()
+    else
+      $loading.show()
+      LocationService.getCitiesByState(state)
+      .then (response) ->
+        currentCities = $filter('orderByString')(response.data, 'name')
+        $scope.cities = currentCities
+        cities[state] = currentCities
+        $loading.hide()
+      .catch () ->
+        $loading.hide()
 
   $scope.doEditCsv = (index) ->
-    item = $scope.newProperties.errors[index]
+    item = $rootScope.newProperties.errors[index]
     $scope.property = item.property
     $scope.property.client = item.client._id
     $scope.property.address.cep = $scope.property.address.cep.replace(/[^0-9.]/g, "") if $scope.property.address?.cep?
@@ -49,49 +48,42 @@ angular.module('oneImobiliaria')
     $rootScope.toggleModal()
 
   $scope.doTryAgain = (index) ->
-    item = $scope.newProperties.errors[index]
+    item = $rootScope.newProperties.errors[index]
     property = item.property
     property.client = item.client._id
     delete property._id
 
     $scope.property = property
-
-    saveOrUpdate()
-    .then () ->
-      $scope.newProperties.errors.splice(index, 1)
+    saveOrUpdate(index)
 
   $scope.saveOrUpdateModal = (index) ->
     if !$rootScope.forms.property.$valid
       $logger.error('Preencha todos os dados obrigatórios.')
       return
+    saveOrUpdate(index)
 
-    saveOrUpdate()
-    .then () ->
-      $scope.newProperties.errors.splice(index, 1)
-      $rootScope.toggleModal()
-
-  $scope.doRemoveCsv = (index) ->
-    $scope.newProperties.errors.splice(index, 1)
-
-  saveOrUpdate = () ->
+  saveOrUpdate = (index) ->
     if not $scope.property?
-      return false
+      $logger.error('Preencha todos os dados obrigatórios.')
+      return
 
-    promise = $q.defer()
     $loading.show()
-
     revertData()
     PropertyService.saveOrUpdate($scope.property)
-      .then (response) ->
-        $loading.hide()
-        promise.resolve()
-      .catch (response) ->
-        promise.reject()
-        if response.data.code == 8
-          $logger.error('Verifique o endereço digitado. Não foi possível validar esta informação.')
-        else
-          $logger.error('Erro ao criar/editar imóvel. Por favor, tente novamente.')
-        $loading.hide()
+    .then (response) ->
+      $rootScope.newProperties.errors.splice(index, 1)
+      $rootScope.toggleModal()
+      $loading.hide()
+    .catch (response) ->
+      if response.data.code == 8
+        $logger.error('Verifique o endereço digitado. Não foi possível validar esta informação.')
+      else
+        $logger.error('Erro ao criar/editar imóvel. Por favor, tente novamente.')
+      $loading.hide()
+
+  $scope.doRemoveCsv = (index) ->
+    $rootScope.newProperties.errors.splice(index, 1)
+
 
   convertData = () ->
     $scope.property.interest.allMeters =  [10, 500]
@@ -101,9 +93,6 @@ angular.module('oneImobiliaria')
     $scope.property.interest.allIptus = [1000, 15000]
     $scope.property.interest.allCondominiums = [1000, 500000]
     $scope.property.interest.allLocations = [1000, 50000]
-
-#    if $scope.property.interest?.types?
-#      $scope.property.interest.types = []
 
     if $scope.property.interest?.meters?
       $scope.property.interest.allMeters[0] = $scope.property.interest.meters.min

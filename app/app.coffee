@@ -22,6 +22,7 @@ angular.module 'oneImobiliaria', [
   $rootScope.showSubmenu = false
 
   $rootScope.showModal = false
+  $rootScope.showModalNotifications = false
 
   $rootScope.appTitle = 'One Consultoria Imobiliária'
 
@@ -32,6 +33,9 @@ angular.module 'oneImobiliaria', [
 
   $rootScope.toggleModal = () ->
     $rootScope.showModal = !$rootScope.showModal
+
+  $rootScope.toggleModalNotifications = () ->
+    $rootScope.showModalNotifications = !$rootScope.showModalNotifications
 
   $rootScope.toggleMenu = () ->
     $rootScope.showMenu = !$rootScope.showMenu
@@ -51,8 +55,11 @@ angular.module 'oneImobiliaria', [
     $rootScope.error = false
     $rootScope.success = false
     $rootScope.loading = false
+
     $rootScope.showMenu = false
     $rootScope.showSubmenu = false
+    $rootScope.showModal = false
+    $rootScope.showModalNotifications = false
 
     UserService.doLogout() if $state.current.requiredLogin && !UserService.isLogged()
     $state.go('dashboard.home') if !$state.current.requiredLogin && UserService.isLogged()

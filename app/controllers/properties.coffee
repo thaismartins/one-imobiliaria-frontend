@@ -4,7 +4,7 @@ angular.module('oneImobiliaria')
 .controller 'PropertiesCtrl', ['$scope', '$rootScope', '$q', '$state', '$stateParams', '$filter', '$loading', '$logger', 'storage', 'PropertyService', 'LocationService', 'ClientService', ($scope, $rootScope, $q, $state, $stateParams, $filter, $loading, $logger, storage, PropertyService, LocationService, ClientService) ->
 
   $scope.properties = []
-#  $scope.property = {}
+  $scope.property = {}
   $scope.cities = []
   $scope.states = []
   $scope.clients = []
@@ -12,16 +12,7 @@ angular.module('oneImobiliaria')
   cities = []
 
   $scope.edit = true
-
-  $scope.property = {
-    code: 123
-    value: 500000
-    address:
-      street: 'Rua Simões Delgado'
-      number: 15
-      neighborhood: 'Jardim Nove de Julho'
-      condominium: 'Condominio de Teste'
-  }
+  $scope.showFilters = false
 
   $loading.show()
   if $stateParams.id
@@ -62,7 +53,6 @@ angular.module('oneImobiliaria')
       $loading.hide()
 
   $scope.showCities = (state) ->
-
     if cities[state]?
       $scope.cities = cities[state]
       return false
@@ -79,6 +69,9 @@ angular.module('oneImobiliaria')
 
   $scope.canEdit = () ->
     $scope.edit = true
+
+  $scope.toggleFilters = () ->
+    $scope.showFilters = !$scope.showFilters
 
   $scope.saveOrUpdate = () ->
     if !$rootScope.forms.property.$valid or not $scope.property?
@@ -125,7 +118,7 @@ angular.module('oneImobiliaria')
     .then (response) ->
       $scope.file = null
       $rootScope.newProperties = response.data.content
-      $state.go('dashboard.properties.confirm')
+      $state.go('dashboard.confirm')
       $loading.hide()
     .catch (response) ->
       $scope.file = {}

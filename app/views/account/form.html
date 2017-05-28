@@ -13,8 +13,10 @@
             <div class="content">
                 <form name="forms.user">
                     <div class="item item-left item-image col-xs-12 col-sm-2">
-                        <span ng-class="{'photo-fill': !user.photo}"></span>
-                        <img ng-src="{{fileUrl + 'users/' + user.photo}}" alt="{{user.name}}" title="{{user.name}}" ng-if="user.photo">
+                        <div class="image">
+                            <span ng-class="{'photo-fill': user.photo  == 'false'}"></span>
+                            <img ng-src="{{fileUrl + 'users/' + user.photo}}" alt="{{user.name}}" title="{{user.name}}" ng-if="user.photo != 'false'">
+                        </div>
                     </div>
 
                     <div class="item item-left col-xs-12 col-sm-5">

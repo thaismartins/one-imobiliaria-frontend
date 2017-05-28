@@ -5,11 +5,11 @@
     <div class="filters" ng-class="{'active': showFilters}">
         <article class="article article-noborder article-gray-dark">
             <div class="content-center">
-                <div class="content">
-                    <div ui-view="filters-interest"></div>
-                </div>
                 <div class="content" style="margin-top: 20px;">
                     <div ui-view="filters-property"></div>
+                </div>
+                <div class="content">
+                    <div ui-view="filters-interest"></div>
                 </div>
             </div>
         </article>
@@ -95,4 +95,5 @@
     </nav>
 
     <div ui-view="modal" class="modal-page" ng-class="{'active': showModal}"></div>
+    <div ui-view="modal-notifications" class="modal-page" ng-class="{'active': showModalNotifications}"></div>
 </section>

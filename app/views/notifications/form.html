@@ -1,0 +1,61 @@
+<section class="page">
+    <article class="article article-noborder">
+        <div class="content-center">
+
+            <div ui-view="error"></div>
+            <div ui-view="loading"></div>
+
+            <div class="title">
+                <span class="text">Mensagens</span>
+            </div>
+
+            <div class="content">
+
+                <p class="not-found" ng-if="notifications.length == 0">
+                    Nenhuma notificação cadastrada até o momento
+                </p>
+
+                <div ng-repeat="notification in notifications" ng-if="notifications.length > 0">
+                    <div class="division col-xs-12">
+                        <div class="item col-xs-12">
+                            <div class="label label-xlarge">{{notification.created | dateTimeBr}}</div>
+                            <div class="value">
+                                <p class="text">{{notification.message}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="title">
+                <span class="text">Adicionar Mensagem</span>
+            </div>
+            <div class="content">
+                <form name="forms.notification">
+                    <div class="item col-xs-12">
+                        <div class="label label-small">Mensagem</div>
+                        <div class="value">
+                            <textarea ng-model="notification.message" required rows="10"></textarea>
+                        </div>
+                    </div>
+                    <div class="item col-xs-12">
+                        <button class="btn btn-gold pull-right" ng-click="addNotification()">
+                            <span class="text">Salvar Notificação</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </article>
+
+    <nav class="pagination">
+        <div class="content-center">
+            <div class="item">
+                <a ui-sref="dashboard.notifications" class="btn btn-link btn-link-soft">
+                    <span class="icon icon-close"></span>
+                    <span class="text">Voltar</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+</section>

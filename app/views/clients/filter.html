@@ -1,0 +1,51 @@
+<div class="filters filters-small" ng-class="{'active': showFilters}">
+    <article class="article article-noborder article-gray-dark">
+        <div class="content-center">
+            <div class="content" style="margin-top: 20px;">
+                <div class="item item-left col-xs-12 col-sm-6">
+                    <div class="label">Nome</div>
+                    <div class="value value-center">
+                        <input type="text" ng-model="search.name">
+                    </div>
+                </div>
+
+                <div class="item col-xs-12 col-sm-6">
+                    <div class="label">Celular</div>
+                    <div class="value value-center">
+                        <input type="text" ng-model="search.phones.cell" ui-br-phone-number>
+                    </div>
+                </div>
+
+                <div class="item item-left col-xs-12 col-sm-6">
+                    <div class="label">Residencial {{search.phones.home}}</div>
+                    <div class="value value-center">
+                        <input type="text" ng-model="search.phones.home" ui-br-phone-number>
+                    </div>
+                </div>
+
+                <div class="item col-xs-12 col-sm-6">
+                    <div class="label">Comercial {{search.phones.commercial}}</div>
+                    <div class="value value-center">
+                        <input type="text" ng-model="search.phones.commercial" ui-br-phone-number>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <div class="submenu">
+        <div class="content-center">
+            <nav class="options">
+                <ul class="items">
+                    <li class="item">
+                        <button class="btn btn-link btn-link-soft" ng-click="toggleFilters()">
+                            <span class="icon icon-close"></span>
+                            <span class="text">Fechar</span>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+</div>

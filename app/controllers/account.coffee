@@ -41,6 +41,9 @@ angular.module('oneImobiliaria')
       if response.data.file?
         $scope.user.photo = response.data.file
         storage.setPhoto(response.data.file)
+        $rootScope.photo = response.data.file
+        $rootScope.photo = response.data.file
+        $rootScope.photo = response.data.file
       return UserService.update($scope.user)
     .then (response) ->
       $logger.success('Sua conta foi atualizada com sucesso!')

@@ -30,15 +30,21 @@
                 </li>
                 <li class="item has-subitem" ng-class="{'active': showSubmenu}">
                     <div class="item" ng-click="toggleSubmenu()">
-                        <span class="image" ng-if="photo">
+                        <span class="image" ng-if="photo != 'false'">
                             <img ng-src="{{fileUrl + 'users/' + photo}}" alt="{{name}}" title="{{name}}">
                         </span>
-                        <span class="image" ng-if="!photo">
+                        <span class="image" ng-if="photo == 'false'">
                            <img src="public/images/user.png" alt="{{name}}" title="{{name}}">
                         </span>
                         <span class="text">{{name | firstName}}</span>
                     </div>
                     <ul class="subitems">
+                        <li class="subitem">
+                            <a ui-sref="dashboard.notifications">
+                                <span class="icon icon-notification"></span>
+                                <span class="text">Ver Notificações</span>
+                            </a>
+                        </li>
                         <li class="subitem">
                             <a ui-sref="dashboard.account">
                                 <span class="icon icon-gear"></span>

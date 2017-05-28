@@ -1,0 +1,58 @@
+<article class="modal-box">
+    <div class="modal-title">
+        <span class="title">Notificações</span>
+        <span class="subtitle">Imóvel {{property.code}} e Imóvel {{interest.code}}</span>
+        <span class="modal-close" ng-click="toggleModalNotifications()">
+            <span class="icon icon-close"></span>
+        </span>
+    </div>
+    <div class="modal-text">
+        <div class="article article-noborder">
+            <div class="content">
+
+                <p class="not-found" ng-if="notifications.length == 0">
+                    Nenhuma notificação cadastrada até o momento
+                </p>
+
+                <div ng-repeat="notification in notifications" ng-if="notifications.length > 0">
+                    <div class="division col-xs-12">
+                        <div class="item col-xs-12">
+                            <div class="label label-xlarge">{{notification.created | dateTimeBr}}</div>
+                            <div class="value">
+                                <p class="text">{{notification.message}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="title">
+                    <span class="text">Adicionar Mensagem</span>
+                </div>
+
+                <div class="division col-xs-12">
+                    <form name="forms.notification">
+                        <div class="item col-xs-12">
+                            <div class="label label-small">Mensagem</div>
+                            <div class="value">
+                                <textarea ng-model="notification.message" required rows="10"></textarea>
+                            </div>
+                        </div>
+                        <div class="item col-xs-12">
+                            <button class="btn btn-gold pull-right" ng-click="addNotification()">
+                                <span class="text">Salvar Notificação</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal-btns">
+        <div class="item">
+            <button class="btn btn-link btn-link-soft pull-right" ng-click="toggleModalNotifications()">
+                <span class="text">Fechar</span>
+            </button>
+        </div>
+    </div>
+</article>

@@ -8,6 +8,7 @@ angular.module('oneImobiliaria')
   $scope.search = {}
 
   $scope.edit = true
+  $scope.showFilters = false
 
   $loading.show()
   if $stateParams.id
@@ -30,6 +31,9 @@ angular.module('oneImobiliaria')
 
   $scope.canEdit = () ->
     $scope.edit = true
+
+  $scope.toggleFilters = () ->
+    $scope.showFilters = !$scope.showFilters
 
   $scope.saveOrUpdate = () ->
     if !$rootScope.forms.client.$valid

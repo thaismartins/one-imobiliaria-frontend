@@ -10,14 +10,14 @@
 
             <div class="col-xs-12 col-sm-6">
                 <div class="checkbox">
-                    <input type="checkbox" ng-model="query.interest.types[0]" ng-true-value="'apartament'">
+                    <input type="checkbox" ng-model="query.property.types[0]" ng-true-value="'apartament'">
                     <span class="text">Apartamento</span>
                 </div>
             </div>
 
             <div class="col-xs-12 col-sm-6">
                 <div class="checkbox">
-                    <input type="checkbox" ng-model="query.interest.types[1]" ng-true-value="'house'"
+                    <input type="checkbox" ng-model="query.property.types[1]" ng-true-value="'house'"
                           >
                     <span class="text">Casa</span>
                 </div>
@@ -25,14 +25,14 @@
 
             <div class="col-xs-12 col-sm-6">
                 <div class="checkbox">
-                    <input type="checkbox" ng-model="query.interest.types[2]" ng-true-value="'land'"
+                    <input type="checkbox" ng-model="query.property.types[2]" ng-true-value="'land'"
                           >
                     <span class="text">Terreno</span>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6">
                 <div class="checkbox">
-                    <input type="checkbox" ng-model="query.interest.types[3]" ng-true-value="'car'"
+                    <input type="checkbox" ng-model="query.property.types[3]" ng-true-value="'car'"
                           >
                     <span class="text">Carro</span>
                 </div>
@@ -44,14 +44,14 @@
         <div class="label label-xsmall">Metragem</div>
         <div class="value value-center value-slider">
             <div class="slider-left">
-                <span>{{query.interest.allMeters[0]}}m²</span>
+                <span>{{query.property.allMeters[0]}}m²</span>
             </div>
             <div class="slider-center">
                 <div ui-slider="{range: true}" min="10" max="500"
-                     ng-model="query.interest.allMeters"></div>
+                     ng-model="query.property.allMeters"></div>
             </div>
             <div class="slider-right">
-                <span>{{query.interest.allMeters[1]}}m²</span>
+                <span>{{query.property.allMeters[1]}}m²</span>
             </div>
         </div>
     </div>
@@ -60,14 +60,14 @@
         <div class="label label-xsmall">Vagas</div>
         <div class="value value-center value-slider">
             <div class="slider-left">
-                <span>{{query.interest.allVacancies[0]}}</span>
+                <span>{{query.property.allVacancies[0]}}</span>
             </div>
             <div class="slider-center">
                 <div ui-slider="{range: true}" min="0" max="50"
-                     ng-model="query.interest.allVacancies"></div>
+                     ng-model="query.property.allVacancies"></div>
             </div>
             <div class="slider-right">
-                <span>{{query.interest.allVacancies[1]}}</span>
+                <span>{{query.property.allVacancies[1]}}</span>
             </div>
         </div>
     </div>
@@ -76,14 +76,14 @@
         <div class="label label-xsmall">Andar</div>
         <div class="value value-center value-slider">
             <div class="slider-left">
-                <span>{{query.interest.allFloors[0]}}º</span>
+                <span>{{query.property.allFloors[0]}}º</span>
             </div>
             <div class="slider-center">
                 <div ui-slider="{range: true}" min="1" max="30"
-                     ng-model="query.interest.allFloors"></div>
+                     ng-model="query.property.allFloors"></div>
             </div>
             <div class="slider-right">
-                <span>{{query.interest.allFloors[1]}}º</span>
+                <span>{{query.property.allFloors[1]}}º</span>
             </div>
         </div>
     </div>
@@ -91,36 +91,36 @@
     <div class="item item-left col-xs-12 col-sm-8">
         <div class="label label-xsmall">Endereço*</div>
         <div class="value value-center">
-            <input type="text" ng-model="query.interest.address.street">
+            <input type="text" ng-model="query.property.address.street">
         </div>
     </div>
 
     <div class="item item-left col-xs-12 col-sm-4">
         <div class="label label-small">Nº*</div>
         <div class="value value-center">
-            <input type="text" ng-model="query.interest.address.number">
+            <input type="text" ng-model="query.property.address.number">
         </div>
     </div>
 
     <div class="item item-left col-xs-12 col-sm-7">
         <div class="label label-small">Bairro*</div>
         <div class="value value-center">
-            <input type="text" ng-model="query.interest.address.neighborhood">
+            <input type="text" ng-model="query.property.address.neighborhood">
         </div>
     </div>
 
     <div class="item item-left col-xs-12 col-sm-5">
         <div class="label label-xsmall">CEP*</div>
         <div class="value value-center">
-            <input type="text" ng-model="query.interest.address.cep" ui-br-cep-mask>
+            <input type="text" ng-model="query.property.address.cep" ui-br-cep-mask>
         </div>
     </div>
 
     <div class="item item-left col-xs-12 col-sm-4">
         <div class="label label-small">Estado*</div>
         <div class="value value-center">
-            <select ng-model="query.interest.address.state"
-                    ng-change="showCities(query.interest.address.state)">
+            <select ng-model="query.property.address.state"
+                    ng-change="showCities(query.property.address.state)">
                 <option value="{{state}}" ng-repeat="state in states">
                     {{state}}
                 </option>
@@ -131,7 +131,7 @@
     <div class="item item-left col-xs-12 col-sm-8">
         <div class="label label-small">Cidade*</div>
         <div class="value value-center">
-            <select ng-model="query.interest.address.city">
+            <select ng-model="query.property.address.city">
                 <option value="{{city.name}}" ng-repeat="city in cities">
                     {{city.name}}
                 </option>
@@ -142,9 +142,25 @@
     <div class="item item-left col-xs-12">
         <div class="label">Próximo ao metro?</div>
         <div class="value value-center">
-            <input type="checkbox" ng-model="query.interest.hasSubway">
-            <input type="text" ng-model="query.interest.subwayStation" placeholder="Qual estação?"
-                  >
+            <input type="checkbox" ng-model="query.property.hasSubway">
+            <input type="text" ng-model="query.property.subwayStation" placeholder="Qual estação?"
+                  ng-disabled="!query.property.hasSubway">
+        </div>
+    </div>
+
+    <div class="item item-left col-xs-12">
+        <div class="label">Raio</div>
+        <div class="value value-center value-slider">
+            <div class="slider-left">
+                <span>&nbsp;</span>
+            </div>
+            <div class="slider-center">
+                <div ui-slider="{range: 'min'}" min="0" max="500" step="1"
+                     ng-model="query.property.radius"></div>
+            </div>
+            <div class="slider-right">
+                <span>{{query.property.radius}}km</span>
+            </div>
         </div>
     </div>
 </div>
@@ -155,14 +171,14 @@
         <div class="label">Valor do Investimento</div>
         <div class="value value-center value-slider">
             <div class="slider-left">
-                <span>R${{query.interest.allValues[0] | decimals}}</span>
+                <span>R${{query.property.allValues[0] | decimals}}</span>
             </div>
             <div class="slider-center">
                 <div ui-slider="{range: true}" min="1000" max="5000000" step="50"
-                     ng-model="query.interest.allValues"></div>
+                     ng-model="query.property.allValues"></div>
             </div>
             <div class="slider-right">
-                <span>R${{query.interest.allValues[1] | decimals}}</span>
+                <span>R${{query.property.allValues[1] | decimals}}</span>
             </div>
         </div>
     </div>
@@ -171,14 +187,14 @@
         <div class="label">Valor do Condomínio</div>
         <div class="value value-center value-slider">
             <div class="slider-left">
-                <span>R${{query.interest.allCondominiums[0] | decimals}}</span>
+                <span>R${{query.property.allCondominiums[0] | decimals}}</span>
             </div>
             <div class="slider-center">
                 <div ui-slider="{range: true}" min="1000" max="500000" step="50"
-                     ng-model="query.interest.allCondominiums"></div>
+                     ng-model="query.property.allCondominiums"></div>
             </div>
             <div class="slider-right">
-                <span>R${{query.interest.allCondominiums[1] | decimals}}</span>
+                <span>R${{query.property.allCondominiums[1] | decimals}}</span>
             </div>
         </div>
     </div>
@@ -187,14 +203,14 @@
         <div class="label">Valor do IPTU</div>
         <div class="value value-center value-slider">
             <div class="slider-left">
-                <span>R${{query.interest.allIptus[0] | decimals}}</span>
+                <span>R${{query.property.allIptus[0] | decimals}}</span>
             </div>
             <div class="slider-center">
                 <div ui-slider="{range: true}" min="1000" max="15000" step="50"
-                     ng-model="query.interest.allIptus"></div>
+                     ng-model="query.property.allIptus"></div>
             </div>
             <div class="slider-right">
-                <span>R${{query.interest.allIptus[1] | decimals}}</span>
+                <span>R${{query.property.allIptus[1] | decimals}}</span>
             </div>
         </div>
     </div>
@@ -203,14 +219,14 @@
         <div class="label">Valor da Locação</div>
         <div class="value value-center value-slider">
             <div class="slider-left">
-                <span>R${{query.interest.allLocations[0] | decimals}}</span>
+                <span>R${{query.property.allLocations[0] | decimals}}</span>
             </div>
             <div class="slider-center">
                 <div ui-slider="{range: true}" min="1000" max="50000" step="50"
-                     ng-model="query.interest.allLocations"></div>
+                     ng-model="query.property.allLocations"></div>
             </div>
             <div class="slider-right">
-                <span>R${{query.interest.allLocations[1] | decimals}}</span>
+                <span>R${{query.property.allLocations[1] | decimals}}</span>
             </div>
         </div>
     </div>
@@ -219,52 +235,28 @@
         <div class="label label-large label-left">Forma de Pagamento da Diferença</div>
         <div class="value value-center">
             <div class="checkbox">
-                <input type="checkbox" ng-model="query.interest.payments[0]" ng-true-value="'financing'"
+                <input type="checkbox" ng-model="query.property.payments[0]" ng-true-value="'financing'"
                       >
                 <span class="text">Financiamento</span>
             </div>
 
             <div class="checkbox">
-                <input type="checkbox" ng-model="query.interest.payments[1]" ng-true-value="'money'"
+                <input type="checkbox" ng-model="query.property.payments[1]" ng-true-value="'money'"
                       >
                 <span class="text">Dinheiro</span>
             </div>
 
             <div class="checkbox">
-                <input type="checkbox" ng-model="query.interest.payments[2]" ng-true-value="'others'"
-                      >
+                <input type="checkbox" ng-model="query.property.payments[2]" ng-true-value="'others'">
                 <span class="text">Outros</span>
             </div>
         </div>
     </div>
 
-    <div class="item item-left col-xs-6"  style="min-height: 110px">
-        <div class="label label-large">% do Valor Aceito para Permuta</div>
-        <div class="value value-center">
-            <input type="text" ng-model="query.interest.exchange" ui-percentage-mask="0">
-        </div>
-    </div>
-
-    <div class="item col-xs-6">
+    <div class="item col-xs-12">
         <div class="label label-large">Imóvel Quitado?</div>
         <div class="value value-center">
-            <input type="checkbox" ng-model="query.interest.settled">
-        </div>
-    </div>
-
-    <div class="item col-xs-6">
-        <div class="label label-large">Qual o saldo?</div>
-        <div class="value value-center">
-            <input type="text" ng-model="query.interest.difference" ui-percentage-mask="0"
-                   ng-disabled="!query.interest.settled">
-        </div>
-    </div>
-
-    <div class="item col-xs-12">
-        <div class="label label-large">Carro</div>
-        <div class="value value-center">
-            <input type="checkbox" ng-model="query.interest.car">
-            <input type="text" ng-model="query.carValue" ng-disabled="!query.interest.car" ui-money-mask>
+            <input type="checkbox" ng-model="query.property.settled">
         </div>
     </div>
 </div>

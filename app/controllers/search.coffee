@@ -1,10 +1,13 @@
 'use strict'
 
 angular.module('oneImobiliaria')
-.controller 'SearchCtrl', ['$scope', '$rootScope', '$loading', '$logger', 'storage', 'PropertyService', ($scope, $rootScope, $loading, $logger, storage, PropertyService) ->
+.controller 'SearchCtrl', ['$scope', '$rootScope', '$loading', '$logger', 'storage', 'NotificationService', 'PropertyService', ($scope, $rootScope, $loading, $logger, storage, NotificationService, PropertyService) ->
 
   $scope.properties = []
   $scope.showFilters = false
+
+  $scope.notifications = []
+  $scope.notification = {}
 
   $scope.property = {}
   $scope.interest = {}
@@ -163,6 +166,41 @@ angular.module('oneImobiliaria')
     $scope.property = item.property
     $scope.interest = item.interest
     $rootScope.toggleModal()
+
+  $scope.showNotifications = (item) ->
+    return if not item?
+    $scope.property = item.property
+    $scope.interest = item.interest
+
+    $loading.show()
+    NotificationService.getAllByProperties(item.property._id, item.interest._id)
+    .then (response) ->
+      $scope.notifications = response.data
+      $scope.notification.message = ''
+      $rootScope.toggleModalNotifications()
+      $loading.hide()
+    .catch (response) ->
+      $logger.error('Erro ao buscar notificações. Por favor, tente novamente.')
+      $loading.hide()
+
+  $scope.addNotification = () ->
+    if !$rootScope.forms.notification.$valid
+      $logger.error('Preencha todos os dados obrigatórios.')
+      return
+
+    $scope.notification.broker = storage.getCode()
+    $scope.notification.property = $scope.property._id
+    $scope.notification.interest = $scope.interest._id
+
+    $loading.show()
+    NotificationService.create($scope.notification)
+    .then (response) ->
+      $scope.notifications.unshift response.data
+      $scope.notification.message = ''
+      $loading.hide()
+    .catch (response) ->
+      $logger.error('Erro ao adicionar notificação. Por favor, tente novamente.')
+      $loading.hide()
 
   find = () ->
     PropertyService.search($scope.query)

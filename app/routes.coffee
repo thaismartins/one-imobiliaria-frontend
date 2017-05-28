@@ -85,8 +85,8 @@ angular.module('oneImobiliaria')
         controller: 'ClientsCtrl'
       'submenu@dashboard.clients':
         templateUrl: 'app/views/clients/submenu.html'
-      'search@dashboard.clients':
-        templateUrl: 'app/views/clients/search.html'
+      'filter@dashboard.clients':
+        templateUrl: 'app/views/clients/filter.html'
       'error@dashboard.clients':
         templateUrl: 'app/views/error.html'
       'success@dashboard.clients':
@@ -127,8 +127,8 @@ angular.module('oneImobiliaria')
         controller: 'PropertiesCtrl'
       'submenu@dashboard.properties':
         templateUrl: 'app/views/properties/submenu.html'
-      'search@dashboard.properties':
-        templateUrl: 'app/views/properties/search.html'
+      'filter@dashboard.properties':
+        templateUrl: 'app/views/properties/filter.html'
       'error@dashboard.properties':
         templateUrl: 'app/views/error.html'
       'success@dashboard.properties':
@@ -181,7 +181,7 @@ angular.module('oneImobiliaria')
         controller: 'ConfirmCtrl'
       'submenu@dashboard.confirm':
         templateUrl: 'app/views/confirm/submenu.html'
-      'modal@dashboard.properties.confirm':
+      'modal@dashboard.confirm':
         templateUrl: 'app/views/confirm/modal.html'
       'error@dashboard.confirm':
         templateUrl: 'app/views/error.html'
@@ -221,9 +221,39 @@ angular.module('oneImobiliaria')
         controller: 'AccountCtrl'
       'modal@dashboard.search':
         templateUrl: 'app/views/search/modal.html'
+      'modal-notifications@dashboard.search':
+        templateUrl: 'app/views/search/modal-notifications.html'
       'error@dashboard.search':
         templateUrl: 'app/views/error.html'
       'loading@dashboard.search':
+        templateUrl: 'app/views/loading.html'
+    requiredLogin: true
+
+  .state 'dashboard.notifications',
+    url: '/notifications'
+    views:
+      'main@':
+        templateUrl: 'app/views/notifications/index.html'
+        controller: 'NotificationCtrl'
+      'submenu@dashboard.notifications':
+        templateUrl: 'app/views/notifications/submenu.html'
+      'error@dashboard.notifications':
+        templateUrl: 'app/views/error.html'
+      'loading@dashboard.notifications':
+        templateUrl: 'app/views/loading.html'
+    requiredLogin: true
+
+  .state 'dashboard.notifications.edit',
+    url: '/notifications/property/:propertyId/interest/:interestId'
+    views:
+      'main@':
+        templateUrl: 'app/views/notifications/form.html'
+        controller: 'NotificationCtrl'
+      'submenu@dashboard.notifications.edit':
+        templateUrl: 'app/views/notifications/submenu.html'
+      'error@dashboard.notifications.edit':
+        templateUrl: 'app/views/error.html'
+      'loading@dashboard.notifications.edit':
         templateUrl: 'app/views/loading.html'
     requiredLogin: true
 

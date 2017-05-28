@@ -2,6 +2,14 @@
   @include transition(all .4s)
   height: 0
   overflow: hidden
+  width: 100%
+
+  &.filters-small
+    &.active
+      height: 300px
+
+      @media #{$small-max}
+        height: 400px
 
   &.active
     height: 1500px
