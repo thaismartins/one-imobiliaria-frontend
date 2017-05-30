@@ -30,10 +30,10 @@
                 </li>
                 <li class="item has-subitem" ng-class="{'active': showSubmenu}">
                     <div class="item" ng-click="toggleSubmenu()">
-                        <span class="image" ng-if="photo != 'false'">
+                        <span class="image" ng-if="photo != 'false' || photo != false">
                             <img ng-src="{{fileUrl + 'users/' + photo}}" alt="{{name}}" title="{{name}}">
                         </span>
-                        <span class="image" ng-if="photo == 'false'">
+                        <span class="image" ng-if="!photo || photo == 'false'">
                            <img src="public/images/user.png" alt="{{name}}" title="{{name}}">
                         </span>
                         <span class="text">{{name | firstName}}</span>
