@@ -85,7 +85,6 @@ angular.module('oneImobiliaria')
       $loading.hide()
       $state.go('dashboard.properties')
     .catch (error) ->
-      console.log(error);
       if error.data? && error.data.code == 8
         $logger.error('Verifique o endereço digitado. Não foi possível validar esta informação.')
       else
@@ -170,6 +169,12 @@ angular.module('oneImobiliaria')
     $scope.property.condominium = $scope.property.condominium.toFixed(2) if $scope.property.condominium?
     $scope.property.location = $scope.property.location.toFixed(2) if $scope.property.location?
     $scope.property.iptu = $scope.property.iptu.toFixed(2) if $scope.property.iptu?
+
+    types = []
+    if $scope.property.types?
+      for type of $scope.property.types
+        console.log(type);
+    $scope.property.types = types
 
     return false if not $scope.property.interest?
 
