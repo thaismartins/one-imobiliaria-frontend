@@ -85,6 +85,7 @@ angular.module('oneImobiliaria')
       $loading.hide()
       $state.go('dashboard.properties')
     .catch (response) ->
+      console.log(response);
       if response.data.code == 8
         $logger.error('Verifique o endereço digitado. Não foi possível validar esta informação.')
       else
