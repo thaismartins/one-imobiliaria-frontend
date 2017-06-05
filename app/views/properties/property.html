@@ -6,14 +6,14 @@
     <div class="item item-left col-xs-12 col-sm-6">
         <div class="label label-small">Código*</div>
         <div class="value value-center">
-            <input type="text" ng-model="property.code" required ng-disabled="!edit">
+            <input type="text" ng-model="property.code" class="property.code" required ng-disabled="!edit">
         </div>
     </div>
 
     <div class="item item-left col-xs-12 col-sm-6">
         <div class="label label-small">Cliente*</div>
         <div class="value value-center">
-            <select ng-model="property.client" ng-disabled="!edit" required>
+            <select ng-model="property.client" class="property.client" ng-disabled="!edit" required>
                 <option ng-repeat="client in clients" value="{{client._id}}"
                         ng-selected="property.client._id == client._id">
                     {{client.name}}
@@ -25,8 +25,8 @@
     <div class="item item-left col-xs-12 col-sm-8">
         <div class="label label-small">Tipo*</div>
         <div class="value value-center">
-            <select ng-model="property.type" ng-disabled="!edit" required>
-                <option value="apartament">Apartamento</option>
+            <select ng-model="property.type" class="property.type" ng-disabled="!edit" required>
+                <option value="apartment">Apartamento</option>
                 <option value="house">Casa</option>
                 <option value="land">Terreno</option>
                 <option value="car">Carro</option>
@@ -37,14 +37,14 @@
     <div class="item item-left col-xs-12 col-sm-4">
         <div class="label label-xsmall">M²</div>
         <div class="value value-center">
-            <input type="number" ng-model="property.meters" ng-disabled="!edit">
+            <input type="number" ng-model="property.meters" class="property.meters" ng-disabled="!edit">
         </div>
     </div>
 
     <div class="item item-left col-xs-12 col-sm-6">
         <div class="label label-small">Vagas</div>
         <div class="value value-center">
-            <select ng-model="property.vacancy" ng-disabled="!edit">
+            <select ng-model="property.vacancy" class="property.vacancy" ng-disabled="!edit">
                 <option value="{{vacancy}}" ng-repeat="vacancy in 50 | range"
                         ng-selected="property.vacancy == vacancy">
                     {{vacancy}}
@@ -56,7 +56,7 @@
     <div class="item item-left col-xs-12 col-sm-6">
         <div class="label label-small">Andar</div>
         <div class="value value-center">
-            <select ng-model="property.floor" ng-disabled="!edit">
+            <select ng-model="property.floor" class="property.floor" ng-disabled="!edit">
                 <option value="{{floor}}" ng-repeat="floor in 30 | range"
                         ng-selected="property.floor == floor">
                     {{floor}}º
@@ -68,42 +68,42 @@
     <div class="item item-left col-xs-12 col-sm-8">
         <div class="label label-xsmall">Endereço*</div>
         <div class="value value-center">
-            <input type="text" ng-model="property.address.street" required ng-disabled="!edit">
+            <input type="text" ng-model="property.address.street" class="property.address.street" required ng-disabled="!edit">
         </div>
     </div>
 
     <div class="item item-left col-xs-12 col-sm-4">
         <div class="label label-small">Nº*</div>
         <div class="value value-center">
-            <input type="text" ng-model="property.address.number" required ng-disabled="!edit">
+            <input type="text" ng-model="property.address.number" class="property.address.number" required ng-disabled="!edit">
         </div>
     </div>
 
     <div class="item item-left col-xs-12">
         <div class="label label-small">Complemento</div>
         <div class="value value-center">
-            <input type="text" ng-model="property.address.complement" ng-disabled="!edit">
+            <input type="text" ng-model="property.address.complement" class="property.address.complement" ng-disabled="!edit">
         </div>
     </div>
 
     <div class="item item-left col-xs-12 col-sm-7">
         <div class="label label-small">Bairro*</div>
         <div class="value value-center">
-            <input type="text" ng-model="property.address.neighborhood" required ng-disabled="!edit">
+            <input type="text" ng-model="property.address.neighborhood" class="property.address.neighborhood" required ng-disabled="!edit">
         </div>
     </div>
 
     <div class="item item-left col-xs-12 col-sm-5">
         <div class="label label-xsmall">CEP*</div>
         <div class="value value-center">
-            <input type="text" ng-model="property.address.cep" ui-br-cep-mask required ng-disabled="!edit">
+            <input type="text" ng-model="property.address.cep" class="property.address.cep" ui-br-cep-mask required ng-disabled="!edit">
         </div>
     </div>
 
     <div class="item item-left col-xs-12">
         <div class="label label-small">Condomínio</div>
         <div class="value value-center">
-            <input type="text" ng-model="property.address.condominium" ng-disabled="!edit">
+            <input type="text" ng-model="property.address.condominium" class="property.address.condominium" ng-disabled="!edit">
         </div>
     </div>
 
