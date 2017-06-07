@@ -105,7 +105,7 @@ angular.module('oneImobiliaria')
     PropertyService.saveOrUpdate($scope.property)
     .then (response) ->
       $rootScope.newProperties.errors.splice(index, 1)
-      $rootScope.toggleModal()
+      $rootScope.showModal = false
       $loading.hide()
     .catch (response) ->
       if response.data.code == 8
