@@ -12,8 +12,8 @@ angular.module('oneImobiliaria')
     return config
 
   responseError: (rejection) ->
-    console.log(rejection.data);
-    if !isUnloggedPage(config) and rejection.data? and rejection.data.error? and rejection.data.error.name == 'TokenExpiredError'
+    console.log(rejection);
+    if rejection.data? and rejection.data.error? and (rejection.data.error.name == 'TokenExpiredError' || rejection.data.error.name == 'JsonWebTokenError')
       storage.clean()
       $injector.get('$state').go('login')
     else
