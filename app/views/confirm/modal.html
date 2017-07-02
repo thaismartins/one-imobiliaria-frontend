@@ -6,39 +6,61 @@
             <span class="icon icon-close"></span>
         </span>
     </div>
-    <div class="modal-text">
-        <div class="article article-noborder">
-            <div class="content">
-                <ng-include src="'app/views/error.html'"></ng-include>
+    <div ng-show="!showSuccess">
+        <div class="modal-text">
+            <div class="article article-noborder">
+                <div class="content">
+                    <ng-include src="'app/views/error.html'"></ng-include>
 
-                <button class="btn btn-gray-dark pull-right" ng-click="toggleClient()">
-                    <span class="text">+ Adicionar Cliente</span>
-                </button>
-
-                <form name="forms.client" ng-show="showClient">
-                    <div class="subtitle">
-                        <span class="text">Dados do Cliente</span>
-                    </div>
-                    <ng-include src="'app/views/clients/client.html'"></ng-include>
-                    <button class="btn btn-gray-dark pull-right" ng-click="saveClient()">
-                        <span class="text">Salvar Cliente</span>
+                    <button class="btn btn-gray-dark pull-right" ng-click="toggleClient()">
+                        <span class="text">+ Adicionar Cliente</span>
                     </button>
-                </form>
 
-                <form name="forms.property">
-                    <ng-include src="'app/views/properties/property.html'"></ng-include>
-                </form>
+                    <form name="forms.client" ng-show="showClient">
+                        <div class="subtitle">
+                            <span class="text">Dados do Cliente</span>
+                        </div>
+                        <ng-include src="'app/views/clients/client.html'"></ng-include>
+                        <button class="btn btn-gray-dark pull-right" ng-click="saveClient()">
+                            <span class="text">Salvar Cliente</span>
+                        </button>
+                    </form>
+
+                    <form name="forms.property">
+                        <ng-include src="'app/views/properties/property.html'"></ng-include>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal-btns">
+            <div class="item">
+                <button class="btn btn-link btn-link-soft pull-left" ng-click="toggleModal()">
+                    <span class="text">Fechar</span>
+                </button>
+                <button class="btn btn-link btn-link-soft pull-right" ng-click="saveOrUpdateModal()">
+                    <span class="text">Salvar</span>
+                </button>
             </div>
         </div>
     </div>
-    <div class="modal-btns">
-        <div class="item">
-            <button class="btn btn-link btn-link-soft pull-left" ng-click="toggleModal()">
-                <span class="text">Fechar</span>
-            </button>
-            <button class="btn btn-link btn-link-soft pull-right" ng-click="saveOrUpdateModal()">
-                <span class="text">Salvar</span>
-            </button>
+    <div ng-show="showSuccess">
+        <div class="modal-text">
+            <div class="article article-noborder">
+                <div class="content">
+
+
+                    <div class="alert alert-success">
+                        <div class="icon">
+                            <i class="fa fa-exclamation-circle"></i>
+                        </div>
+                        <div class="text-big">Imóvel salvo com sucesso!</div>
+                    </div>
+
+                    <button class="btn btn-gray-dark pull-right" ng-click="toggleModal()">
+                        <span class="text">Fechar</span>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 </article>
