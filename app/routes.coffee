@@ -116,6 +116,8 @@ angular.module('oneImobiliaria')
       'main@':
         templateUrl: 'app/views/clients/form.html'
         controller: 'ClientsCtrl'
+      'client@dashboard.clients.edit':
+        templateUrl: 'app/views/clients/client.html'
       'error@dashboard.clients.edit':
         templateUrl: 'app/views/error.html'
       'loading@dashboard.users.edit':
