@@ -15,8 +15,7 @@
 
                     <div class="item item-left item-image col-xs-12 col-sm-2">
                         <div class="image">
-                            <span ng-class="{'photo-fill': user.photo  == 'false'}"></span>
-                            <img ng-src="{{fileUrl + 'users/' + user.photo}}" alt="{{user.name}}" title="{{user.name}}" ng-if="user.photo != 'false'">
+                            <img ng-src="{{fileUrl + 'users/' + user.photo}}" alt="{{user.name}}" title="{{user.name}}" ng-if="user.photo != false && user.photo != 'false' && user.photo != ''">
                         </div>
                     </div>
 

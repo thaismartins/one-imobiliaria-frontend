@@ -1,6 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### JetBrains template
-.idea/
+.idea/*
 
 ## File-based project format:
 *.iws

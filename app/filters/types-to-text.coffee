@@ -7,13 +7,13 @@ angular.module('oneImobiliaria')
     return 'Indefinido' unless types? and types.length > 0
 
     items =
-      apart: 'Apartamento'
+      apartment: 'Apartamento'
       land: 'Tereno'
       car: 'Carro'
-      house: 'Case'
+      house: 'Casa'
 
     values = []
     for type in types
-      values.push(items[type])
+      values.push(items[type]) if typeof items[type] != 'undefined'
 
     return values.join(' | ')

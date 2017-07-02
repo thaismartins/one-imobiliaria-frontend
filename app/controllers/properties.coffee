@@ -74,6 +74,7 @@ angular.module('oneImobiliaria')
     $scope.showFilters = !$scope.showFilters
 
   $scope.saveOrUpdate = () ->
+
     if !$rootScope.forms.property.$valid or not $scope.property?
       $logger.error('Preencha todos os dados obrigatórios.')
       return
@@ -84,8 +85,9 @@ angular.module('oneImobiliaria')
     .then (response) ->
       $loading.hide()
       $state.go('dashboard.properties')
-    .catch (response) ->
-      if response.data.code == 8
+    .catch (error) ->
+      console.log(error);
+      if error.data? && error.data.code == 8
         $logger.error('Verifique o endereço digitado. Não foi possível validar esta informação.')
       else
         $logger.error('Erro ao criar/editar imóvel. Por favor, tente novamente.')
@@ -171,6 +173,9 @@ angular.module('oneImobiliaria')
     $scope.property.iptu = $scope.property.iptu.toFixed(2) if $scope.property.iptu?
 
     return false if not $scope.property.interest?
+
+    $scope.property.interest.types = $filter('objToArray')($scope.property.interest.types, 4)
+    $scope.property.interest.payments = $filter('objToArray')($scope.property.interest.payments, 3)
 
     if $scope.property.interest.allMeters?
       $scope.property.interest.meters =
