@@ -177,17 +177,24 @@
 
     <div class="item item-top col-xs-12">
         <div class="label">Valor do Investimento</div>
-        <div class="value value-center value-slider" ng-class="{'disabled': !edit}">
-            <div class="slider-left">
-                <span>R${{property.interest.allValues[0] | decimals}}</span>
+        <div class="value value-center">
+            <div class="col-sm-12 col-md-6">
+                <input type="text" ng-model="property.interest.value.min" placeholder="R$ De" ui-money-mask ng-disabled="!edit">
             </div>
-            <div class="slider-center">
-                <div ui-slider="{range: true}" min="1000" max="5000000" step="100"
-                     ng-model="property.interest.allValues"></div>
+            <div class="col-sm-12 col-md-6">
+                <input type="text" ng-model="property.interest.value.max" placeholder="R$ Até" ui-money-mask ng-disabled="!edit">
             </div>
-            <div class="slider-right">
-                <span>R${{property.interest.allValues[1] | decimals}}</span>
-            </div>
+            <!--<div class="slider-left">-->
+                <!--<span>R${{property.interest.allValues[0] | decimals}}</span>-->
+            <!--</div>-->
+            <!--<div class="slider-center">-->
+                <!--<div ui-slider="{range: true}" use-decimals min="1000" max="5000000" step="100"-->
+                     <!--ng-model="property.interest.allValues"></div>-->
+                <!--<input type="text" ng-model="property.interest.allValues">-->
+            <!--</div>-->
+            <!--<div class="slider-right">-->
+                <!--<span>R${{property.interest.allValues[1] | decimals}}</span>-->
+            <!--</div>-->
         </div>
     </div>
 
@@ -230,7 +237,7 @@
                 <span>R${{property.interest.allLocations[0] | decimals}}</span>
             </div>
             <div class="slider-center">
-                <div ui-slider="{range: true}" min="1000" max="50000" step="50"
+                <div ui-slider="{range: true}" min="1000.00" max="50000.00" step="50"
                      ng-model="property.interest.allLocations"></div>
             </div>
             <div class="slider-right">

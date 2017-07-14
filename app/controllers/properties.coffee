@@ -132,10 +132,9 @@ angular.module('oneImobiliaria')
     $scope.property.interest.allMeters =  [10, 500]
     $scope.property.interest.allVacancies = [0, 50]
     $scope.property.interest.allFloors = [1, 30]
-    $scope.property.interest.allValues = [1000, 5000000]
-    $scope.property.interest.allIptus = [1000, 15000]
-    $scope.property.interest.allCondominiums = [1000, 500000]
-    $scope.property.interest.allLocations = [1000, 50000]
+    $scope.property.interest.allIptus = [1000.00, 15000.00]
+    $scope.property.interest.allCondominiums = [1000.00, 500000.00]
+    $scope.property.interest.allLocations = [1000.00, 50000.00]
 
     if $scope.property.interest?.meters?
       $scope.property.interest.allMeters[0] = $scope.property.interest.meters.min
@@ -152,10 +151,6 @@ angular.module('oneImobiliaria')
     if $scope.property.interest?.floor?
       $scope.property.interest.allFloors[0] = $scope.property.interest.floor.min
       $scope.property.interest.allFloors[1] = $scope.property.interest.floor.max
-
-    if $scope.property.interest?.value?
-      $scope.property.interest.allValues[0] = $scope.property.interest.value.min
-      $scope.property.interest.allValues[1] = $scope.property.interest.value.max
 
     if $scope.property.interest?.iptu?
       $scope.property.interest.allIptus[0] = $scope.property.interest.iptu.min
@@ -200,12 +195,6 @@ angular.module('oneImobiliaria')
         min: $scope.property.interest.allFloors[0]
         max: $scope.property.interest.allFloors[1]
       delete $scope.property.interest.allFloors
-
-    if $scope.property.interest.allValues?
-      $scope.property.interest.value =
-        min: $scope.property.interest.allValues[0]
-        max: $scope.property.interest.allValues[1]
-      delete $scope.property.interest.allValues
 
     if $scope.property.interest.allIptus?
       $scope.property.interest.iptu =
